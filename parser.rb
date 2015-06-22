@@ -2,20 +2,25 @@ require 'nokogiri'
 require 'open-uri'
 require './models'
 
-# html = Nokogiri::HTML(open('http://allbelarus.by/news/vodaotkl'))
-html = Nokogiri::HTML(open('temp.txt'))
+html = Nokogiri::HTML(open('html.txt'))
+# html = Nokogiri::HTML(open('http://www.belta.by/ru/dose_menu/grafik_zkh'))
+html.xpath('//h2').map(&:remove)
+div_inner = html.xpath('//div[@class="social"]').text.split("uptolike share en")[-1].strip
 
-h3_tags = html.xpath('//div[@class="content clear-block"]/h3').map { |date| date.text.delete(':').sub('С ','').strip if date.text.include?(':') }
-p_tags = html.xpath('//div[@class="content clear-block"]/p').map { |element| element.text.sub('по улицам', '').strip}
+html.xpath('//div[@class="social"]').map(&:remove)
+div_total = html.xpath('//div[@class="main_block"]').text.strip
 
-dates = h3_tags.compact
-blocks = p_tags.drop(1)
+file = File.open('temp.txt','w')
 
-dates.zip(blocks).map do |date,block_for_date|
-  temp = []
-  splitted_block_for_date = block_for_date.split(/; ([А-Я])|; ([1-9]\-[а-я])/)
-  first = splitted_block_for_date[0]
-  splitted_block_for_date.drop(1).each_slice(2) { |slice| temp << slice.join }
-  temp << first
-  temp.map { |address| Record.create(:date => date, :address => address) }
+text = (div_total + div_inner).gsub(" у потребителей по улицам:","%").gsub(/\n|\r/,"")
+main = text.split(/В период /).drop(1)
+
+dates = []
+addresses_blocks = []
+
+main.map do |date_with_group|
+  dates << date_with_group.split('%')[0]
+  groups << date_with_group.split('%')[1]
 end
+
+file.close
