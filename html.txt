@@ -104,7 +104,7 @@
 				<div class="header_text">
 					<a href="/" title="Новости Беларуси. Белорусское Телеграфное Агентство"><img src="/newimages/logo_text.png" alt="Новости Беларуси. Белорусское Телеграфное Агентство"></a>
 					<div class="hdr_date">
-					        Вск, 21 Июнь 2015
+					        Пнд, 22 Июнь 2015
 					</div>
 															    
 				</div>
@@ -130,17 +130,17 @@
 <div class="curr_text"><a href="/ru/exchange-rates" title="далее">Курсы валют</a></div>	
 		<div class="curr_text">
 <span class="line">|</span><span style="color:#000; font-weight:normal"> </span>EUR </div>
-		<div class="curr_rate">17464</div>
+		<div class="curr_rate">17342</div>
 
 	
 		<div class="curr_text">
 <span class="line">|</span><span style="color:#000; font-weight:normal"> </span>USD </div>
-		<div class="curr_rate">15360</div>
+		<div class="curr_rate">15293</div>
 
 	
 		<div class="curr_text">
 <span class="line">|</span><span style="color:#000; font-weight:normal"> </span>RUB </div>
-		<div class="curr_rate">287.32</div>
+		<div class="curr_rate">282.67</div>
 
 	<div class="arrow_green">
 	    <a href="/ru/exchange-rates" title="далее"> </a>
@@ -152,7 +152,7 @@
 		    </div>
 
 				<div class="weather_img">
-				    <img src="/newmetimages/ncr.png" alt="" title="облачно, дождь" width="15" height="15">
+				    <img src="/newmetimages/dcrt.png" alt="" title=", гроза" width="15" height="15">
 				</div>
 				
 				<div class="weather_temperature">
@@ -320,13 +320,48 @@ s.parentNode.insertBefore(up, s);
 			</div>	
 <!-- //Главный блок -->		
 			<div class="other_block">
-						<div class="ban_topnews"></div>
+						<div class="ban_topnews">	    <div class="ban_topnews_item">
+		
+				<object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" codebase="http://fpdownload.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,0,0" width="240" height="400" id="bVTB_Novice_240x400_Benefit_Infobank_Select_Myfin_Telegraf_Belta_DIRECT_LINK" align="middle">
+											<param name="allowScriptAccess" value="sameDomain">
+											<param name="movie" value="/newbfl/VTB_Novice_240x400_Benefit_Infobank_Select_Myfin_Telegraf_Belta_DIRECT_LINK.swf">
+											<param name="quality" value="high">
+											<param name="wmode" value="opaque">
+											<embed src="/newbfl/VTB_Novice_240x400_Benefit_Infobank_Select_Myfin_Telegraf_Belta_DIRECT_LINK.swf" width="240" height="400" quality="high" name="bVTB_Novice_240x400_Benefit_Infobank_Select_Myfin_Telegraf_Belta_DIRECT_LINK" align="middle" allowscriptaccess="sameDomain" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer"></embed>
+									</object>
+			
+	    </div>
+</div>
 
 					<div class="news">
 						<h3 class="rubric_title_na">Топ-новости</h3>
 <div class="news_block_top">
 <div class="bl_sc"> </div>
-<div class="top_n" style="float:left;width:215px;margin-top:-2px;padding:0"><a href="/ru/all_news/society/Ogni-Majaka_i_709091.html">Огни "Маяка"</a></div>
+<div class="top_n" style="float:left;width:215px;margin-top:-2px;padding:0"><a href="/ru/all_news/society/Kompanija-Dana-Holdings-poluchila-chetyre-nagrady-na-belorusskom-konkurse-v-sfere-nedvizhimosti-Realt-Golden-Key-Realt-Zolotoj-kljuch_i_709620.html">Компания "Дана Холдингс" получила четыре награды на белорусском конкурсе в сфере недвижимости Realt Golden Key ("Реалт Золотой ключ")</a></div>
+
+<div class="clear"></div>
+<div class="dot_line"> </div>
+
+<div class="bl_sc"> </div>
+<div class="top_n" style="float:left;width:215px;margin-top:-2px;padding:0"><a href="/ru/all_news/sport/Anton-Prilepov-zavoeval-bronzu-Evropejskih-igr-v-lichnom-turnire-po-strelbe-iz-luka_i_709688.html">Антон Прилепов завоевал бронзу Европейских игр в личном турнире по стрельбе из лука</a></div>
+
+<div class="clear"></div>
+<div class="dot_line"> </div>
+
+<div class="bl_sc"> </div>
+<div class="top_n" style="float:left;width:215px;margin-top:-2px;padding:0"><a href="/ru/all_news/society/Tvoja-stolitsa-sobrala-bespretsedentnoe-kolichestvo-nagrad-premii-Realt-Golden-Key_i_709676.html">"Твоя столица" собрала беспрецедентное количество наград премии Realt Golden Key</a></div>
+
+<div class="clear"></div>
+<div class="dot_line"> </div>
+
+<div class="bl_sc"> </div>
+<div class="top_n" style="float:left;width:215px;margin-top:-2px;padding:0"><a href="/ru/all_news/regions/Rekonstruktsija-sobytij-nachala-vojny-i-oborony-Brestskoj-kreposti-sobrala-okolo-15-tys-chelovek-FOTO_i_709608.html">Реконструкция событий начала войны и обороны Брестской крепости собрала около 15 тыс. человек (ФОТО)</a></div>
+
+<div class="clear"></div>
+<div class="dot_line"> </div>
+
+<div class="bl_sc"> </div>
+<div class="top_n" style="float:left;width:215px;margin-top:-2px;padding:0"><a href="/ru/all_news/regions/Pervye-v-respublike-kontaktnye-zooparki-otkrojut-v-Minske_i_709687.html">Первые в республике контактные зоопарки откроют в Минске</a></div>
 
 <div class="clear"></div>
 <div class="dot_line"> </div>
@@ -337,47 +372,25 @@ s.parentNode.insertBefore(up, s);
 <div class="dot_line"> </div>
 
 <div class="bl_sc"> </div>
-<div class="news_text_red" style="float:left;width:215px;margin-top:-2px;padding:0"><a href="/ru/all_news/sport/Sbornaja-Belarusi-po-hudozhestvennoj-gimnastike-pobedila-v-gruppovom-uprazhnenii-s-bulavami-i-obruchami-na-Evroigrah_i_709578.html"> Сборная Беларуси по художественной гимнастике победила в групповом упражнении с булавами и обручами на Евроиграх (ФОТО)</a></div>
-<div class="clear"></div>
-<div class="dot_line"> </div>
-
-<div class="bl_sc"> </div>
-<div class="news_text_red" style="float:left;width:215px;margin-top:-2px;padding:0"><a href="/ru/all_news/society/Patriarh-Kirill-osobenno-hotel-posetit-Belarus-v-god-70-letija-Pobedy_i_709534.html">Патриарх Кирилл особенно хотел посетить Беларусь в год 70-летия Победы (ВИДЕО) </a></div>
-<div class="clear"></div>
-<div class="dot_line"> </div>
-
-<div class="bl_sc"> </div>
-<div class="top_n" style="float:left;width:215px;margin-top:-2px;padding:0"><a href="/ru/all_news/sport/Nikolaj-Kazak-rezultaty-belorusov-v-pryzhkah-na-batute-na-Evroigrah-v-Baku-objektivny_i_709574.html">Николай Казак: результаты белорусов в прыжках на батуте на Евроиграх в Баку объективны</a></div>
+<div class="top_n" style="float:left;width:215px;margin-top:-2px;padding:0"><a href="/ru/all_news/regions/V-Minske-iz-za-stroitelstva-stantsii-metro-Jubilejnaja-ploschad-perekrojut-dvizhenie-transporta-po-ulSuhoj_i_709643.html">В Минске из-за строительства станции метро "Юбилейная площадь" перекроют движение транспорта по ул.Сухой</a></div>
 
 <div class="clear"></div>
 <div class="dot_line"> </div>
 
 <div class="bl_sc"> </div>
-<div class="news_text_red" style="float:left;width:215px;margin-top:-2px;padding:0"><a href="/ru/all_news/society/Patriarh-Kirill-vozglavil-Bozhestvennuju-liturgiju-v-Svjato-Voskresenskom-sobore-Bresta_i_709565.html"> Патриарх Кирилл возглавил Божественную литургию в Свято-Воскресенском соборе Бреста(ФОТО)</a></div>
-<div class="clear"></div>
-<div class="dot_line"> </div>
-
-<div class="bl_sc"> </div>
-<div class="top_n" style="float:left;width:215px;margin-top:-2px;padding:0"><a href="/ru/all_news/sport/Belorusskaja-velosipedistka-Elena-Omeljusik-zavoevala-zoloto-v-gruppovoj-gonke-na-Evropejskih-igrah_i_709516.html">Белорусская велосипедистка Елена Омелюсик завоевала золото в групповой гонке на Европейских играх</a></div>
+<div class="top_n" style="float:left;width:215px;margin-top:-2px;padding:0"><a href="/ru/all_news/society/Na-predstojaschej-nedele-v-Belarusi-sohranitsja-neustojchivaja-pogoda_i_709668.html">На предстоящей неделе в Беларуси сохранится неустойчивая погода</a></div>
 
 <div class="clear"></div>
 <div class="dot_line"> </div>
 
 <div class="bl_sc"> </div>
-<div class="top_n" style="float:left;width:215px;margin-top:-2px;padding:0"><a href="/ru/all_news/sport/Vitalij-Bubnovich-bystraja-strelba-dlja-menja-privychna_i_709571.html">Виталий Бубнович: быстрая стрельба для меня привычна</a></div>
+<div class="top_n" style="float:left;width:215px;margin-top:-2px;padding:0"><a href="/ru/all_news/society/Narochanskie-ozera-voshli-v-trojku-chistejshih-vodoemov-i-vodotokov-Belarusi_i_709637.html">Нарочанские озера вошли в тройку чистейших водоемов и водотоков Беларуси</a></div>
 
 <div class="clear"></div>
 <div class="dot_line"> </div>
 
 <div class="bl_sc"> </div>
-<div class="top_n" style="float:left;width:215px;margin-top:-2px;padding:0"><a href="/ru/all_news/society/Prognoz-pogody-na-22-ijunja-dozhdi-mestati-grozy_i_709569.html">Прогноз погоды на 22 июня: дожди, местати грозы</a></div>
-
-<div class="clear"></div>
-<div class="dot_line"> </div>
-
-<div class="bl_sc"> </div>
-<div class="top_n" style="float:left;width:215px;margin-top:-2px;padding:0"><a href="/ru/all_news/society/TsT-po-biologii-proshlo-bez-zamechanij-na-matematike-2-abiturienta-udaleny-za-shpargalki---Feskov_i_709566.html">ЦТ по биологии прошло без замечаний, на математике 2 абитуриента удалены за шпаргалки - Феськов</a></div>
-
+<div class="news_text_red" style="float:left;width:215px;margin-top:-2px;padding:0"><a href="/ru/all_news/regions/Poslednij-mirnyj-den-nakanune-nachala-vojny-rekonstruirovali-v-Breste_i_709593.html">Последний мирный день накануне начала войны реконструировали в Бресте (ФОТО)</a></div>
 <div class="clear"></div>
 <div class="dot_line"> </div>
 
@@ -405,43 +418,43 @@ s.parentNode.insertBefore(up, s);
 						<h3 class="rubric_title"><a href="/ru/all_news" title="Последние новости">Последние новости</a></h3>
 <div class="news_block">
 <div class="news_text">
-<a href="/ru/all_news/sport/Ekaterina-Borisevich-vystupleniem-komandy-po-akrobatike-na-Evroigrah-ochen-dovolny_i_709591.html">Екатерина Борисевич: выступлением команды по акробатике на Евроиграх очень довольны</a><span class="news_date"> | 19:10</span>
+<a href="http://www.belta.by/ru/video/i_3915.html">ВИДЕО: Героическая защита Брестской крепости являет собой символ единства - патриарх Кирилл</a><span class="news_date"> | 16:43</span>
 </div>
 <div class="dot_line"> </div>
 <div class="news_text">
-<a href="/ru/all_news/Legendarnye-tanki-T-38-vpervye-posle-vojny-proshli-po-ulitsam-Bresta_i_709590.html">Легендарные танки Т-38 впервые после войны прошли по улицам Бреста</a><span class="news_date"> | 18:55</span>
+<a href="/ru/all_news/azerbaijan/Pri-AN-Azerbajdzhana-sozdana-bazovaja-kafedra-Agrarnogo-universiteta_i_709693.html">При АН Азербайджана создана базовая кафедра Аграрного университета</a><span class="news_date"> | 16:36</span>
 </div>
 <div class="dot_line"> </div>
 <div class="news_text">
-<a href="/ru/all_news/sport/Stanjuta-chetyre-medali-v-Baku---rezultat-userdnyh-trenirovok_i_709589.html">Станюта: четыре медали в Баку - результат усердных тренировок</a><span class="news_date"> | 18:30</span>
+<a href="/ru/all_news/world/Martin-Sajdik-naznachen-novym-spetspredstavitelem-predsedatelja-OBSE-po-Ukraine_i_709691.html">Мартин Сайдик назначен новым спецпредставителем председателя ОБСЕ по Украине</a><span class="news_date"> | 16:36</span>
 </div>
 <div class="dot_line"> </div>
 <div class="news_text">
-<a href="/ru/all_news/sport/Rossijanka-Kudrjavtseva-pobedila-v-uprazhnenijah-s-lentoj-na-Evroigrah-beloruska-Stanjuta-stala-4-j_i_709588.html">Россиянка Кудрявцева победила в упражнениях с лентой на Евроиграх, белоруска Станюта стала 4-й</a><span class="news_date"> | 18:00</span>
+<a href="/ru/all_news/society/Zampred-Gomelskogo-gorispolkoma-sohranenie-pamjati-o-geroizme-uchastnikov-VOV---nash-svjatoj-dolg_i_709692.html">Зампред Гомельского горисполкома: сохранение памяти о героизме участников ВОВ - наш святой долг</a><span class="news_date"> | 16:32</span>
 </div>
 <div class="dot_line"> </div>
 <div class="news_text">
-<a href="/ru/dose_menu/olimpiada-sochi-2014/Medalnyj-zachet-pervyh-Evropejskih-igr-v-Baku_i_708685.html">Медальный зачёт первых Европейских игр в Баку</a><span class="news_date"> | 18:00</span>
+<a href="/ru/all_news/kaleidoscope/Ivan-Urgant-i-ego-vozljublennaja-obvenchalis_i_709694.html">Иван Ургант и его возлюбленная обвенчались</a><span class="news_date"> | 16:28</span>
 </div>
 <div class="dot_line"> </div>
 <div class="news_text">
-<a href="/ru/all_news/sport/Zhenskaja-sbornaja-Belarusi-po-akrobatike-zavoevala-tretju-bronzu-na-Evropejskih-igrah_i_709587.html">Женская сборная Беларуси по акробатике завоевала третью бронзу на Европейских играх</a><span class="news_date"> | 17:46</span>
+<a href="/ru/all_news/society/V-Belarusi-objavlen-konkurs-esse-po-mezhdunarodnomu-gumanitarnomu-pravu_i_709690.html">В Беларуси объявлен конкурс эссе по международному гуманитарному праву</a><span class="news_date"> | 16:14</span>
 </div>
 <div class="dot_line"> </div>
 <div class="news_text">
-<a href="/ru/all_news/regions/Festival-molodezhnyh-subkultur-projdet-27-ijunja-v-Minske_i_709586.html">Фестиваль молодежных субкультур пройдет 27 июня в Минске</a><span class="news_date"> | 17:33</span>
+<a href="/ru/all_news/incident/Bolee-20-narushitelej-zapreta-na-poseschenie-lesov-v-Vitebskoj-oblasti-privlecheno-k-otvetstvennosti-za-vyhodnye_i_709689.html">Более 20 нарушителей запрета на посещение лесов в Витебской области привлечено к ответственности за выходные</a><span class="news_date"> | 16:13</span>
 </div>
 <div class="dot_line"> </div>
 <div class="news_text">
-<a href="/ru/all_news/society/Patsientu-nuzhno-udelit-stolko-vremeni-skolko-trebuet-sostojanie-ego-zdorovja---semejnyj-vrach_i_709585.html">Пациенту нужно уделить столько времени, сколько требует состояние его здоровья - семейный врач</a><span class="news_date"> | 17:24</span>
+<a href="/ru/all_news/sport/Anton-Prilepov-zavoeval-bronzu-Evropejskih-igr-v-lichnom-turnire-po-strelbe-iz-luka_i_709688.html">Антон Прилепов завоевал бронзу Европейских игр в личном турнире по стрельбе из лука</a><span class="news_date"> | 16:00</span>
 </div>
 <div class="dot_line"> </div>
 <div class="news_text">
-<a href="/ru/all_news/regions/Ottsovskaja-ljubov-byla-i-ostaetsja-kljuchevoj-osobennostju-vospitanija-detej---mnenie_i_709584.html">Отцовская любовь была и остается ключевой особенностью воспитания детей - мнение</a><span class="news_date"> | 17:08</span>
+<a href="/ru/all_news/regions/Pervye-v-respublike-kontaktnye-zooparki-otkrojut-v-Minske_i_709687.html">Первые в республике контактные зоопарки откроют в Минске</a><span class="news_date"> | 15:45</span>
 </div>
 <div class="dot_line"> </div>
 <div class="news_text">
-<a href="/ru/all_news/sport/Melitina-Stanjuta-zavoevala-bronzu-Eropejskih-igr-v-uprazhnenii-s-bulavami_i_709583.html">Мелитина Станюта завоевала бронзу Еропейских игр в упражнении с булавами</a><span class="news_date"> | 17:02</span>
+<a href="/ru/all_news/society/Bolee-50-krasavits-priedut-v-Belarus-na-konkurs-Missis-Vselennaja-2015_i_709685.html">Более 50 красавиц приедут в Беларусь на конкурс "Миссис Вселенная-2015"</a><span class="news_date"> | 15:23</span>
 </div>
 <div class="dot_line"> </div>
 <div class="link" align="right"><a href="/ru/all_news">все новости</a></div>

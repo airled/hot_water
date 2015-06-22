@@ -16,11 +16,22 @@ text = (div_total + div_inner).gsub(" у потребителей по улиц�
 main = text.split(/В период /).drop(1)
 
 dates = []
-addresses_blocks = []
+groups = []
 
 main.map do |date_with_group|
   dates << date_with_group.split('%')[0]
-  groups << date_with_group.split('%')[1]
+  groups << date_with_group.split('%')[1].gsub(/[^\ 0-9.,А-Яа-я;\/\-()–№\"]/,"")
 end
 
+a = []
+
+groups.map do |group|
+  group.split(';').map do |block|
+    block.split(/(\d)([А-Я][а-я])/).each_slice(2) do |slice|
+      a << slice.join
+    end
+  end
+end
+
+a.map {|x| file << x << "\n"}
 file.close
