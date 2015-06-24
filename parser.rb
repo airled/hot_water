@@ -26,7 +26,7 @@ end
 a = []
 
 groups.map do |group|
-  group.split(';').map do |block|
+  group.split(';').map do |block|    
     block.split(/(\d)([А-Я][а-я])/).each_slice(2) do |slice|
       a << slice.join
     end
@@ -34,4 +34,5 @@ groups.map do |group|
 end
 
 a.map {|x| file << x << "\n"}
+
 file.close
