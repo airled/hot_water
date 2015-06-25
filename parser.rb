@@ -23,16 +23,30 @@ main.map do |date_with_group|
   groups << date_with_group.split('%')[1].gsub(/[^\ 0-9.,А-Яа-я;\/\-()–№\"]/,"")
 end
 
-a = []
+p dates.size
+p groups.size
 
-groups.map do |group|
+base = []
+
+dates.zip(groups).map do |date,group|
   group.split(';').map do |block|    
     block.split(/(\d)([А-Я][а-я])/).each_slice(2) do |slice|
-      a << slice.join
+      base << [date,slice.join]
     end
   end
 end
 
-a.map {|x| file << x << "\n"}
+base.map {|x| file << x << "\n"}
+# base.map {|x| Record.create(date: x[0], address: x[1])}
+
+base.map do |record|
+  date = record[0]
+  splitted = record[1].split(/,/)
+  street = splitted[0]
+  splitted = splitted - [street]
+  splitted.map do |house|
+    Record.create(date: date, street: street, house: house)
+  end
+end
 
 file.close

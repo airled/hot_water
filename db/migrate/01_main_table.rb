@@ -3,7 +3,8 @@ Sequel.migration do
     create_table :records do
       primary_key :id
       String :date
-      String :address
+      String :street
+      String :house
     end
   end
   down do
