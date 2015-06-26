@@ -26,25 +26,25 @@ end
 p dates.size
 p groups.size
 
-base = []
+combined = []
 
 dates.zip(groups).map do |date,group|
   group.split(';').map do |block|    
     block.split(/(\d)([А-Я][а-я])/).each_slice(2) do |slice|
-      base << [date,slice.join]
+      combined << [date,slice.join]
     end
   end
 end
 
-base.map {|x| file << x << "\n"}
-# base.map {|x| Record.create(date: x[0], address: x[1])}
+combined.map {|x| file << x << "\n"}
+# combined.map {|x| Record.create(date: x[0], address: x[1])}
 
-base.map do |record|
+combined.map do |record|
   date = record[0]
   splitted = record[1].split(/,/)
   street = splitted[0]
-  splitted = splitted - [street]
-  splitted.map do |house|
+  houses = splitted - [street]
+  houses.map do |house|
     Record.create(date: date, street: street, house: house)
   end
 end
