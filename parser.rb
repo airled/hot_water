@@ -26,27 +26,31 @@ end
 p dates.size
 p groups.size
 
-combined = []
+# combined = []
 
-dates.zip(groups).map do |date,group|
-  group.split(';').map do |block|    
-    block.split(/(\d)([А-Я][а-я])/).each_slice(2) do |slice|
-      combined << [date,slice.join]
-    end
-  end
-end
+# dates.zip(groups).map do |date,group|
+#   group.split(';').map do |block|    
+#     block.split(/(\d)([А-Я][а-я])/).each_slice(2) do |slice|
+#       combined << [date,slice.join]
+#     end
+#   end
+# end
 
-combined.map {|x| file << x << "\n"}
-# combined.map {|x| Record.create(date: x[0], address: x[1])}
+# combined.map {|x| file << x << "\n"}
+# # combined.map {|x| Record.create(date: x[0], address: x[1])}
 
-combined.map do |record|
-  date = record[0]
-  splitted = record[1].split(/,/)
-  street = splitted[0]
-  houses = splitted - [street]
-  houses.map do |house|
-    Record.create(date: date, street: street, house: house)
-  end
+# combined.map do |record|
+#   date = record[0]
+#   splitted = record[1].split(/,/)
+#   street = splitted[0]
+#   houses = splitted - [street]
+#   houses.map do |house|
+#     Record.create(date: date, street: street, house: house)
+#   end
+# end
+
+groups[0].scan(/\D+[А-Яа-я]\D+/).map do |x|
+  file << x.gsub(/;/,"") << "\n"
 end
 
 file.close
