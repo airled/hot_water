@@ -39,18 +39,12 @@ p groups.size
 # combined.map {|x| file << x << "\n"}
 # # combined.map {|x| Record.create(date: x[0], address: x[1])}
 
-# combined.map do |record|
-#   date = record[0]
-#   splitted = record[1].split(/,/)
-#   street = splitted[0]
-#   houses = splitted - [street]
-#   houses.map do |house|
-#     Record.create(date: date, street: street, house: house)
-#   end
+
+# groups[0].scan(/\D+[А-Яа-я]\D+/).map do |x|
+#   file << x.gsub(/;/,"") << "\n"
 # end
 
-groups[0].scan(/\D+[А-Яа-я]\D+/).map do |x|
-  file << x.gsub(/;/,"") << "\n"
-end
-
+file << groups[0] << "\n"
+file << groups[0].gsub!(/[А-Я][А-Я]+/,'') << "\n"
+file << groups[0].gsub(/(".+")/,'')
 file.close
