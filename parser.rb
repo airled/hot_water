@@ -43,8 +43,11 @@ p groups.size
 # groups[0].scan(/\D+[А-Яа-я]\D+/).map do |x|
 #   file << x.gsub(/;/,"") << "\n"
 # end
-
+orgs = ['УП "Минсккоммунтеплосеть"','филиал "Минские тепловые сети"','РУП "Минскэнерго"']
 file << groups[0] << "\n"
-file << groups[0].gsub!(/[А-Я][А-Я]+/,'') << "\n"
-file << groups[0].gsub(/(".+")/,'')
+groups[0].split(/( )/).map do |part|
+  part.gsub!(/[А-Я][А-Я]+/,'')
+  (file << part) unless part.include?("Минск")
+end
+
 file.close
