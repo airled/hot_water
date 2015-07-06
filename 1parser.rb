@@ -30,12 +30,10 @@ main.map do |date_with_group|
   groups << date_with_group.split('%')[1]
 end
 
-# groups.map do |part|
-# 	file << part << "\n"
-# end
-
 html.xpath('//div[@class="main_block"]//strong').map do |tag|
-	(file << tag.text << "\n") unless tag.text.include?('В период')
+  tag.text.split(/,|;/).map do |street|
+    (file << street << "\n") unless street.include?('В период')
+  end
 end
 
 file.close
