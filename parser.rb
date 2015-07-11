@@ -2,52 +2,62 @@ require 'nokogiri'
 require 'open-uri'
 require './models'
 
+#fetching HTML
+#html = Nokogiri::HTML(open('http://www.belta.by/ru/dose_menu/grafik_zkh'))
 html = Nokogiri::HTML(open('html.txt'))
-# html = Nokogiri::HTML(open('http://www.belta.by/ru/dose_menu/grafik_zkh'))
-html.xpath('//h2').map(&:remove)
-div_inner = html.xpath('//div[@class="social"]').text.split("uptolike share en")[-1].strip
 
+#removing some unwanted tags  
 html.xpath('//div[@class="social"]').map(&:remove)
-div_total = html.xpath('//div[@class="main_block"]').text.strip
+html.xpath('//h2').map(&:remove)
+# html.xpath('//div[@class="main_block"]//span').delete(html.xpath('//div[@class="main_block"]//span').last)
+
+#collecting all text from main 'div' and removing some not-address stuff
+text = html.xpath('//div[@class="main_block"]').text.strip
+orgs = ['УП "Минсккоммунтеплосеть"','РУП "Минскэнерго"','филиал "Минские тепловые сети"']
+orgs.map { |org| text.gsub!(org,"") }
+
+#fetching names of the streets from 'strong'-tags
+streets = []
+html.xpath('//div[@class="main_block"]//strong').map do |tag|
+  tag.text.split(/,|;/).map do |street|
+    streets << street unless (street.include?('В период') || ((street.size < 5) && !(street[0] =~ /[а-я]/).nil?) || street.size == 1)
+  end
+end
 
 file = File.open('temp.txt','w')
 
-text = (div_total + div_inner).gsub(" у потребителей по улицам:","%").gsub(/\n|\r/,"")
-main = text.split(/В период /).drop(1)
+#preparing the text for dividing by groups
+text.gsub!(/[^\ 0-9.,А-Яа-я;\/\-()–№\"]/,"").gsub!(' у потребителей по улицам','%').strip
+# streets.map do |street|
+#   text.sub!(street,'!!')
+# end
 
+#dividing the text into the groups by date
+main = text.split(/В период/).drop(1)
+
+#collecting dates and address groups into arrays
 dates = []
 groups = []
-
 main.map do |date_with_group|
   dates << date_with_group.split('%')[0]
-  groups << date_with_group.split('%')[1].gsub(/[^\ 0-9.,А-Яа-я;\/\-()–№\"]/,"")
+  groups << date_with_group.split('%')[1]
 end
 
-p dates.size
-p groups.size
+separated_streets = []
+groups.map do |group|
+  array = []
+  streets.map do |street|
+    if group.include?(street)
+      array << street
+      group.sub!(street,"!!!")
+      # streets.delete(street).first
+    end
+  end
+  separated_streets << array
+end
 
-# combined = []
-
-# dates.zip(groups).map do |date,group|
-#   group.split(';').map do |block|    
-#     block.split(/(\d)([А-Я][а-я])/).each_slice(2) do |slice|
-#       combined << [date,slice.join]
-#     end
-#   end
-# end
-
-# combined.map {|x| file << x << "\n"}
-# # combined.map {|x| Record.create(date: x[0], address: x[1])}
-
-
-# groups[0].scan(/\D+[А-Яа-я]\D+/).map do |x|
-#   file << x.gsub(/;/,"") << "\n"
-# end
-orgs = ['УП "Минсккоммунтеплосеть"','филиал "Минские тепловые сети"','РУП "Минскэнерго"']
-file << groups[0] << "\n"
-groups[0].split(/( )/).map do |part|
-  part.gsub!(/[А-Я][А-Я]+/,'')
-  (file << part) unless part.include?("Минск")
+separated_streets.map do |blabla|
+  file << blabla << "\n"
 end
 
 file.close
