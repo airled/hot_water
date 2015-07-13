@@ -64,16 +64,10 @@ groups.map! do |group|
   splitted
 end
 
-# separated_streets.zip(groups).map do |streets,group|
-#   streets.zip(group).map do |street,houses|
-#     file << street + " - " + houses << "\n"
-#   end
-# end
-
-# dates.zip(separated_streets,groups).map do |date,streets,group|
-#   streets.zip(group) do |street,houses|
-#     Record.create(date: date, street: street, houses: houses)
-#   end
-# end
+dates.zip(separated_streets,groups).map do |date,streets,group|
+  streets.zip(group) do |street,houses|
+    Record.create(date: date, street: street, houses: houses)
+  end
+end
 
 file.close
