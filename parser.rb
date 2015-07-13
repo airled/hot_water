@@ -21,7 +21,7 @@ orgs.map { |org| text.gsub!(org,"") }
 #fetching names of the streets from 'strong'-tags
 streets = []
 html.xpath('//div[@class="main_block"]//strong').map do |tag|
-  tag.text.split(/,|;/).map do |street|
+  tag.text.split(/[,;]/).map do |street|
     streets << street unless (street.include?('В период') || (((street.size < 5) && !(street[0] =~ /[а-я]/).nil?)) || street.size == 1)
   end
 end
@@ -47,8 +47,8 @@ groups.drop(1).map do |group|
   streets.map.with_index do |street,index|
     if group.include?(street)
       array << street
-      group.sub!(street,"!!!")
-      streets[index] = "@"
+      group.sub!(street,'!!!')
+      streets[index] = '@'
     end
   end
   separated_streets << array
@@ -58,11 +58,7 @@ dates.shift
 groups.shift
 
 #splitting groups by name of the streets from <strong>'s
-groups.map! do |group|
-  splitted = group.split(/!!!/)
-  splitted.shift
-  splitted
-end
+groups.map! { |group| group.split(/!!!/).drop(1) }
 
 dates.zip(separated_streets,groups).map do |date,streets,group|
   streets.zip(group) do |street,houses|
