@@ -62,8 +62,26 @@ groups.map! { |group| group.split(/!!!/).drop(1) }
 
 dates.zip(separated_streets,groups).map do |date,streets,group|
   streets.zip(group) do |street,houses|
-    Record.create(date: date, street: street, houses: houses)
+    houses.gsub!(/ – /,"-")
+    case
+    when houses.scan(/[0-9А-Яа-я]/).empty?
+      houses = ''
+    when houses[0] = ','
+      houses[0] = ' '
+      houses.strip!
+    end
+
+    file << street + ' - ' + houses << "\n"
+    # Record.create(date: date, street: street, houses: houses)
   end
 end
 
 file.close
+
+
+# a = "1,3,6,32,4,6,3-56,234,457,234,34-657"
+# a_expanded =[]
+# a.split(/,/).map do |x|
+#     if x
+#     start = x.split(/-/)[0]
+#     stop = x.split(/-/)[1]
