@@ -30,7 +30,7 @@ end
 text = raw_text.gsub(/[^\ 0-9.,А-Яа-я;\/\-()–№\"]/,"").gsub(' у потребителей по улицам','%').strip
 
 #dividing the text into the groups by date
-main = text.split(/В период/).drop(1)
+main = text.split('В период').drop(1)
 
 #collecting dates and address groups into arrays
 dates = []
@@ -59,21 +59,24 @@ groups.map do |group|
 end
 
 #splitting groups by name of the streets from <strong>'s
-groups.map! { |group| group.split(/!!!/).drop(1) }
+groups.map! { |group| group.split('!!!').drop(1) }
 
 dates.zip(separated_streets,groups).map do |date,streets,group|
+  file << date << "\n" << "\n"
   streets.zip(group).map do |street,houses|
     case
-      when houses.scan(/[0-9А-Яа-я]/).empty?
-        houses = ''
-      when houses[0] == ','
-        houses[0] = ' '
+    when houses.scan(/[0-9А-Яа-я]/).empty?
+      houses = ''
+    when houses[0] == ','
+      houses[0] = ' '
     end
     houses.gsub!(/ – /,"-")
     houses.strip!
+    houses.gsub!(/[^0-9А-Яа-я()\ ][^0-9А-Яа-я()\ ]/, '')
     file << street + ' ||| ' + houses << "\n"
     # Record.create(date: date, street: street, houses: houses)
   end
+  file << "\n"
 end
 
 file.close
