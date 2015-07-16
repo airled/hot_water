@@ -3,7 +3,7 @@ require 'open-uri'
 require './models'
 
 #fetching HTML and removing some unwanted tags  
-def fetched_html(source)
+def fetch_html(source)
   html = Nokogiri::HTML(open(source))
   html.xpath('//div[@class="social"]').map(&:remove)
   html.xpath('//h2').map(&:remove)
@@ -12,7 +12,7 @@ def fetched_html(source)
 end
   
 #collecting all text from main 'div' and removing some non-address stuff
-def fetched_text(html)
+def fetch_text(html)
   raw_text = html.xpath('//div[@class="main_block"]').text
   ['УП "Минсккоммунтеплосеть"','РУП "Минскэнерго"','филиал "Минские тепловые сети"'].map { |org| raw_text.gsub!(org,"") }
   raw_text.gsub(/[^\ 0-9.,А-Яа-я;\/\-()–№\"]/,"").strip
@@ -33,11 +33,11 @@ file = File.open('temp.txt','w')
 
 # source = 'http://www.belta.by/ru/dose_menu/grafik_zkh'
 source = 'html.txt'
-html = fetched_html(source)
+html = fetch_html(source)
 streets = streets_from_strongs(html)
 
 #dividing the text into the groups by date
-main = fetched_text(html).split('В период').drop(1)
+main = fetch_text(html).split('В период').drop(1)
 
 #collecting dates and address groups into arrays
 dates = []
