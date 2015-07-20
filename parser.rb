@@ -32,6 +32,7 @@ end
 file = File.open('temp.txt','w')
 
 # source = 'http://www.belta.by/ru/dose_menu/grafik_zkh'
+# source = 'http://www.belta.by/regions/view/grafik-otkljuchenija-gorjachej-vody-v-minske-v-2015-godu-153269-2015/'
 source = 'html.txt'
 html = fetch_html(source)
 streets = streets_from_strongs(html)
