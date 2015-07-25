@@ -29,7 +29,22 @@ def streets_from_strongs(html)
   streets
 end
 
-file = File.open('temp.txt','w')
+def extended(string)
+  extended =[]
+  string.split(/,/).map do |part|
+    if part =~ /[0-9]+-[0-9]+/
+      start = part.strip.split(/-/)[0]
+      stop = part.strip.split(/-/)[1]
+      start.upto(stop) do |num|
+        extended << num
+      end
+    else extended << part
+    end
+  end
+  extended.join(',')
+end
+
+file = File.open('temp1.txt','w')
 
 # source = 'http://www.belta.by/ru/dose_menu/grafik_zkh'
 # source = 'http://www.belta.by/regions/view/grafik-otkljuchenija-gorjachej-vody-v-minske-v-2015-godu-153269-2015/'
@@ -87,20 +102,6 @@ dates.zip(streets_blocks,houses_blocks).map do |date,streets_block,houses_block|
   file << "\n"
 end
 
-# file.close
+file.close
 
-# a = "1,2,3,4-6,7,8,9-11"
-# extended =[]
-# a.split(/,/).map do |x|
-#     if x =~ /[0-9]+-[0-9]+/
-#         start = x.split(/-/)[0]
-#         stop = x.split(/-/)[1]
-#         start.upto(stop) do |y|
-#             extended << y
-#         end
-#     else extended << x
-#     end
-# end
-
-# extended.join(',')
 
