@@ -90,17 +90,17 @@ end
 # file.close
 
 # a = "1,2,3,4-6,7,8,9-11"
-# expanded =[]
-# a.split(/,/).map.with_index do |x,index|
+# extended =[]
+# a.split(/,/).map do |x|
 #     if x =~ /[0-9]+-[0-9]+/
 #         start = x.split(/-/)[0]
 #         stop = x.split(/-/)[1]
 #         start.upto(stop) do |y|
-#             expanded << y
+#             extended << y
 #         end
-#     elsif expanded << x
+#     else extended << x
 #     end
 # end
 
-# expanded.join(',')
+# extended.join(',')
 
