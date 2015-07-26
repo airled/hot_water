@@ -1,4 +1,3 @@
-require './init_db'
 require './models'
 
 def find(street,house)
