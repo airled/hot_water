@@ -44,7 +44,7 @@ def extended(string)
   extended.join(',')
 end
 
-file = File.open('temp1.txt','w')
+file = File.open('temp.txt','w')
 
 # source = 'http://www.belta.by/ru/dose_menu/grafik_zkh'
 # source = 'http://www.belta.by/regions/view/grafik-otkljuchenija-gorjachej-vody-v-minske-v-2015-godu-153269-2015/'
@@ -97,7 +97,7 @@ dates.zip(streets_blocks,houses_blocks).map do |date,streets_block,houses_block|
     houses.strip!
     houses.gsub!(/[^0-9А-Яа-я()\ ][^0-9А-Яа-я()\ ]/, '')
     file << street + ' ||| ' + houses << "\n"
-    # Record.create(date: date, street: street, houses: houses)
+    Record.create(date: date, street: street, houses: houses)
   end
   file << "\n"
 end

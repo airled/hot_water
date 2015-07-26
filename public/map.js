@@ -29,21 +29,30 @@ function placeMarker(position, map){
     // 	infowindow.open(map,marker);
     // });
 	// console.log(position);
-	document.getElementById('sidebar').innerHTML = httpGet(String(position));
+	document.getElementById('sidebar').innerHTML = getAddress(String(position));
 }
 
-function httpGet(position){
+function getAddress(position){
 	var url = 'http://maps.googleapis.com/maps/api/geocode/json?latlng=' + String(position).replace('(','').replace(')','').replace(' ','') + '&sensor=true&language=ru';
     var xmlHttp = new XMLHttpRequest();
     xmlHttp.open("GET", url, false);
     xmlHttp.send(null);
     geodata = JSON.parse(xmlHttp.responseText);
     if (String(geodata.results[0].address_components[0].long_name[0].match(/[0-9]/)) == 'null'){
-    	alert('Акела промахнулся')
+    	return '//Промах//'
     }
     else{
-    	return geodata.results[0].address_components[1].long_name + " " + geodata.results[0].address_components[0].long_name;
+    	// return geodata.results[0].address_components[1].long_name.replace('улица','').trim() + "," + geodata.results[0].address_components[0].long_name;
+    	return toSinatra(geodata.results[0].address_components[1].long_name.replace('улица','').trim(),geodata.results[0].address_components[0].long_name);
     }
+}
+
+function toSinatra(street,house){
+	var url = 'http://localhost:4567/data?street=' + String(street) + '&house=' + String(house);
+	var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open("GET", url, false);
+    xmlHttp.send(null);
+    return JSON.parse(xmlHttp.responseText).date;
 }
 
 google.maps.event.addDomListener(window, 'load', initialize);
