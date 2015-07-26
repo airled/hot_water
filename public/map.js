@@ -38,16 +38,17 @@ function getAddress(position){
     xmlHttp.open("GET", url, false);
     xmlHttp.send(null);
     geodata = JSON.parse(xmlHttp.responseText);
-    if (String(geodata.results[0].address_components[0].long_name[0].match(/[0-9]/)) == 'null'){
-    	return '//Промах//'
+    var street = geodata.results[0].address_components[1].long_name.replace('улица','').trim();
+    var house = geodata.results[0].address_components[0].long_name;
+    if(String(house[0].match(/[0-9]/)) == 'null'){
+    	return '//Промах//';
     }
     else{
-    	// return geodata.results[0].address_components[1].long_name.replace('улица','').trim() + "," + geodata.results[0].address_components[0].long_name;
-    	return toSinatra(geodata.results[0].address_components[1].long_name.replace('улица','').trim(),geodata.results[0].address_components[0].long_name);
+    	return getDate(street,house);
     }
 }
 
-function toSinatra(street,house){
+function getDate(street,house){
 	var url = 'http://localhost:4567/data?street=' + String(street) + '&house=' + String(house);
 	var xmlHttp = new XMLHttpRequest();
     xmlHttp.open("GET", url, false);

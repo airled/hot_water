@@ -29,6 +29,7 @@ def streets_from_strongs(html)
   streets
 end
 
+#extending ranges of houses
 def extended(string)
   extended =[]
   string.split(/,/).map do |part|
@@ -103,5 +104,3 @@ dates.zip(streets_blocks,houses_blocks).map do |date,streets_block,houses_block|
 end
 
 file.close
-
-

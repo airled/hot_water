@@ -15,7 +15,7 @@ header{
 	text-align: center;
 }
 #map-canvas{
-	width: 40%;
+	width: 60%;
 	height: 450px;
 	float: left;
 	display: inline-block;
@@ -23,6 +23,6 @@ header{
 aside{
 	outline: 1px solid black;
 	overflow: hidden;
-	width: 60%;
+	width: 40%;
 	display: inline-block;
 }
