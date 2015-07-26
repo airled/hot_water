@@ -34,26 +34,26 @@ function placeMarker(position, map){
 
 function getAddress(position){
 	var url = 'http://maps.googleapis.com/maps/api/geocode/json?latlng=' + String(position).replace('(','').replace(')','').replace(' ','') + '&sensor=true&language=ru';
-    var xmlHttp = new XMLHttpRequest();
-    xmlHttp.open("GET", url, false);
-    xmlHttp.send(null);
-    geodata = JSON.parse(xmlHttp.responseText);
-    var street = geodata.results[0].address_components[1].long_name.replace('улица','').trim();
-    var house = geodata.results[0].address_components[0].long_name;
-    if(String(house[0].match(/[0-9]/)) == 'null'){
-    	return '//Промах//';
-    }
-    else{
-    	return getDate(street,house);
-    }
+	var xmlHttp = new XMLHttpRequest();
+	xmlHttp.open("GET", url, false);
+	xmlHttp.send(null);
+	geodata = JSON.parse(xmlHttp.responseText);
+	var street = geodata.results[0].address_components[1].long_name.replace('улица','').trim();
+	var house = geodata.results[0].address_components[0].long_name;
+	if(String(house[0].match(/[0-9]/)) == 'null'){
+	    return '//Промах//';
+	}
+	else{
+	    return getDate(street,house);
+	}
 }
 
 function getDate(street,house){
 	var url = 'http://localhost:4567/data?street=' + String(street) + '&house=' + String(house);
 	var xmlHttp = new XMLHttpRequest();
-    xmlHttp.open("GET", url, false);
-    xmlHttp.send(null);
-    return JSON.parse(xmlHttp.responseText).date;
+	xmlHttp.open("GET", url, false);
+	xmlHttp.send(null);
+	return JSON.parse(xmlHttp.responseText).date;
 }
 
 google.maps.event.addDomListener(window, 'load', initialize);
