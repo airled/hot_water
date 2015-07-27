@@ -2,10 +2,10 @@ function initialize() {
 	var mapOptions = {
 		center: {lat: 53.9, lng: 27.55}, 
 		zoom: 11,
-	  	zoomControl: true,
-  		zoomControlOptions: {
-    		style: google.maps.ZoomControlStyle.SMALL
- 		}
+		zoomControl: true,
+		zoomControlOptions: {
+			style: google.maps.ZoomControlStyle.SMALL
+		}
 	};
 	var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
 
@@ -25,9 +25,9 @@ function placeMarker(position, map){
 	//     size: new google.maps.Size(150, 50)
  //    });
 
-    // google.maps.event.addListener(marker, 'click', function() {
-    // 	infowindow.open(map,marker);
-    // });
+	// google.maps.event.addListener(marker, 'click', function() {
+	// 	infowindow.open(map,marker);
+	// });
 	// console.log(position);
 	document.getElementById('sidebar').innerHTML = getAddress(String(position));
 }
@@ -41,19 +41,19 @@ function getAddress(position){
 	var street = geodata.results[0].address_components[1].long_name.replace('улица','').trim();
 	var house = geodata.results[0].address_components[0].long_name;
 	if(String(house[0].match(/[0-9]/)) == 'null'){
-	    return '//Промах//';
+		return '//Промах//';
 	}
 	else{
-	    return getDate(street,house);
+		return getDate(street,house);
 	}
 }
 
 function getDate(street,house){
-	var url = 'http://localhost:4567/data?street=' + String(street) + '&house=' + String(house);
+	var url = 'http://localhost:4567/date?street=' + String(street) + '&house=' + String(house);
 	var xmlHttp = new XMLHttpRequest();
 	xmlHttp.open("GET", url, false);
 	xmlHttp.send(null);
-	return JSON.parse(xmlHttp.responseText).date;
+	return (JSON.parse(xmlHttp.responseText).date + '<br>' + street + ',' + house);
 }
 
 google.maps.event.addDomListener(window, 'load', initialize);

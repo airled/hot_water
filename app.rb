@@ -6,7 +6,7 @@ get '/' do
   erb :index
 end
 
-get '/data' do
+get '/date' do
   street = params[:street]
   house = params[:house]
   # content_type :json
