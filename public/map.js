@@ -33,7 +33,7 @@ function placeMarker(position, map){
 }
 
 function getAddress(position){
-	var url = 'http://maps.googleapis.com/maps/api/geocode/json?latlng=' + String(position).replace('(','').replace(')','').replace(' ','') + '&sensor=true&language=ru';
+	var url = 'http://maps.googleapis.com/maps/api/geocode/json?latlng=' + String(position).replace(/[\(\) ]/g,''); + '&sensor=true&language=ru';
 	var xmlHttp = new XMLHttpRequest();
 	xmlHttp.open("GET", url, false);
 	xmlHttp.send(null);
@@ -53,7 +53,7 @@ function getDate(street,house){
 	var xmlHttp = new XMLHttpRequest();
 	xmlHttp.open("GET", url, false);
 	xmlHttp.send(null);
-	return (JSON.parse(xmlHttp.responseText).date + '<br>' + street + ',' + house);
+	return (JSON.parse(xmlHttp.responseText).date + '<br>' + street + ', ' + house);
 }
 
 google.maps.event.addDomListener(window, 'load', initialize);
