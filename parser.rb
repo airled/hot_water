@@ -30,22 +30,30 @@ def streets_from_strongs(html)
 end
 
 #extending ranges of houses
-def extended(string)
-  extended =[]
-  string.split(/,/).map do |part|
-    if part =~ /[0-9]+-[0-9]+/
-      start = part.strip.split(/-/)[0]
-      stop = part.strip.split(/-/)[1]
-      start.upto(stop) do |num|
-        extended << num
+def extended(range)
+  full_range =[]
+  start = range.split('-')[0].to_i
+  stop = range.split('-')[1].to_i
+  case
+    when start.even? && stop.even?
+      start.upto(stop) do |value|
+        full_range << value.to_s if value.even?
       end
-    else extended << part
-    end
+    when start.odd? && stop.odd?
+      start.upto(stop) do |value|
+        full_range << value.to_s if value.odd?
+      end
+    when (start.odd? && stop.even?) || (start.even? && stop.odd?)
+      start.upto(stop) do |value|
+        full_range << value.to_s
+      end
+    else full_range << range
   end
-  extended.join(',')
+  full_range
 end
 
 file = File.open('temp.txt','w')
+file1 = File.open('temp1.txt','w')
 
 # source = 'http://www.belta.by/ru/dose_menu/grafik_zkh'
 # source = 'http://www.belta.by/regions/view/grafik-otkljuchenija-gorjachej-vody-v-minske-v-2015-godu-153269-2015/'
@@ -89,19 +97,28 @@ dates.zip(streets_blocks,houses_blocks).map do |date,streets_block,houses_block|
   file << date << "\n" << "\n"
   streets_block.zip(houses_block).map do |street,houses|
     case
-    when houses.scan(/[0-9А-Яа-я]/).empty?
-      houses = ''
-    when houses[0] == ','
-      houses[0] = ' '
+      when houses.scan(/[0-9А-Яа-я]/).empty?
+        houses = ''
+      when houses[0] == ','
+        houses[0] = ' '
     end
-    # houses.gsub!(/ – /,"-")
-    # houses.strip!
-    # houses.gsub!(/[^0-9А-Яа-я()\ ][^0-9А-Яа-я()\ ]/, '')
     houses = houses.gsub(/ – /,"-").strip.gsub(/[^0-9А-Яа-я()\ ][^0-9А-Яа-я()\ ]/, '')
     file << street + ' ||| ' + houses << "\n"
-    Record.create(date: date, street: street, houses: houses)
+
+    houses.split(/,/).map do |houses_part|
+      if houses_part =~ /[0-9]+-[0-9]+/
+        extended(houses_part).map do |house|
+          file1 << street + ' ||| ' + house << "\n"
+          Record.create(date: date, street: street, houses: house)
+        end
+      else 
+        file1 << street + ' ||| ' + houses_part << "\n"
+        Record.create(date: date, street: street, houses: houses_part)
+      end
+  end
   end
   file << "\n"
 end
 
 file.close
+file1.close
