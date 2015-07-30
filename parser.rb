@@ -31,7 +31,7 @@ end
 
 #extending ranges of houses
 def extended(range)
-  full_range =[]
+  full_range = []
   start = range.split('-')[0].to_i
   stop = range.split('-')[1].to_i
   case
@@ -115,7 +115,7 @@ dates.zip(streets_blocks,houses_blocks).map do |date,streets_block,houses_block|
         file1 << street + ' ||| ' + houses_part << "\n"
         Record.create(date: date, street: street, houses: houses_part)
       end
-  end
+    end
   end
   file << "\n"
 end
