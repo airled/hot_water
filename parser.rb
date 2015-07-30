@@ -94,9 +94,10 @@ dates.zip(streets_blocks,houses_blocks).map do |date,streets_block,houses_block|
     when houses[0] == ','
       houses[0] = ' '
     end
-    houses.gsub!(/ – /,"-")
-    houses.strip!
-    houses.gsub!(/[^0-9А-Яа-я()\ ][^0-9А-Яа-я()\ ]/, '')
+    # houses.gsub!(/ – /,"-")
+    # houses.strip!
+    # houses.gsub!(/[^0-9А-Яа-я()\ ][^0-9А-Яа-я()\ ]/, '')
+    houses = houses.gsub(/ – /,"-").strip.gsub(/[^0-9А-Яа-я()\ ][^0-9А-Яа-я()\ ]/, '')
     file << street + ' ||| ' + houses << "\n"
     Record.create(date: date, street: street, houses: houses)
   end
