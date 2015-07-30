@@ -68,8 +68,8 @@ main = fetch_text(html).split('В период').drop(1)
 dates = []
 groups = []
 main.map do |date_with_group|
-  dates << date_with_group.split(' у потребителей по улицам')[0]
-  groups << date_with_group.split(' у потребителей по улицам')[1]
+  dates << date_with_group.split(' у потребителей по улицам')[0].strip
+  groups << date_with_group.split(' у потребителей по улицам')[1].strip
 end
 
 #temporary code for removing some non-<strong> names
@@ -95,6 +95,7 @@ houses_blocks = groups.map { |group| group.gsub(';',',').split('!!!').drop(1) }
 
 dates.zip(streets_blocks,houses_blocks).map do |date,streets_block,houses_block|
   file << date << "\n" << "\n"
+  file1 << date << "\n" << "\n"
   streets_block.zip(houses_block).map do |street,houses|
     case
       when houses.scan(/[0-9А-Яа-я]/).empty?
@@ -109,13 +110,14 @@ dates.zip(streets_blocks,houses_blocks).map do |date,streets_block,houses_block|
       if houses_part =~ /[0-9]+-[0-9]+/
         extended(houses_part).map do |house|
           file1 << street + ' ||| ' + house << "\n"
-          Record.create(date: date, street: street, houses: house)
+          # Record.create(date: date, street: street, houses: house)
         end
       else 
         file1 << street + ' ||| ' + houses_part << "\n"
-        Record.create(date: date, street: street, houses: houses_part)
+        # Record.create(date: date, street: street, houses: houses_part)
       end
     end
+    file1 << "\n"
   end
   file << "\n"
 end
