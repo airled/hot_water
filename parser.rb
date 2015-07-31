@@ -1,7 +1,6 @@
 require 'nokogiri'
 require 'open-uri'
 require './models'
-require 'pry'
 
 #fetching HTML from source URL and removing some unwanted tags from it
 def fetch_html(source)
