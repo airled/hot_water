@@ -7,7 +7,6 @@ def fetch_html(source)
   html = Nokogiri::HTML(open(source))
   html.xpath('//div[@class="social"]').map(&:remove)
   html.xpath('//h2').map(&:remove)
-  # html.xpath('//div[@class="main_block"]//span').delete(html.xpath('//div[@class="main_block"]//span').last)
   html
 end
   
