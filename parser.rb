@@ -2,7 +2,7 @@ require 'nokogiri'
 require 'open-uri'
 require './models'
 
-#fetching HTML and removing some unwanted tags  
+#fetching HTML from source URL and removing some unwanted tags from it
 def fetch_html(source)
   html = Nokogiri::HTML(open(source))
   html.xpath('//div[@class="social"]').map(&:remove)
@@ -17,7 +17,7 @@ def fetch_text(html)
   raw_text.gsub(/[^\ 0-9.,А-Яа-я;\/\-()–№\"]/,"").strip
 end
   
-#fetching names of the streets from 'strong'-tags
+#fetching street's names from <strong>'s and putting it in the array
 def streets_from_strongs(html)
   streets = []
   html.xpath('//div[@class="main_block"]//strong').map do |tag|
@@ -28,7 +28,7 @@ def streets_from_strongs(html)
   streets
 end
 
-#extending ranges of houses
+#fetching ranges (like '12-20') and extending it in a sequence of values (array)
 def extended(range)
   full_range = []
   start = range.split('-')[0].to_i
@@ -109,11 +109,11 @@ dates.zip(streets_blocks,houses_blocks).map do |date,streets_block,houses_block|
       if houses_part =~ /[0-9]+-[0-9]+/
         extended(houses_part).map do |house|
           file1 << street + ' ||| ' + house << "\n"
-          # Record.create(date: date, street: street, houses: house)
+          Record.create(date: date, street: street, houses: house)
         end
       else 
         file1 << street + ' ||| ' + houses_part << "\n"
-        # Record.create(date: date, street: street, houses: houses_part)
+        Record.create(date: date, street: street, houses: houses_part)
       end
     end
     file1 << "\n"
