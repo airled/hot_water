@@ -62,10 +62,10 @@ source = 'html.txt'
 html = fetch_html(source)
 streets = streets_from_strongs(html)
 
-#dividing the text into the groups by date
+#dividing the text into the parts by date (each part includes information about date and adresses unsplitted)
 main = fetch_text(html).split('В период').drop(1)
 
-#collecting dates and address groups into arrays
+#splitting each element of main array by keywords into date part and addresses groups part (one group matches one date) 
 dates = []
 groups = []
 main.map do |date_with_group|
