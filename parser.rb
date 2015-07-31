@@ -111,11 +111,11 @@ dates.zip(streets_blocks,houses_blocks).map do |date,streets_block,houses_block|
       if houses_part =~ /[0-9]+-[0-9]+/
         extended(houses_part).map do |house|
           file1 << street + ' ||| ' + house.strip << "\n"
-          # Record.create(date: date, street: street, houses: house)
+          Record.create(date: date, street: street, house: house)
         end
       else 
         file1 << street + ' ||| ' + houses_part.strip << "\n"
-        # Record.create(date: date, street: street, houses: houses_part)
+        Record.create(date: date, street: street, house: houses_part)
       end
     end
     file1 << "\n"
