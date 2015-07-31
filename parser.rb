@@ -31,7 +31,7 @@ end
 #fetching ranges (like '12-20') and extending it in a sequence of values (array)
 def extended(range)
   full_range = []
-  unless range.include?('к.')
+  unless range.include?('к')
     start = range.split('-')[0].to_i
     stop = range.split('-')[1].to_i
     case
