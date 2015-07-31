@@ -11,6 +11,6 @@ def find(street,house)
   result ||= 'no info'
 end
 
-# def find(street,house)
-#   Record.where{ (:street => street) & (: house => house)}.date
-# end
+def find(street,house)
+  result = Record.where{ (:street => street) & (:house => house)}.date
+end
