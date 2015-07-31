@@ -1,6 +1,7 @@
 require 'nokogiri'
 require 'open-uri'
 require './models'
+require 'pry'
 
 #fetching HTML from source URL and removing some unwanted tags from it
 def fetch_html(source)
@@ -31,22 +32,24 @@ end
 #fetching ranges (like '12-20') and extending it in a sequence of values (array)
 def extended(range)
   full_range = []
-  start = range.split('-')[0].to_i
-  stop = range.split('-')[1].to_i
-  case
-    when start.even? && stop.even?
-      start.upto(stop) do |value|
-        full_range << value.to_s if value.even?
-      end
-    when start.odd? && stop.odd?
-      start.upto(stop) do |value|
-        full_range << value.to_s if value.odd?
-      end
-    when (start.odd? && stop.even?) || (start.even? && stop.odd?)
-      start.upto(stop) do |value|
-        full_range << value.to_s
-      end
-    else full_range << range
+  unless range.include?('к.')
+    start = range.split('-')[0].to_i
+    stop = range.split('-')[1].to_i
+    case
+      when start.even? && stop.even?
+        start.upto(stop) do |value|
+          full_range << value.to_s if value.even?
+        end
+      when start.odd? && stop.odd?
+        start.upto(stop) do |value|
+          full_range << value.to_s if value.odd?
+        end
+      when (start.odd? && stop.even?) || (start.even? && stop.odd?)
+        start.upto(stop) do |value|
+          full_range << value.to_s
+        end
+    end
+  else full_range << range
   end
   full_range
 end
@@ -108,12 +111,12 @@ dates.zip(streets_blocks,houses_blocks).map do |date,streets_block,houses_block|
     houses.split(/,/).map do |houses_part|
       if houses_part =~ /[0-9]+-[0-9]+/
         extended(houses_part).map do |house|
-          file1 << street + ' ||| ' + house << "\n"
-          Record.create(date: date, street: street, houses: house)
+          file1 << street + ' ||| ' + house.strip << "\n"
+          # Record.create(date: date, street: street, houses: house)
         end
       else 
-        file1 << street + ' ||| ' + houses_part << "\n"
-        Record.create(date: date, street: street, houses: houses_part)
+        file1 << street + ' ||| ' + houses_part.strip << "\n"
+        # Record.create(date: date, street: street, houses: houses_part)
       end
     end
     file1 << "\n"
