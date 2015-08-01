@@ -30,21 +30,21 @@ end
 
 #fetching ranges (like '12-20') and extending it in a sequence of values (array)
 def extended(range)
-  full_range = []
+  sequence = []
   unless range.include?('k')
     start = range.split('-')[0].to_i
     stop = range.split('-')[1].to_i
     case
     when start.even? && stop.even?
-      start.upto(stop) { |value| full_range << value.to_s if value.even? }
+      start.upto(stop) { |value| sequence << value.to_s if value.even? }
     when start.odd? && stop.odd?
-      start.upto(stop) { |value| full_range << value.to_s if value.odd? }
+      start.upto(stop) { |value| sequence << value.to_s if value.odd? }
     when (start.odd? && stop.even?) || (start.even? && stop.odd?)
-      start.upto(stop) { |value| full_range << value.to_s }
+      start.upto(stop) { |value| sequence << value.to_s }
     end
-  else full_range << range
+  else sequence << range
   end
-  full_range
+  sequence
 end
 
 file = File.open('temp.txt','w')
