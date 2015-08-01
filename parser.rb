@@ -35,18 +35,18 @@ def extended(range)
     start = range.split('-')[0].to_i
     stop = range.split('-')[1].to_i
     case
-      when start.even? && stop.even?
-        start.upto(stop) do |value|
-          full_range << value.to_s if value.even?
-        end
-      when start.odd? && stop.odd?
-        start.upto(stop) do |value|
-          full_range << value.to_s if value.odd?
-        end
-      when (start.odd? && stop.even?) || (start.even? && stop.odd?)
-        start.upto(stop) do |value|
-          full_range << value.to_s
-        end
+    when start.even? && stop.even?
+      start.upto(stop) do |value|
+        full_range << value.to_s if value.even?
+      end
+    when start.odd? && stop.odd?
+      start.upto(stop) do |value|
+        full_range << value.to_s if value.odd?
+      end
+    when (start.odd? && stop.even?) || (start.even? && stop.odd?)
+      start.upto(stop) do |value|
+        full_range << value.to_s
+      end
     end
   else full_range << range
   end
