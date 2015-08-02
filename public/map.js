@@ -33,7 +33,7 @@ function placeMarker(position, map){
 }
 
 function getAddress(position){
-	var url = 'http://maps.googleapis.com/maps/api/geocode/json?latlng=' + String(position).replace(/[\(\) ]/g,''); + '&sensor=true&language=ru';
+	var url = 'http://maps.googleapis.com/maps/api/geocode/json?latlng=' + String(position).replace(/[\(\) ]/g,'') + '&sensor=true&language=ru';
 	var xmlHttp = new XMLHttpRequest();
 	xmlHttp.open("GET", url, false);
 	xmlHttp.send(null);
