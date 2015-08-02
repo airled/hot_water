@@ -2,7 +2,7 @@ require 'mina/bundler'
 require 'mina/rails'
 require 'mina/git'
 require 'mina/rbenv'  # for rbenv support. (http://rbenv.org)
-require 'mina/rvm'    # for rvm support. (http://rvm.io)
+# require 'mina/rvm'    # for rvm support. (http://rvm.io)
 
 # Basic settings:
 #   domain       - The hostname to SSH to.
@@ -71,9 +71,10 @@ task :deploy => :environment do
     invoke :'git:clone'
     invoke :'deploy:link_shared_paths'
     invoke :'bundle:install'
-    invoke :'rails:db_migrate'
+    # invoke :'rails:db_migrate'
     # invoke :'rails:assets_precompile'
-    # queue "rake db:reset"    
+    queue "rake db:reset"
+    queue "bundle exec ruby parser.rb"
     invoke :'deploy:cleanup'
 
     to :launch do
