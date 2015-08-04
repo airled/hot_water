@@ -97,22 +97,22 @@ class Parser
       streets_block.zip(houses_block).map do |street,houses|
         case
           when houses.scan(/[0-9А-Яа-я]/).empty?
-            houses = ''
+            houses = '*'
           when houses[0] == ','
             houses[0] = ' '
         end
-        houses = houses.gsub(' – ',"-").strip.gsub(/[^0-9А-Яа-я()\ ][^0-9А-Яа-я()\ ]/, '')
+        houses = houses.gsub(' – ','-').strip.gsub(/[^0-9А-Яа-я*()\ ][^0-9А-Яа-я*()\ ]/, '')
         file << street + ' ||| ' + houses << "\n"
 
         houses.split(/,/).map do |houses_part|
           if houses_part =~ /[0-9]+-[0-9]+/
             extended(houses_part).map do |house|
               file1 << street + ' ||| ' + house.strip << "\n"
-              Record.create(date: date, street: street, house: house.strip)
+              # Record.create(date: date, street: street, house: house.strip)
             end
           else 
             file1 << street + ' ||| ' + houses_part.strip << "\n"
-            Record.create(date: date, street: street, house: houses_part.strip)
+            # Record.create(date: date, street: street, house: houses_part.strip)
           end
         end
         file1 << "\n"
