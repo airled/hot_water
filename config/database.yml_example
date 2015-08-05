@@ -1,8 +1,7 @@
 #This is an example config file. After inserting your database parameters you should name it as "database.yml"
 
-#adapter: adapter
-#user: user
-#password: password
-#host: host
-#database: database
-#encoding: encoding
+adapter: mysql2
+user: root
+password: 
+host: localhost
+database: hot_water

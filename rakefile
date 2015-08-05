@@ -1,4 +1,4 @@
-require_relative './init_db'
+require './init_db'
 Sequel.extension :migration
 
 namespace :db do  
