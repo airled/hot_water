@@ -3,6 +3,7 @@
 	<head>
 		<meta charset="utf-8">
 		<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?language=ru"></script>
+		<script type="text/javascript" src="searching.js"></script>
 		<script type="text/javascript" src="map.js"></script>
 		<link rel="stylesheet" href="styles.css">
 	</head>
@@ -10,7 +11,25 @@
 		<div id='container'>
 			<header>Горячая вода</header>
 			<div id="map-canvas"></div>
-			<aside id="sidebar"></aside>
+			<aside>
+				<div id="for_form">
+					<form action="">
+						<fieldset>
+						<legend>Найти дату</legend>
+						Название улицы:
+						<br>
+						<input type="text" id='street' name="street">
+						<br>
+						Номер дома:
+						<br>
+						<input type="text" id='house' name="house">
+						<br>
+						<input type="button" value="Найти" onclick="findFromForm()">
+						</fieldset>
+					</form>
+				</div>
+				<div id="sidebar"></div>
+			</aside>
 		</div>
 	</body>
 </html>

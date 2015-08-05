@@ -1,3 +1,5 @@
+var markers = [];
+
 function initialize() {
 	var mapOptions = {
 		center: {lat: 53.9, lng: 27.55}, 
@@ -14,25 +16,23 @@ function initialize() {
 	});
 }
 
-function placeMarker(position, map){	
+function placeMarker(position, map) {
+	if (markers.length > 0) {
+		for (var i = 0; i < markers.length; i++ ) {
+	    	markers[i].setMap(null);
+	    }
+	}
+	document.getElementById('sidebar').innerHTML = '';	
 	var marker = new google.maps.Marker({
 		position: position,
 		map: map,
 		title: String(position)
 	});
-	// var infowindow = new google.maps.InfoWindow({
-	//     content: address,
-	//     size: new google.maps.Size(150, 50)
- //    });
-
-	// google.maps.event.addListener(marker, 'click', function() {
-	// 	infowindow.open(map,marker);
-	// });
-	// console.log(position);
-	document.getElementById('sidebar').innerHTML = getAddress(String(position));
+	markers.push(marker);
+	document.getElementById('sidebar').innerHTML = getAddressWithDate(String(position));
 }
 
-function getAddress(position){
+function getAddressWithDate(position) {
 	var url = 'http://maps.googleapis.com/maps/api/geocode/json?latlng=' + String(position).replace(/[\(\) ]/g,'') + '&sensor=true&language=ru';
 	var xmlHttp = new XMLHttpRequest();
 	xmlHttp.open("GET", url, false);
@@ -41,19 +41,11 @@ function getAddress(position){
 	var street = geodata.results[0].address_components[1].long_name.replace('улица','').trim();
 	var house = geodata.results[0].address_components[0].long_name;
 	if(String(house[0].match(/[0-9]/)) == 'null'){
-		return '//Промах//';
+		return 'Неточный адрес';
 	}
 	else{
-		return getDate(street,house);
+		return street + ', ' + house + '<br>' + getDate(street,house);
 	}
-}
-
-function getDate(street,house){
-	var url = 'http://localhost:4567/date?street=' + String(street) + '&house=' + String(house);
-	var xmlHttp = new XMLHttpRequest();
-	xmlHttp.open("GET", url, false);
-	xmlHttp.send(null);
-	return (JSON.parse(xmlHttp.responseText).date + '<br>' + street + ', ' + house);
 }
 
 google.maps.event.addDomListener(window, 'load', initialize);
