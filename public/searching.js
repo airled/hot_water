@@ -5,9 +5,13 @@ function request(url){
 	return xmlHttp.responseText;
 }
 
+function encode(string){
+	return encodeURIComponent(string);
+}
+
 function getDate(street,house){
 	// var url = 'http://hotwater.muzenza.by/date?street=' + String(street) + '&house=' + String(house);
-	var url = 'http://localhost:4567/date?street=' + String(street).replace(/ /g,'+') + '&house=' + String(house);
+	var url = 'http://localhost:4567/date?street=' + encode(String(street)) + '&house=' + encode(String(house));
 	return (JSON.parse(request(url)).date);
 }
 
