@@ -7,7 +7,7 @@ get '/' do
 end
 
 get '/date' do
-  street = params[:street]
+  street = params[:street].gsub('+',' ')
   house = params[:house]
   date = Finder.new.date_find(street,house)
   {date: date}.to_json
