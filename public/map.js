@@ -1,6 +1,6 @@
 var markers = [];
 
-function initialize() {
+function initialize(){
 	var mapOptions = {
 		center: {lat: 53.9, lng: 27.55}, 
 		zoom: 11,
@@ -16,7 +16,7 @@ function initialize() {
 	});
 }
 
-function placeMarker(position, map) {
+function placeMarker(position, map){
 	if (markers.length > 0) {
 		for (var i = 0; i < markers.length; i++ ) {
 	    	markers[i].setMap(null);
@@ -32,12 +32,9 @@ function placeMarker(position, map) {
 	document.getElementById('sidebar').innerHTML = getAddressWithDate(String(position));
 }
 
-function getAddressWithDate(position) {
+function getAddressWithDate(position){
 	var url = 'http://maps.googleapis.com/maps/api/geocode/json?latlng=' + String(position).replace(/[\(\) ]/g,'') + '&sensor=true&language=ru';
-	var xmlHttp = new XMLHttpRequest();
-	xmlHttp.open("GET", url, false);
-	xmlHttp.send(null);
-	geodata = JSON.parse(xmlHttp.responseText);
+	geodata = JSON.parse(request(url));
 	var street = geodata.results[0].address_components[1].long_name.replace('улица','').trim();
 	var house = geodata.results[0].address_components[0].long_name;
 	if(String(house[0].match(/[0-9]/)) == 'null'){
