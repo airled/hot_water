@@ -7,8 +7,13 @@ get '/' do
 end
 
 get '/date' do
-  street = params[:street]
-  house = params[:house]
-  date = Finder.new.date_find(street,house)
-  {date: date}.to_json
+  if params.empty?
+    'No params' 
+  else
+    street = params[:street]
+    house = params[:house]
+    house = house.split('-')[0] if house.include?('-')
+    date = Finder.new.date_find(street,house)
+    {date: date}.to_json
+  end
 end

@@ -15,8 +15,26 @@ function getDate(street,house){
 	return (JSON.parse(request(url)).date);
 }
 
+function getAddressWithDate(position){
+	var url = 'http://maps.googleapis.com/maps/api/geocode/json?latlng=' + String(position).replace(/[\(\) ]/g,'') + '&sensor=true&language=ru';
+	geodata = JSON.parse(request(url));
+	var street = geodata.results[0].address_components[1].long_name.replace('улица','').trim();
+	var house = geodata.results[0].address_components[0].long_name;
+	if(String(house[0].match(/[0-9]/)) == 'null'){
+		return 'Неточный адрес';
+	}
+	else{
+		return street + ', ' + house + '<br>' + getDate(street,house);
+	}
+}
+
 function findFromForm(){
 	var streetForm = document.getElementById('street').value;
 	var houseForm = document.getElementById('house').value;
-	document.getElementById('sidebar').innerHTML = getDate(streetForm,houseForm);
+	if(streetForm == '' || houseForm == ''){
+		document.getElementById('sidebar').innerHTML = 'Не введено';
+	}
+	else{
+		document.getElementById('sidebar').innerHTML = getDate(streetForm,houseForm);
+	}
 }
