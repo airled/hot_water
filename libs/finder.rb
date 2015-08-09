@@ -2,7 +2,6 @@ require_relative '../models'
 
 class Finder
 
-
   def date_find(street_raw,house_raw)
     street = street_standard(street_raw)
     house = house_standard(house_raw)
