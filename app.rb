@@ -1,19 +1,26 @@
+require 'rubygems'
 require 'sinatra'
+require 'sinatra/base'
 require './finder'
 require 'json'
+# require 'unicorn'
 
-get '/' do
-  erb :index
-end
+class MyApp < Sinatra::Base
 
-get '/date' do
-  if params.empty?
-    'No params' 
-  else
-    street = params[:street]
-    house = params[:house]
-    house = house.split('-')[0] if house.include?('-')
-    date = Finder.new.date_find(street,house)
-    {date: date}.to_json
+  get '/' do
+    erb :index
   end
-end
+
+  get '/date' do
+    if params.empty?
+      'No params' 
+    else
+      street = params[:street]
+      house = params[:house]
+      house = house.split('-')[0] if house.include?('-')
+      date = Finder.new.date_find(street,house)
+      {date: date}.to_json
+    end
+  end
+
+end #class
