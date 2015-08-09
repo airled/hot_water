@@ -19,7 +19,7 @@ function getDate(street,house){
 function getAddressWithDate(position){
 	var url = 'http://maps.googleapis.com/maps/api/geocode/json?latlng=' + String(position).replace(/[\(\) ]/g,'') + '&sensor=true&language=ru';
 	geodata = JSON.parse(request(url));
-	var street = geodata.results[0].address_components[1].long_name.replace('улица','').trim();
+	var street = geodata.results[0].address_components[1].long_name;
 	var house = geodata.results[0].address_components[0].long_name;
 	if(String(house[0].match(/[0-9]/)) == 'null'){
 		return 'Неточный адрес';
