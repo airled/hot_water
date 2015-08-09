@@ -49,7 +49,8 @@ class Parser
     sequence
   end
 
-  def run  
+  def run
+    puts 'Begin parsing...'
     file = File.open('temp.txt','w')
     file1 = File.open('temp1.txt','w')
 
@@ -122,7 +123,8 @@ class Parser
 
     file.close
     file1.close
-  end
+    puts 'Parsed'
+  end #def run
   
 end #class
 
