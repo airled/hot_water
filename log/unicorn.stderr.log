@@ -1,0 +1,83 @@
+I, [2015-08-09T16:34:53.457515 #2605]  INFO -- : listening on addr=0.0.0.0:3000 fd=9
+I, [2015-08-09T16:34:53.470573 #2605]  INFO -- : worker=0 spawning...
+I, [2015-08-09T16:34:53.473291 #2605]  INFO -- : worker=1 spawning...
+I, [2015-08-09T16:34:53.478555 #2634]  INFO -- : worker=0 spawned pid=2634
+I, [2015-08-09T16:34:53.475909 #2605]  INFO -- : master process ready
+I, [2015-08-09T16:34:53.482757 #2636]  INFO -- : worker=1 spawned pid=2636
+I, [2015-08-09T16:34:53.484368 #2634]  INFO -- : Refreshing Gem list
+I, [2015-08-09T16:34:53.486958 #2636]  INFO -- : Refreshing Gem list
+I, [2015-08-09T16:34:58.836832 #2634]  INFO -- : worker=0 ready
+I, [2015-08-09T16:34:58.831254 #2636]  INFO -- : worker=1 ready
+127.0.0.1 - - [09/Aug/2015:16:35:26 +0300] "GET / HTTP/1.1" 200 940 0.5078
+127.0.0.1 - - [09/Aug/2015:16:35:26 +0300] "GET /map.js HTTP/1.1" 200 878 0.0228
+127.0.0.1 - - [09/Aug/2015:16:35:26 +0300] "GET /styles.css HTTP/1.1" 200 412 0.0510
+127.0.0.1 - - [09/Aug/2015:16:35:26 +0300] "GET /searching.js HTTP/1.1" 200 1384 0.2371
+127.0.0.1 - - [09/Aug/2015:16:35:29 +0300] "GET /favicon.ico HTTP/1.1" 404 507 0.0210
+I, [2015-08-09T16:35:54.498459 #2605]  INFO -- : reaped #<Process::Status: pid 2634 exit 0> worker=0
+I, [2015-08-09T16:35:54.499002 #2605]  INFO -- : reaped #<Process::Status: pid 2636 exit 0> worker=1
+I, [2015-08-09T16:35:54.499550 #2605]  INFO -- : master complete
+I, [2015-08-09T16:36:22.440458 #2666]  INFO -- : listening on addr=0.0.0.0:3000 fd=9
+I, [2015-08-09T16:36:22.441601 #2666]  INFO -- : worker=0 spawning...
+I, [2015-08-09T16:36:22.444211 #2666]  INFO -- : worker=1 spawning...
+I, [2015-08-09T16:36:22.447051 #2666]  INFO -- : master process ready
+I, [2015-08-09T16:36:22.450435 #2695]  INFO -- : worker=0 spawned pid=2695
+I, [2015-08-09T16:36:22.454299 #2697]  INFO -- : worker=1 spawned pid=2697
+I, [2015-08-09T16:36:22.455487 #2695]  INFO -- : Refreshing Gem list
+I, [2015-08-09T16:36:22.458756 #2697]  INFO -- : Refreshing Gem list
+I, [2015-08-09T16:36:25.784815 #2695]  INFO -- : worker=0 ready
+I, [2015-08-09T16:36:25.793229 #2697]  INFO -- : worker=1 ready
+I, [2015-08-09T16:38:11.122247 #2666]  INFO -- : reaped #<Process::Status: pid 2695 exit 0> worker=0
+I, [2015-08-09T16:38:11.122826 #2666]  INFO -- : reaped #<Process::Status: pid 2697 exit 0> worker=1
+I, [2015-08-09T16:38:11.123348 #2666]  INFO -- : master complete
+I, [2015-08-09T16:38:14.605268 #2730]  INFO -- : listening on addr=0.0.0.0:3000 fd=9
+I, [2015-08-09T16:38:14.606313 #2730]  INFO -- : worker=0 spawning...
+I, [2015-08-09T16:38:14.609136 #2730]  INFO -- : worker=1 spawning...
+I, [2015-08-09T16:38:14.614141 #2759]  INFO -- : worker=0 spawned pid=2759
+I, [2015-08-09T16:38:14.615209 #2730]  INFO -- : master process ready
+I, [2015-08-09T16:38:14.618800 #2761]  INFO -- : worker=1 spawned pid=2761
+I, [2015-08-09T16:38:14.620161 #2759]  INFO -- : Refreshing Gem list
+I, [2015-08-09T16:38:14.625045 #2761]  INFO -- : Refreshing Gem list
+I, [2015-08-09T16:38:18.134021 #2759]  INFO -- : worker=0 ready
+I, [2015-08-09T16:38:18.166731 #2761]  INFO -- : worker=1 ready
+127.0.0.1 - - [09/Aug/2015:16:38:21 +0300] "GET / HTTP/1.1" 200 940 0.3187
+127.0.0.1 - - [09/Aug/2015:16:38:21 +0300] "GET /map.js HTTP/1.1" 304 - 0.0229
+127.0.0.1 - - [09/Aug/2015:16:38:21 +0300] "GET /searching.js HTTP/1.1" 200 1384 0.2326
+127.0.0.1 - - [09/Aug/2015:16:38:21 +0300] "GET /styles.css HTTP/1.1" 304 - 0.0228
+127.0.0.1 - - [09/Aug/2015:16:38:29 +0300] "GET /date?street=%D0%A6%D0%BD%D1%8F%D0%BD%D1%81%D0%BA%D0%B0%D1%8F&house=4 HTTP/1.1" 200 38 0.1554
+127.0.0.1 - - [09/Aug/2015:16:38:43 +0300] "GET /date?street=%D0%BF%D0%B5%D1%80%D0%B5%D1%83%D0%BB%D0%BE%D0%BA%20%D0%9A%D0%BB%D1%83%D0%BC%D0%BE%D0%B2%D0%B0&house=11 HTTP/1.1" 200 38 0.0276
+127.0.0.1 - - [09/Aug/2015:16:38:46 +0300] "GET /date?street=%D0%A1%D1%83%D0%B4%D0%BC%D0%B0%D0%BB%D0%B8%D1%81%D0%B0&house=3 HTTP/1.1" 200 38 0.0243
+127.0.0.1 - - [09/Aug/2015:16:38:48 +0300] "GET /date?street=%D0%96%D1%83%D0%BA%D0%BE%D0%B2%D1%81%D0%BA%D0%BE%D0%B3%D0%BE&house=5 HTTP/1.1" 200 25 0.0316
+127.0.0.1 - - [09/Aug/2015:16:38:54 +0300] "GET /date?street=%D0%9C%D0%B0%D1%82%D1%83%D1%81%D0%B5%D0%B2%D0%B8%D1%87%D0%B0&house=24 HTTP/1.1" 200 25 0.0401
+127.0.0.1 - - [09/Aug/2015:16:38:58 +0300] "GET /date?street=%D0%9D%D0%B5%D0%BA%D1%80%D0%B0%D1%81%D0%BE%D0%B2%D0%B0&house=21 HTTP/1.1" 200 38 0.0249
+127.0.0.1 - - [09/Aug/2015:16:38:59 +0300] "GET /date?street=%D0%9A%D0%B5%D0%B4%D1%8B%D1%88%D0%BA%D0%BE&house=45 HTTP/1.1" 200 38 0.0255
+127.0.0.1 - - [09/Aug/2015:16:39:00 +0300] "GET /date?street=%D0%91%D0%B0%D0%B3%D1%80%D0%B0%D1%82%D0%B8%D0%BE%D0%BD%D0%B0&house=85 HTTP/1.1" 200 38 0.0246
+127.0.0.1 - - [09/Aug/2015:16:39:01 +0300] "GET /date?street=%D0%A0%D0%B0%D0%B4%D0%B8%D0%B0%D0%BB%D1%8C%D0%BD%D0%B0%D1%8F&house=56 HTTP/1.1" 200 38 0.0223
+I, [2015-08-09T16:40:09.957092 #2730]  INFO -- : reaped #<Process::Status: pid 2759 exit 0> worker=0
+I, [2015-08-09T16:40:09.957652 #2730]  INFO -- : reaped #<Process::Status: pid 2761 exit 0> worker=1
+I, [2015-08-09T16:40:09.958182 #2730]  INFO -- : master complete
+I, [2015-08-09T16:40:34.473196 #2792]  INFO -- : listening on addr=0.0.0.0:3000 fd=9
+I, [2015-08-09T16:40:34.474030 #2792]  INFO -- : worker=0 spawning...
+I, [2015-08-09T16:40:34.478594 #2792]  INFO -- : worker=1 spawning...
+I, [2015-08-09T16:40:34.486519 #2792]  INFO -- : master process ready
+I, [2015-08-09T16:40:34.494828 #2826]  INFO -- : worker=1 spawned pid=2826
+I, [2015-08-09T16:40:34.500808 #2823]  INFO -- : worker=0 spawned pid=2823
+I, [2015-08-09T16:40:34.501741 #2823]  INFO -- : Refreshing Gem list
+I, [2015-08-09T16:40:34.509073 #2826]  INFO -- : Refreshing Gem list
+I, [2015-08-09T16:40:41.387775 #2823]  INFO -- : worker=0 ready
+I, [2015-08-09T16:40:41.395058 #2826]  INFO -- : worker=1 ready
+127.0.0.1 - - [09/Aug/2015:16:40:41 +0300] "GET / HTTP/1.1" 200 940 0.3816
+127.0.0.1 - - [09/Aug/2015:16:40:42 +0300] "GET /map.js HTTP/1.1" 304 - 0.1905
+127.0.0.1 - - [09/Aug/2015:16:40:42 +0300] "GET /styles.css HTTP/1.1" 304 - 0.0097
+127.0.0.1 - - [09/Aug/2015:16:40:42 +0300] "GET /searching.js HTTP/1.1" 304 - 0.0108
+127.0.0.1 - - [09/Aug/2015:16:40:49 +0300] "GET /date?street=%D0%9F%D0%B0%D1%80%D1%82%D0%B8%D0%B7%D0%B0%D0%BD%D1%81%D0%BA%D0%B8%D0%B9%20%D1%80%D0%B0%D0%B9%D0%BE%D0%BD&house=1-%D0%B9%20%D0%97%D0%B0%D0%BF%D0%BE%D1%80%D0%BE%D0%B6%D1%81%D0%BA%D0%B8%D0%B9%20%D0%BF%D0%B5%D1%80%D0%B5%D1%83%D0%BB%D0%BE%D0%BA HTTP/1.1" 200 38 0.0329
+127.0.0.1 - - [09/Aug/2015:16:40:55 +0300] "GET /date?street=%D0%A1%D0%BE%D0%BB%D1%82%D1%8B%D1%81%D0%B0&house=191 HTTP/1.1" 200 24 0.0308
+127.0.0.1 - - [09/Aug/2015:16:40:58 +0300] "GET /date?street=%D0%94%D1%80%D0%B0%D0%B6%D0%BD%D1%8F&house=1-%D0%B9%20%D0%9F%D0%B5%D1%80%D0%B5%D1%85%D0%BE%D0%B4%D0%BD%D1%8B%D0%B9%20%D0%BF%D0%B5%D1%80%D0%B5%D1%83%D0%BB%D0%BE%D0%BA HTTP/1.1" 200 38 0.0263
+127.0.0.1 - - [09/Aug/2015:16:41:00 +0300] "GET /date?street=%D0%9D%D0%B8%D0%BA%D0%B8%D1%84%D0%BE%D1%80%D0%BE%D0%B2%D0%B0&house=11 HTTP/1.1" 200 38 0.0236
+127.0.0.1 - - [09/Aug/2015:16:41:02 +0300] "GET /date?street=%D0%92%D0%BE%D0%B4%D0%BE%D0%BB%D0%B0%D0%B6%D1%81%D0%BA%D0%BE%D0%B3%D0%BE&house=4 HTTP/1.1" 200 38 0.0261
+127.0.0.1 - - [09/Aug/2015:16:41:03 +0300] "GET /date?street=%D0%BF%D1%80%D0%BE%D1%81%D0%BF%D0%B5%D0%BA%D1%82%20%D0%9D%D0%B5%D0%B7%D0%B0%D0%B2%D0%B8%D1%81%D0%B8%D0%BC%D0%BE%D1%81%D1%82%D0%B8&house=185 HTTP/1.1" 200 38 0.0201
+127.0.0.1 - - [09/Aug/2015:16:41:07 +0300] "GET /date?street=%D0%9E%D1%81%D1%82%D1%80%D0%BE%D1%88%D0%B8%D1%86%D0%BA%D0%B0%D1%8F&house=2A HTTP/1.1" 200 38 0.0254
+127.0.0.1 - - [09/Aug/2015:16:41:09 +0300] "GET /date?street=%D0%93%D0%BE%D1%80%D0%BE%D0%B4%D0%B5%D1%86%D0%BA%D0%B0%D1%8F&house=10 HTTP/1.1" 200 24 0.0273
+127.0.0.1 - - [09/Aug/2015:16:41:11 +0300] "GET /date?street=%D0%A3%D1%80%D1%83%D1%87%D1%81%D0%BA%D0%B0%D1%8F&house=2 HTTP/1.1" 200 24 0.0230
+I, [2015-08-09T16:41:22.664825 #2792]  INFO -- : reaped #<Process::Status: pid 2823 exit 0> worker=0
+I, [2015-08-09T16:41:22.665406 #2792]  INFO -- : reaped #<Process::Status: pid 2826 exit 0> worker=1
+I, [2015-08-09T16:41:22.667179 #2792]  INFO -- : master complete
