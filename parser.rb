@@ -124,7 +124,6 @@ class Parser
     file1.close
   end
   
-#class
-end
+end #class
 
 Parser.new.run

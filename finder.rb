@@ -13,4 +13,4 @@ class Finder
   result
   end
 
-end
+end #class
