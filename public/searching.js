@@ -11,6 +11,7 @@ function encode(string){
 
 function getDate(street,house){
 	var url = 'http://hotwater.muzenza.by/date?street=' + encode(street) + '&house=' + encode(house);
+	// var url = 'http://localhost:4567/date?street=' + encode(street) + '&house=' + encode(house);
 	// var url = 'http://localhost:3000/date?street=' + encode(street) + '&house=' + encode(house);
 	return (JSON.parse(request(url)).date);
 }

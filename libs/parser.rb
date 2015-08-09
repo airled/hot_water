@@ -1,6 +1,6 @@
 require 'nokogiri'
 require 'open-uri'
-require './models'
+require_relative '../models'
 
 class Parser
 
@@ -51,10 +51,10 @@ class Parser
 
   def run
     puts 'Begin parsing...'
+    amount_start = Record.count
     file = File.open('temp.txt','w')
     file1 = File.open('temp1.txt','w')
 
-    # source = 'http://www.belta.by/ru/dose_menu/grafik_zkh'
     # source = 'http://www.belta.by/regions/view/grafik-otkljuchenija-gorjachej-vody-v-minske-v-2015-godu-153269-2015/'
     source = 'html.txt'
     html = fetch_html(source)
@@ -97,10 +97,10 @@ class Parser
       file1 << date << "\n" << "\n"
       streets_block.zip(houses_block).map do |street,houses|
         case
-          when houses.scan(/[0-9А-Яа-я]/).empty?
-            houses = '*'
-          when houses[0] == ','
-            houses[0] = ' '
+        when houses.scan(/[0-9А-Яа-я]/).empty?
+          houses = '*'
+        when houses[0] == ','
+          houses[0] = ' '
         end
         houses = houses.gsub(' – ','-').strip.gsub(/[^0-9А-Яа-я*()\ ][^0-9А-Яа-я*()\ ]/, '')
         file << street + ' ||| ' + houses << "\n"
@@ -123,7 +123,8 @@ class Parser
 
     file.close
     file1.close
-    puts 'Parsed'
+    amount_stop = Record.count
+    puts "Parsed. Records created: #{amount_stop - amount_start}"
   end #def run
   
 end #class

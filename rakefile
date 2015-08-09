@@ -2,7 +2,7 @@ require './init_db'
 
 Sequel.extension :migration
 
-namespace :db do  
+namespace :db do
   desc "Prints current schema version"
   task :version do
     version = if DB.tables.include?(:schema_info)
@@ -29,5 +29,21 @@ namespace :db do
     Sequel::Migrator.run(DB, "db/migrate", :target => 0)
     Sequel::Migrator.run(DB, "db/migrate")
     Rake::Task['db:version'].execute
+  end
+end
+
+namespace :html do  
+  require 'nokogiri'
+  require 'open-uri'
+
+  desc "Get html in 'html.txt'"
+  task :get do
+    url = 'http://www.belta.by/ru/dose_menu/grafik_zkh'
+    File.open('html.txt','w') { |file| file << Nokogiri::HTML(open(url)) }
+  end
+
+  desc "Parse source html and add records into the database"
+  task :parse do
+    require './libs/parser'
   end
 end
