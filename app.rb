@@ -3,7 +3,6 @@ require 'sinatra'
 require 'sinatra/base'
 require './finder'
 require 'json'
-# require 'unicorn'
 
 class MyApp < Sinatra::Base
 

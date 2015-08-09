@@ -7,3 +7,4 @@ gem 'mysql2'
 gem 'minitest'
 gem 'mina'
 gem 'unicorn'
+gem 'mina-unicorn', :require => false
