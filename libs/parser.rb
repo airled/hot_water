@@ -16,10 +16,6 @@ class Parser
 
   def fetch_html(source)
     html = Nokogiri::HTML(open(source))
-    # html.xpath('//h2').map(&:remove)
-    # html.xpath('//h1').map(&:remove)
-    # html.xpath('//script').map(&:remove)
-    # html
   end
 
   def p_tags_into_file(html)
