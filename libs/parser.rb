@@ -15,7 +15,8 @@ class Parser
   private
 
   def fetch_html(source)
-    html = Nokogiri::HTML(open(source))
+    Nokogiri::HTML(open(source))
+    # html = Nokogiri::HTML(open(source))
   end
 
   def p_tags_into_file(html)
@@ -32,10 +33,11 @@ class Parser
     file = File.open('../temp.txt','r')
     file.each do |line|
       if line.include?('В период')
-        date = line.gsub(/[^А-Яа-я0-9\ ]/,'').gsub('В период ','')
+        date = line.gsub(/[^А-Яа-я0-9\ ]|В период /,'')
+        # date = line.gsub(/[^А-Яа-я0-9\ ]/,'').gsub('В период ','')
         next
       else
-        main_hash << {date: date, date_block: line.strip}
+        main_hash << {date: date, date_match: line.strip}
       end
     end
     file.close
