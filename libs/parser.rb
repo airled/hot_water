@@ -19,6 +19,10 @@ class Parser
 
   private
 
+  def create_record(hash)
+    Record.create(hash)
+  end
+
   def fetch_html(source)
     Nokogiri::HTML(open(source))
   end
@@ -52,7 +56,7 @@ class Parser
       street = splitted_line[0]
       splitted_line.drop(1).map do |houses|
         extended(houses).map do |house|
-          Record.create(date: hash[:date], street: street, house: house.strip)
+          create_record(date: hash[:date], street: street, house: house.strip)
         end
       end
     end
@@ -125,10 +129,10 @@ class Parser
         houses.split(',').map do |houses_part|
           if houses_part =~ /[0-9]+-[0-9]+/
             extended(houses_part).map do |house|
-              Record.create(date: date, street: street, house: house.strip)
+              create_record(date: date, street: street, house: house.strip)
             end
           else 
-            Record.create(date: date, street: street, house: houses_part.strip)
+            create_record(date: date, street: street, house: houses_part.strip)
           end
         end
       end

@@ -3,7 +3,7 @@ require 'sinatra/base'
 require './libs/finder'
 require 'json'
 
-class MyApp < Sinatra::Base
+# class MyApp < Sinatra::Base
 
   get '/' do
     erb :index
@@ -20,4 +20,4 @@ class MyApp < Sinatra::Base
     end
   end
 
-end #class
+# end #class
