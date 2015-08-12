@@ -19,8 +19,8 @@ class Parser
 
   private
 
-  def create_record(hash)
-    Record.create(hash)
+  def create_record(date,street,house)
+    Record.create(date: date, street: street, house:house)
   end
 
   def fetch_html(source)
@@ -56,7 +56,7 @@ class Parser
       street = splitted_line[0]
       splitted_line.drop(1).map do |houses|
         extended(houses).map do |house|
-          create_record(date: hash[:date], street: street, house: house.strip)
+          create_record(hash[:date], street, house.strip)
         end
       end
     end
@@ -129,10 +129,10 @@ class Parser
         houses.split(',').map do |houses_part|
           if houses_part =~ /[0-9]+-[0-9]+/
             extended(houses_part).map do |house|
-              create_record(date: date, street: street, house: house.strip)
+              create_record(date, street, house.strip)
             end
           else 
-            create_record(date: date, street: street, house: houses_part.strip)
+            create_record(date, street, houses_part.strip)
           end
         end
       end
