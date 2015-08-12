@@ -20,7 +20,7 @@ class Parser
   private
 
   def create_record(date,street,house)
-    Record.create(date: date, street: street, house:house)
+    Record.create(date: date, street: street, house: house)
   end
 
   def fetch_html(source)
