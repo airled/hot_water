@@ -10,9 +10,12 @@ html, body{
 	height: 100%;
 }
 header{
-	height: 30px;
+	height: 20px;
 	background-color: gray;
 	text-align: center;
+	position: fixed;
+	width: 100%;
+	z-index: 1;
 }
 #map-canvas{
 	width: 100%;
@@ -22,12 +25,21 @@ header{
 }
 aside{
 	overflow: hidden;
-	position: absolute; 
+	position: fixed; 
 	width: 300px;
 	display: inline-block;
-	z-index: 100;
+	z-index: 1;
 	background-color: white;
+	top: 20px;
 }
 #sidebar{
     padding: 5px;
-{
+}
+footer{
+	height: 20px;
+	background-color: gray;
+	position: fixed;
+	bottom: 0px;
+	width: 100%;
+	z-index: 1;
+}
