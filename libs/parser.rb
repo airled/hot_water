@@ -9,8 +9,8 @@ class Parser
     amount_start = Record.count
     source = 'http://www.belta.by/regions/view/grafik-otkljuchenija-gorjachej-vody-v-minske-v-2015-godu-153269-2015/'
     html = fetch_html(source)
-    p_tags_into_file(html)
-    second_part
+    p_tags(html)
+    second_part(p_tags(html))
     streets_strong = streets_from_strongs(html)
     first_part(html,streets_strong)
     amount_stop = Record.count
@@ -27,27 +27,25 @@ class Parser
     Nokogiri::HTML(open(source))
   end
 
-  def p_tags_into_file(html)
-    file = File.open('temp.txt','w')
+  def p_tags(html)
+    p_array = []
     html.xpath('//div[@class="center_col"]/p').map do |p_tag|
-      (file << p_tag.text.gsub(/у потребителей по улицам:|;/,'').gsub('в период','В период').strip << "\n") unless p_tag.text.match(/[А-Яа-я]/).nil?
+      (p_array << p_tag.text.gsub(/у потребителей по улицам:|;/,'').gsub('в период','В период').strip) unless p_tag.text.match(/[А-Яа-я]/).nil?
     end
-    file.close
+    p_array
   end
 
-  def second_part
+  def second_part(array)
     hashes = []
     date = ''
-    file = File.open('temp.txt','r')
-    file.each do |line|
-      if line.include?('В период')
-        date = line.gsub(/[^А-Яа-я0-9\ ]|В период /,'')
+    array.each do |value|
+      if value.include?('В период')
+        date = value.gsub(/[^А-Яа-я0-9\ ]|В период /,'')
         next
       else
-        hashes << {date: date, date_match: line.strip}
+        hashes << {date: date, date_match: value.strip}
       end
     end
-    file.close
     hashes.delete_at(0)
     hashes.delete_at(0)
     hashes.delete_at(0)
@@ -91,7 +89,7 @@ class Parser
   def first_part(html,streets)
     divider = 'График отключения горячей воды в Минске на август будет доступен после 15 июля.'
     first_part_text = html.xpath('//div[@class="center_col"]').text.strip.split(divider)[0]
-    #main => [ date_with_address_group1, date_with_address_group2... ]
+    #main is [ date_with_address_group1, date_with_address_group2... ]
     main = first_part_text.split('В период').drop(1)
 
     dates = []
@@ -101,7 +99,7 @@ class Parser
       dates << date_part.split(' у потребителей по улицам')[0].strip
       date_blocks << date_part.split(' у потребителей по улицам')[1].strip
     end
-    #streets_blocks => [ (block for date1)->[street1,street2,street3], (block for date2)->[street4,street5,street6]... ]
+    #streets_blocks is [ (block for date1)->[street1,street2,street3], (block for date2)->[street4,street5,street6]... ]
     streets_blocks = []
     date_blocks.map do |date_block|
       matched_streets = []
@@ -114,7 +112,7 @@ class Parser
       end
       streets_blocks << matched_streets
     end
-    #houses_blocks => [ (for date1)->[houses_for street1,houses_for street2,houses_for street3], (for date2)->[houses_for_street4, houses_for_street5,houses_for street6]... ]
+    #houses_blocks is [ (for date1)->[houses_for street1,houses_for street2,houses_for street3], (for date2)->[houses_for_street4, houses_for_street5,houses_for street6]... ]
     houses_blocks = date_blocks.map { |date_block| date_block.gsub(';',',').split('!!!').drop(1) }
 
     dates.zip(streets_blocks,houses_blocks).map do |date,streets_block,houses_block|

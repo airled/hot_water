@@ -4,10 +4,7 @@ function initialize(){
 	var mapOptions = {
 		center: {lat: 53.9, lng: 27.55}, 
 		zoom: 11,
-		zoomControl: true,
-		zoomControlOptions: {
-			style: google.maps.ZoomControlStyle.SMALL
-		}
+		disableDefaultUI: true
 	};
 	var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
 
@@ -18,7 +15,7 @@ function initialize(){
 
 function placeMarker(position, map){
 	if (markers.length > 0) {
-		for (var i = 0; i < markers.length; i++ ){
+		for (var i = 0; i < markers.length; i++){
 	    	markers[i].setMap(null);
 	    }
 	}

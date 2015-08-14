@@ -25,7 +25,7 @@ function getAddressWithDate(position){
 		return 'Неточный адрес';
 	}
 	else{
-		return street + ', ' + house + '<br>' + getDate(street,house);
+		return street + ', ' + house + '<br>' + 'Отключение: ' + getDate(street,house);
 	}
 }
 

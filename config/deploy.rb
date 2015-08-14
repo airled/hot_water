@@ -43,8 +43,8 @@ task :deploy => :environment do
     invoke :'git:clone'
     invoke :'deploy:link_shared_paths'
     invoke :'bundle:install'
-    queue "rake db:reset"
-    queue "rake html:parse"
+    # queue "rake db:reset"
+    # queue "rake html:parse"
     invoke :'deploy:cleanup'
 
     to :launch do
