@@ -11,10 +11,10 @@ function initialize(){
 	google.maps.event.addListener(map, 'click', function(point) {
 		placeMarker(point.latLng, map);
 	});
-	console.log(screen.width,screen.height)
-	console.log(window.innerWidth,window.innerHeight)
-	console.log(window.screen.width,window.screen.height)
-	console.log(window.screen.availWidth,window.screen.availHeight)
+	// console.log(screen.width,screen.height)
+	// console.log(window.innerWidth,window.innerHeight)
+	// console.log(window.screen.width,window.screen.height)
+	// console.log(window.screen.availWidth,window.screen.availHeight)
 }
 
 function placeMarker(position, map){
