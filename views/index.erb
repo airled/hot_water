@@ -10,33 +10,28 @@
 	</head>
 	<body>
 		<div id='container'>
-
 			<header>Горячая вода</header>
-
 			<aside>
 				<div id="for_form">
-					<form action="">
+					<form>
 						<fieldset>
-						<legend>Найти дату</legend>
-						Название улицы:
-						<br>
-						<input type="text" id='street' name="street">
-						<br>
-						Номер дома:
-						<br>
-						<input type="text" id='house' name="house">
-						<br>
-						<input type="button" value="Найти" onclick="findFromForm()">
+							<legend>Найти дату</legend>
+							Название улицы:
+							<br>
+							<input type="text" id='street' name="street">
+							<br>
+							Номер дома:
+							<br>
+							<input type="text" id='house' name="house">
+							<br>
+							<input type="button" value="Найти" onclick="findFromForm()">
 						</fieldset>
 					</form>
 				</div>
 				<div id="sidebar"></div>
 			</aside>
-
 			<div id="map-canvas" title="Щелкните по дому для отображения адреса с датой"></div>
-
 			<footer>Даты отключения горячей воды взяты с сайта <a href="http://www.belta.by/regions/view/grafik-otkljuchenija-gorjachej-vody-v-minske-v-2015-godu-153269-2015" target="_blank">'belta.by'</a></footer>
-
 		</div>
 	</body>
 </html>
