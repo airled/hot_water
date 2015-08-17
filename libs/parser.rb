@@ -19,12 +19,26 @@ class Parser
 
   private
 
+  def fetch_html(source)
+    Nokogiri::HTML(open(source))
+  end
+
   def create_record(date,street,house)
     Record.create(date: date, street: street, house: house)
   end
 
-  def fetch_html(source)
-    Nokogiri::HTML(open(source))
+  def checked(street)
+    case
+    when street.split(' ').last == 'пер'
+      street = 'переулок ' + street.reverse.split(' ').drop(1).join.reverse
+    when street.split(' ').last == 'пр'
+      street = 'проспект ' + street.reverse.split(' ').drop(1).join.reverse
+    when !(street.scan('пер.').empty?)
+      street = 'переулок ' + street.sub('пер.','')
+    when !(street.scan(/пр-т|пр-т./).empty?)
+      street = 'проспект ' + street.sub(/пр-т|пр-т./,'')
+    end
+    street
   end
 
   def p_tags(html)
@@ -54,7 +68,7 @@ class Parser
       street = splitted_line[0]
       splitted_line.drop(1).map do |houses|
         extended(houses).map do |house|
-          create_record(hash[:date], street, house.strip)
+          create_record(hash[:date], checked(street), house.strip)
         end
       end
     end
@@ -127,10 +141,10 @@ class Parser
         houses.split(',').map do |houses_part|
           if houses_part =~ /[0-9]+-[0-9]+/
             extended(houses_part).map do |house|
-              create_record(date, street, house.strip)
+              create_record(date, checked(street), house.strip)
             end
           else 
-            create_record(date, street, houses_part.strip)
+            create_record(date, checked(street), houses_part.strip)
           end
         end
       end

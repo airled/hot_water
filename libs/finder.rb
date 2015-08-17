@@ -13,17 +13,16 @@ class Finder
                Record[street: street, house: house].date
              end
     result
-  end 
+  end
 
   private
 
   def normalized_street(street)
-    result = street.gsub('ё','е').sub(/улица|ул./,'').strip.split(' ')
-    if result.size > 1
-      return result.last
-    else
-      return result 
+    case
+    when street.include?('переулок')
+      street = 'переулок ' + street.sub('переулок','').strip
     end
+    street.gsub('ё','е').sub('улица','').strip
   end
 
   def normalized_house(house)
