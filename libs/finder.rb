@@ -18,7 +18,12 @@ class Finder
   private
 
   def normalized_street(street)
-    street.gsub('ё','е').sub(/улица|ул./,'').strip
+    result = street.gsub('ё','е').sub(/улица|ул./,'').strip.split(' ')
+    if result.size > 1
+      return result.last
+    else
+      return result 
+    end
   end
 
   def normalized_house(house)
