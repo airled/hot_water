@@ -30,6 +30,7 @@ function placeMarker(position, map){
 		title: String(position)
 	});
 	markers.push(marker);
+	document.getElementById('panel').style.opacity = "1";
 	document.getElementById('sidebar').innerHTML = getAddressWithDate(String(position));
 }
 

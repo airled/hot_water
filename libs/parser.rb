@@ -9,7 +9,6 @@ class Parser
     amount_start = Record.count
     source = 'http://www.belta.by/regions/view/grafik-otkljuchenija-gorjachej-vody-v-minske-v-2015-godu-153269-2015/'
     html = fetch_html(source)
-    p_tags(html)
     second_part(p_tags(html))
     streets_strong = streets_from_strongs(html)
     first_part(html,streets_strong)
