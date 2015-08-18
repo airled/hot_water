@@ -1,4 +1,5 @@
-@dir = "/home/airled/mina_test/current"
+# @dir = "/home/airled/mina_test/current"
+@dir = "/home/hotwater"
 
 worker_processes 2
 working_directory @dir
