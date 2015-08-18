@@ -32,9 +32,11 @@ aside{
 	background-color: white;
 	top: 20px;
 	opacity: 0.4;
+	transition: opacity 0.5s;
 }
 aside:hover{
 	opacity: 1;
+	transition: opacity 0.5s;
 }
 #sidebar{
 	padding: 5px;
