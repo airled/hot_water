@@ -11,11 +11,12 @@ html, body{
 }
 header{
 	height: 20px;
-	background-color: blue;
+	background-color: gray;
 	text-align: center;
 	position: fixed;
 	width: 100%;
 	z-index: 1;
+	color: white;
 }
 #map-canvas{
 	width: 100%;
@@ -42,12 +43,13 @@ aside:hover{
 }
 footer{
 	height: 20px;
-	background-color: blue;
+	background-color: gray;
 	position: fixed;
 	bottom: 0px;
 	width: 100%;
 	z-index: 1;
 	padding-left: 5px;
+	color: white;
 }
 footer a{
 	text-decoration: none;	
