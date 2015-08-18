@@ -1,4 +1,3 @@
-# @dir = "/home/airled/mina_test/current"
 @dir = "/home/hotwater/current"
 
 worker_processes 2

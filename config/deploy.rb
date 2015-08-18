@@ -6,12 +6,10 @@ require 'mina/unicorn'
 
 set :domain, '198.20.105.55'
 set :deploy_to, '/home/hotwater'
-# set :deploy_to, '/home/airled/mina_test'
 set :repository, 'https://github.com/airled/hot_water.git'
 set :branch, 'master'
 set :shared_paths, ['config/database.yml', 'config/secrets.yml', 'log', 'tmp/sockets', 'tmp/pids']
 set :user, 'hotwater'
-#   set :port, '30000'
 
 task :environment do
   invoke :'rbenv:load'
