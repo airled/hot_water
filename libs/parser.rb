@@ -13,7 +13,7 @@ class Parser
     streets_strong = streets_from_strongs(html)
     first_part(html,streets_strong)
     quantity_stop = Record.count
-    puts "Parsed. Records created: #{quantity_stop - quantity_start}"
+    puts "Parsed. Records created: #{quantity_stop - quantity_start}. Records total: #{quantity.stop}"
   end
 
   private

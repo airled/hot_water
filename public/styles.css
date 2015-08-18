@@ -36,7 +36,6 @@ aside{
 }
 aside:hover{
 	opacity: 1;
-	transition: opacity 0.5s;
 }
 #sidebar{
 	padding: 5px;

@@ -18,13 +18,16 @@ class Finder
   private
 
   def normalized_street(street)
+    street.gsub!('ё','е')
     case
     when street.include?('проспект')
       street = 'проспект ' + street.sub('проспект','').strip
     when street.include?('переулок')
       street = 'переулок ' + street.sub('переулок','').strip
+    when street.include?('улица')
+      street = street.sub('улица','').strip
     end
-    street.gsub('ё','е').sub('улица','').strip
+    street
   end
 
   def normalized_house(house)
