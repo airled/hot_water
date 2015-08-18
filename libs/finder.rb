@@ -19,6 +19,8 @@ class Finder
 
   def normalized_street(street)
     case
+    when street.include?('проспект')
+      street = 'проспект ' + street.sub('проспект','').strip
     when street.include?('переулок')
       street = 'переулок ' + street.sub('переулок','').strip
     end
