@@ -6,14 +6,14 @@ class Parser
 
   def run
     puts 'Begin parsing...'
-    amount_start = Record.count
+    quantity_start = Record.count
     source = 'http://www.belta.by/regions/view/grafik-otkljuchenija-gorjachej-vody-v-minske-v-2015-godu-153269-2015/'
     html = fetch_html(source)
     second_part(p_tags(html))
     streets_strong = streets_from_strongs(html)
     first_part(html,streets_strong)
-    amount_stop = Record.count
-    puts "Parsed. Records created: #{amount_stop - amount_start}"
+    quantity_stop = Record.count
+    puts "Parsed. Records created: #{quantity_stop - quantity_start}"
   end
 
   private
