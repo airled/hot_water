@@ -22,11 +22,11 @@ function getAddressWithDate(position){
 		city = addressLine.split(',')[0].trim();
 		street = addressLine.split(',')[1].trim();
 		house = addressLine.split(',')[2].trim();
+		return street + ', ' + house + '<br>' + 'Отключение: ' + getDate(street,house);
 	}
 	else{
 		return 'Неточный адрес';
 	}
-	return street + ', ' + house + '<br>' + 'Отключение: ' + getDate(street,house);
 }
 
 function findFromForm(){
