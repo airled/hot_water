@@ -11,7 +11,7 @@ class Parser
     html = fetch_html(source)
     second_part(p_tags(html))
     streets_strong = streets_from_strongs(html)
-    first_part(html,streets_strong)
+    first_part(html, streets_strong)
     quantity_stop = Record.count
     puts "Parsed. Records created: #{quantity_stop - quantity_start}. Records total: #{quantity.stop}"
   end
@@ -22,7 +22,7 @@ class Parser
     Nokogiri::HTML(open(source))
   end
 
-  def create_record(date,street,house)
+  def create_record(date, street, house)
     Record.create(date: date, street: street, house: house)
   end
 
@@ -33,9 +33,9 @@ class Parser
     when street.split(' ').last == 'пр'
       street = 'проспект ' + street.reverse.split(' ').drop(1).join.reverse
     when !(street.scan('пер.').empty?)
-      street = 'переулок ' + street.sub('пер.','')
+      street = 'переулок ' + street.sub('пер.', '')
     when !(street.scan(/пр-т|пр-т./).empty?)
-      street = 'проспект ' + street.sub(/пр-т|пр-т./,'')
+      street = 'проспект ' + street.sub(/пр-т|пр-т./, '')
     end
     street
   end
@@ -43,7 +43,7 @@ class Parser
   def p_tags(html)
     p_array = []
     html.xpath('//div[@class="center_col"]/p').map do |p_tag|
-      (p_array << p_tag.text.gsub(/у потребителей по улицам:|;/,'').gsub('в период','В период').strip) unless p_tag.text.match(/[А-Яа-я]/).nil?
+      (p_array << p_tag.text.gsub(/у потребителей по улицам:|;/, '').gsub('в период', 'В период').strip) unless p_tag.text.match(/[А-Яа-я]/).nil?
     end
     p_array
   end
@@ -53,7 +53,7 @@ class Parser
     date = ''
     array.each do |value|
       if value.include?('В период')
-        date = value.gsub(/[^А-Яа-я0-9\ ]|В период /,'')
+        date = value.gsub(/[^А-Яа-я0-9\ ]|В период /, '')
         next
       else
         hashes << {date: date, date_match: value.strip}
@@ -99,7 +99,7 @@ class Parser
     sequence
   end
 
-  def first_part(html,streets)
+  def first_part(html, streets)
     divider = 'График отключения горячей воды в Минске на август будет доступен после 15 июля.'
     first_part_text = html.xpath('//div[@class="center_col"]').text.strip.split(divider)[0]
     #main is [ date_with_address_group1, date_with_address_group2... ]
@@ -116,27 +116,27 @@ class Parser
     streets_blocks = []
     date_blocks.map do |date_block|
       matched_streets = []
-      streets.map.with_index do |street,index|
+      streets.map.with_index do |street, index|
         if date_block.include?(street)
           matched_streets << street
-          date_block.sub!(street,'!!!')
+          date_block.sub!(street, '!!!')
           streets[index] = '@'
         end
       end
       streets_blocks << matched_streets
     end
     #houses_blocks is [ (for date1)->[houses_for street1,houses_for street2,houses_for street3], (for date2)->[houses_for_street4, houses_for_street5,houses_for street6]... ]
-    houses_blocks = date_blocks.map { |date_block| date_block.gsub(';',',').split('!!!').drop(1) }
+    houses_blocks = date_blocks.map { |date_block| date_block.gsub(';', ',').split('!!!').drop(1) }
 
     dates.zip(streets_blocks,houses_blocks).map do |date,streets_block,houses_block|
-      streets_block.zip(houses_block).map do |street,houses|
+      streets_block.zip(houses_block).map do |street, houses|
         case
         when houses.scan(/[0-9А-Яа-я]/).empty?
           houses = '*'
         when houses[0] == ','
           houses[0] = ' '
         end
-        houses = houses.gsub(' – ','-').strip.gsub(/[^0-9А-Яа-я*()\ ][^0-9А-Яа-я*()\ ]/, '')
+        houses = houses.gsub(' – ', '-').strip.gsub(/[^0-9А-Яа-я*()\ ][^0-9А-Яа-я*()\ ]/, '')
         houses.split(',').map do |houses_part|
           if houses_part =~ /[0-9]+-[0-9]+/
             extended(houses_part).map do |house|
