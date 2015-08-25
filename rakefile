@@ -44,6 +44,6 @@ namespace :html do
 
   desc "Parse source html and add records into the database"
   task :parse do
-    require './libs/parser'
+    require './lib/parser'
   end
 end

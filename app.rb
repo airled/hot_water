@@ -1,6 +1,6 @@
 require 'sinatra'
 require 'sinatra/base'
-require './libs/finder'
+require './lib/finder'
 require 'json'
 
 class MyApp < Sinatra::Base
