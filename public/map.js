@@ -1,20 +1,31 @@
 var markers = [];
 
 function initialize(){
+	var currentZoom;
+	
+	if(window.innerHeight < 500){
+		currentZoom = 11;
+	}
+	else if(window.innerHeight > 1200){
+		currentZoom = 13;
+	}
+	else{
+		currentZoom = 12;
+	}
+
 	var mapOptions = {
 		center: {lat: 53.9, lng: 27.55}, 
-		zoom: 12,
+		zoom: currentZoom,
 		disableDefaultUI: true
 	};
+
 	var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
 
 	google.maps.event.addListener(map, 'click', function(point) {
 		placeMarker(point.latLng, map);
 	});
-	// console.log(screen.width,screen.height)
-	// console.log(window.innerWidth,window.innerHeight)
-	// console.log(window.screen.width,window.screen.height)
-	// console.log(window.screen.availWidth,window.screen.availHeight)
+	// console.log(window.innerWidth, window.innerHeight);
+	// console.log(mapOptions.zoom);
 }
 
 function placeMarker(position, map){
