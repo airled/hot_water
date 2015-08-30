@@ -17,6 +17,8 @@ end
 
 task :setup => :environment do
   queue! %[mkdir -p "#{deploy_to}/#{shared_path}/log"]
+  queue! %[mkdir -p "#{deploy_to}/#{shared_path}/tmp/pids"]
+  queue! %[mkdir -p "#{deploy_to}/#{shared_path}/tmp/sockets"]
   queue! %[chmod g+rx,u+rwx "#{deploy_to}/#{shared_path}/log"]
 
   queue! %[mkdir -p "#{deploy_to}/#{shared_path}/config"]
