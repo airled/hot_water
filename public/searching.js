@@ -33,9 +33,25 @@ function findFromForm(){
 	var streetForm = document.getElementById('street').value;
 	var houseForm = document.getElementById('house').value;
 	if(streetForm == '' || houseForm == ''){
-		document.getElementById('sidebar').innerHTML = 'Не введено';
+		setResult('Не введено');
+	}
+	else if(notValidObject(streetForm) || notValidObject(houseForm)){
+		setResult('Неправильный ввод');
 	}
 	else{
-		document.getElementById('sidebar').innerHTML = getDate(streetForm,houseForm);
+		setResult(getDate(streetForm,houseForm));
+	}
+}
+
+function setResult(result){
+	document.getElementById('sidebar').innerHTML = result;
+}
+
+function notValidObject(object){
+	if(object.match(/[^А-Яа-я0-9\.\ ]/)){
+		return true;
+	}
+	else{
+		return false;
 	}
 }
