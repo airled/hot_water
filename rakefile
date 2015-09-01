@@ -47,3 +47,7 @@ namespace :html do
     require './lib/parser'
   end
 end
+
+task :redeploy do
+  `mina unicorn:stop && mina deploy && mina unicorn:start`
+end
