@@ -42,7 +42,7 @@ function placeMarker(position, map){
 	});
 	markers.push(marker);
 	document.getElementById('panel').style.opacity = "1";
-	document.getElementById('sidebar').innerHTML = getAddressWithDate(String(position));
+	setResult(getAddressWithDate(String(position)));
 }
 
 google.maps.event.addDomListener(window, 'load', initialize);
