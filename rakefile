@@ -49,5 +49,5 @@ namespace :html do
 end
 
 task :redeploy do
-  `mina unicorn:stop && mina deploy && mina unicorn:start`
+  system ('mina unicorn:stop && mina deploy && mina unicorn:start')
 end
