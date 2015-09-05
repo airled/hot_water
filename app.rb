@@ -4,7 +4,7 @@ require './lib/finder'
 require 'json'
 require 'haml'
 
-# class MyApp < Sinatra::Base
+class MyApp < Sinatra::Base
 
   get '/' do
     haml :index
@@ -12,7 +12,7 @@ require 'haml'
   end
 
   get '/date' do
-    if (params.has_key?(:street)) && (params.has_key?(:house)) && (params[:street].match(/[^А-Яа-я0-9\.\ ]/).nil?) && (params[:house].match(/[^А-Яа-я0-9\.\ ]/).nil?)
+    if (params.has_key?('street')) && (params.has_key?('house')) && (params[:street].match(/[^А-Яа-я0-9ё\.\ ]/).nil?) && (params[:house].match(/[^А-Яа-яё0-9\.\ ]/).nil?)
       street = params[:street]
       house = params[:house]
       date = Finder.new.date_find(street,house)
@@ -22,4 +22,4 @@ require 'haml'
     end
   end
 
-# end #class
+end #class

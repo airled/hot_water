@@ -10,8 +10,8 @@ function encode(string){
 }
 
 function getDate(street,house){
-	// var url = 'http://hotwater.muzenza.by/date?street=' + encode(street) + '&house=' + encode(house);
-	var url = 'http://localhost:4567/date?street=' + encode(street) + '&house=' + encode(house);
+	var url = 'http://hotwater.muzenza.by/date?street=' + encode(street) + '&house=' + encode(house);
+	// var url = 'http://localhost:4567/date?street=' + encode(street) + '&house=' + encode(house);
 	return (JSON.parse(request(url)).date);
 }
 
@@ -48,7 +48,7 @@ function setResult(result){
 }
 
 function notValidObject(object){
-	if(object.match(/[^А-Яа-я0-9\.\ ]/)){
+	if(object.match(/[^А-Яёа-я0-9ё\.\ ]/)){
 		return true;
 	}
 	else{

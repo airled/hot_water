@@ -24,8 +24,6 @@ function initialize(){
 	google.maps.event.addListener(map, 'click', function(point) {
 		placeMarker(point.latLng, map);
 	});
-	// console.log(window.innerWidth, window.innerHeight);
-	// console.log(mapOptions.zoom);
 }
 
 function placeMarker(position, map){
