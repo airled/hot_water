@@ -1,1 +1,30 @@
-
+!!!
+%html
+	%head
+		%meta{charset: 'utf-8'}
+		%title Отключение воды
+		%script{src: 'https://maps.googleapis.com/maps/api/js?language=ru'}
+		%script{src: 'searching.js'}
+		%script{src: 'map.js'}
+		%link{href: 'styles.css'}
+	%body
+		#container
+			%header Поиск даты
+			%aside#panel
+				#form_for
+					%form
+						%fieldset
+							%legend Найти
+							Улица:
+							%br
+							%input#street{type: 'text', name: 'street'}
+							%br
+							Номер:
+							%br
+							%input#house{type: 'text', name: 'house'}
+							%br
+							%input{type: 'button', value: 'Найти', onclick: 'findFromForm()'}
+				#sidebar
+			#map-canvas{title: 'Щелкни'}
+			%footer Даты здесь 
+				%a{href: 'http://www.belta.by/regions/view/grafik-otkljuchenija-gorjachej-vody-v-minske-v-2015-godu-153269-2015', target: '_blank'}

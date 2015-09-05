@@ -2,11 +2,13 @@ require 'sinatra'
 require 'sinatra/base'
 require './lib/finder'
 require 'json'
+require 'haml'
 
-class MyApp < Sinatra::Base
+# class MyApp < Sinatra::Base
 
   get '/' do
-    erb :index
+    haml :index
+    # erb :index
   end
 
   get '/date' do
@@ -20,4 +22,4 @@ class MyApp < Sinatra::Base
     end
   end
 
-end #class
+# end #class
