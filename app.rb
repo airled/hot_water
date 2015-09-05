@@ -4,7 +4,7 @@ require './lib/finder'
 require 'json'
 require 'haml'
 
-# class MyApp < Sinatra::Base
+class MyApp < Sinatra::Base
 
   get '/' do
     haml :index
@@ -22,4 +22,4 @@ require 'haml'
     end
   end
 
-# end #class
+end #class
