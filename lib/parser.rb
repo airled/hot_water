@@ -59,9 +59,7 @@ class Parser
         hashes << {date: date, date_match: value.strip}
       end
     end
-    hashes.delete_at(0)
-    hashes.delete_at(0)
-    hashes.delete_at(0)
+    3.times { hashes.delete_at(0) }
     hashes.map do |hash|
       splitted_line = hash[:date_match].split(',')
       street = splitted_line[0]
