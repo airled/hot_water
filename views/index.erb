@@ -3,32 +3,31 @@
 	<head>
 		<meta charset="utf-8">
 		<title>Даты отключения горячей воды в Минске</title>
-		<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?language=ru"></script>
-		<script type="text/javascript" src="scripts.js"></script>
-		<script type="text/javascript" src="map.js"></script>
 		<link rel="stylesheet" href="styles.css">
+		<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?language=ru"></script>
+		<script type="text/javascript" src="jquery.js"></script>
+		<script type="text/javascript" src="map.js"></script>
+		<script type="text/javascript" src="scripts.js"></script>
 	</head>
 	<body>
 		<div id='container'>
 			<header>Поиск даты отключения горячей воды по адресам</header>
 			<aside id='panel'>
-				<div id="for_form">
-					<form>
-						<fieldset>
-							<legend>Найти дату</legend>
-							Название улицы:
-							<br>
-							<input type="text" id='street' name="street">
-							<br>
-							Номер дома:
-							<br>
-							<input type="text" id='house' name="house">
-							<br>
-							<input type="button" value="Найти" onclick="findFromForm()">
-						</fieldset>
-					</form>
-				</div>
-				<div id="sidebar"></div>
+				<form>
+					<fieldset>
+						<legend>Найти дату</legend>
+						Название улицы:
+						<br>
+						<input type="text" id='form_street' name="street">
+						<br>
+						Номер дома:
+						<br>
+						<input type="text" id='form_house' name="house">
+						<br>
+						<input type="button" id ='form_button' value="Найти">
+					</fieldset>
+				</form>
+				<div id="results"></div>
 			</aside>
 			<div id="map-canvas" title="Щелкните по дому для отображения адреса с датой"></div>
 			<footer>Даты отключения горячей воды взяты с сайта <a href="http://www.belta.by/regions/view/grafik-otkljuchenija-gorjachej-vody-v-minske-v-2015-godu-153269-2015" target="_blank">'belta.by'</a></footer>
