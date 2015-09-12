@@ -19,7 +19,7 @@ function initialize(){
 		disableDefaultUI: true
 	};
 
-	var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+	var map = new google.maps.Map($("#map-canvas")[0], mapOptions);
 
 	google.maps.event.addListener(map, 'click', function(point) {
 		placeMarker(point.latLng, map);
@@ -32,14 +32,13 @@ function placeMarker(position, map){
 	    	markers[i].setMap(null);
 	    }
 	}
-	document.getElementById('sidebar').innerHTML = '';	
 	var marker = new google.maps.Marker({
 		position: position,
 		map: map,
 		title: String(position)
 	});
 	markers.push(marker);
-	document.getElementById('panel').style.opacity = "1";
+	$("#panel").css("opacity", "1");
 	setResult(getAddressWithDate(String(position)));
 }
 

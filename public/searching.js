@@ -44,11 +44,11 @@ function findFromForm(){
 }
 
 function setResult(result){
-	document.getElementById('sidebar').innerHTML = result;
+	$("#sidebar").html(result);
 }
 
 function notValidObject(object){
-	if(object.match(/[^А-Яёа-я0-9ё\.\ ]/)){
+	if(object.match(/[^А-Яа-я0-9ё\.\ ]/)){
 		return true;
 	}
 	else{

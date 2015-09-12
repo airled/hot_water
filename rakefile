@@ -48,6 +48,10 @@ namespace :html do
   end
 end
 
+task :reparse do
+  system ('rake db:reset && rake html:parse')
+end
+
 task :redeploy do
   system ('mina unicorn:stop && mina deploy && mina unicorn:start')
 end
