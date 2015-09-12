@@ -38,7 +38,7 @@ function placeMarker(position, map){
 		title: String(position)
 	});
 	markers.push(marker);
-	$("#panel").css("opacity", "1");
+	visualizePanel();
 	setResult(getAddressWithDate(String(position)));
 }
 

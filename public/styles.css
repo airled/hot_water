@@ -36,7 +36,7 @@ aside{
 aside:hover{
 	opacity: 1;
 }
-#sidebar{
+#results{
 	padding: 5px;
 }
 footer{
@@ -51,4 +51,7 @@ footer{
 }
 footer a{
 	text-decoration: none;	
+}
+.visible{
+	opacity: 1;
 }

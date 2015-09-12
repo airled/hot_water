@@ -30,8 +30,8 @@ function getAddressWithDate(position){
 }
 
 function findFromForm(){
-	var streetForm = document.getElementById('street').value;
-	var houseForm = document.getElementById('house').value;
+	var streetForm = $('#form_street').val();
+	var houseForm = $('#form_house').val();
 	if(streetForm == '' || houseForm == ''){
 		setResult('Не введено');
 	}
@@ -44,14 +44,24 @@ function findFromForm(){
 }
 
 function setResult(result){
-	$("#sidebar").html(result);
+	$("#results").html(result);
 }
 
 function notValidObject(object){
-	if(object.match(/[^А-Яа-я0-9ё\.\ ]/)){
+	if(object.match(/[^А-Яа-я0-9ё\.\ \-]/)){
 		return true;
 	}
 	else{
 		return false;
 	}
 }
+
+function visualizePanel(){
+	$("#panel").addClass("visible");
+}
+
+$(document).ready(function(){
+	$("#form_street").click(visualizePanel);
+	$("#form_house").click(visualizePanel);
+	$("#form_button").click(findFromForm);
+});

@@ -3,29 +3,28 @@
 	%head
 		%meta{charset: 'utf-8'}
 		%title Даты отключения горячей воды в Минске
+		%link{href: 'styles.css', rel: 'stylesheet'}
 		%script{src: 'https://maps.googleapis.com/maps/api/js?language=ru', type: 'text/javascript'}
 		%script{src: 'jquery.js', type: 'text/javascript'}
-		%script{src: 'searching.js', type: 'text/javascript'}
+		%script{src: 'scripts.js', type: 'text/javascript'}
 		%script{src: 'map.js', type: 'text/javascript'}
-		%link{href: 'styles.css', rel: 'stylesheet'}
 	%body
 		#container
 			%header Поиск даты отключения горячей воды по адресам
 			%aside#panel
-				#form_for
-					%form
-						%fieldset
-							%legend Найти дату
-							Улица:
-							%br
-							%input#street{type: 'text', name: 'street'}
-							%br
-							Номер:
-							%br
-							%input#house{type: 'text', name: 'house'}
-							%br
-							%input{type: 'button', value: 'Найти', onclick: 'findFromForm()'}
-				#sidebar
+				%form
+					%fieldset
+						%legend Найти дату
+						Улица:
+						%br
+						%input#form_street{type: 'text', name: 'street'}
+						%br
+						Номер:
+						%br
+						%input#form_house{type: 'text', name: 'house'}
+						%br
+						%input#form_button{type: 'button', value: 'Найти'}
+				#results
 			#map-canvas{title: 'Щелкните по дому для отображения адреса с датой'}
 			%footer
 				Даты отключения горячей воды взяты с сайта
