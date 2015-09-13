@@ -1,32 +1,34 @@
-function request(url){
-	var xmlHttp = new XMLHttpRequest();
-	xmlHttp.open("GET", url, false);
-	xmlHttp.send(null);
-	return xmlHttp.responseText;
-}
-
 function encode(string){
 	return encodeURIComponent(string);
 }
 
-function getDate(street, house){
-	var url = 'http://hotwater.muzenza.by/date?street=' + encode(street) + '&house=' + encode(house);
-	// var url = 'http://localhost:4567/date?street=' + encode(street) + '&house=' + encode(house);
-	return (JSON.parse(request(url)).date);
-}
-
 function getAddressWithDate(position){
 	var url = 'https://geocode-maps.yandex.ru/1.x/?sco=latlong&format=json&geocode=' + String(position).replace(/[\(\) ]/g,'');
-	addressLine = JSON.parse(request(url)).response.GeoObjectCollection.featureMember[0].GeoObject.metaDataProperty.GeocoderMetaData.AddressDetails.Country.AddressLine;
-	if(addressLine.split(',').length == 3){
-		city = addressLine.split(',')[0].trim();
-		street = addressLine.split(',')[1].trim();
-		house = addressLine.split(',')[2].trim();
-		return street + ', ' + house + '<br>' + 'Отключение: ' + getDate(street,house);
-	}
-	else{
-		return 'Неточный адрес';
-	}
+	$.ajax({
+		url: url,
+		async: true,
+		datatype: 'json'
+	})
+	.done(function(data){
+		var addressLine = data.response.GeoObjectCollection.featureMember[0].GeoObject.metaDataProperty.GeocoderMetaData.AddressDetails.Country.AddressLine;
+		if(addressLine.split(',').length == 3){
+			var city = addressLine.split(',')[0].trim();
+			var street = addressLine.split(',')[1].trim();
+			var house = addressLine.split(',')[2].trim();
+			var url = 'http://localhost:9292/date?street=' + encode(street) + '&house=' + encode(house);
+			$.ajax({
+				url: url,
+				async: true,
+				datatype: 'json'
+			})
+			.done(function(data){
+				setResult(street + ', ' + house + '<br>' + 'Отключение: ') + JSON.parse(data).date;
+			});
+		}
+		else{
+			setResult('Неточный адрес');
+		}
+	});
 }
 
 function findFromForm(){
@@ -39,7 +41,16 @@ function findFromForm(){
 		setResult('Неправильный ввод');
 	}
 	else{
-		setResult(getDate(streetForm, houseForm));
+		// var url = 'http://hotwater.muzenza.by/date?street=' + encode(street) + '&house=' + encode(house);
+		var url = 'http://localhost:9292/date?street=' + encode(streetForm) + '&house=' + encode(houseForm);
+		$.ajax({
+			url: url,
+			async: true,
+			datatype: 'json'
+		})
+		.done(function(data){
+			setResult(JSON.parse(data).date);
+		});
 	}
 }
 

@@ -7,8 +7,8 @@ require 'haml'
 class MyApp < Sinatra::Base
 
   get '/' do
-    haml :index
-    # erb :index
+    # haml :index
+    erb :index
   end
 
   get '/date' do
