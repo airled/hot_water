@@ -1,12 +1,15 @@
+// var serverURL = 'http://localhost:9292/'
+var serverURL = 'http://hotwater.muzenza.by/'
+
+
 function encode(string){
 	return encodeURIComponent(string);
 }
 
 function getAddressWithDate(position){
-	var url = 'https://geocode-maps.yandex.ru/1.x/?sco=latlong&format=json&geocode=' + String(position).replace(/[\(\) ]/g,'');
+	var geoURL = 'https://geocode-maps.yandex.ru/1.x/?sco=latlong&format=json&geocode=' + String(position).replace(/[\(\) ]/g,'');
 	$.ajax({
-		url: url,
-		async: true,
+		url: geoURL,
 		datatype: 'json'
 	})
 	.done(function(data){
@@ -15,14 +18,14 @@ function getAddressWithDate(position){
 			var city = addressLine.split(',')[0].trim();
 			var street = addressLine.split(',')[1].trim();
 			var house = addressLine.split(',')[2].trim();
-			var url = 'http://localhost:9292/date?street=' + encode(street) + '&house=' + encode(house);
+			var dateURL = serverURL + 'date?street=' + encode(street) + '&house=' + encode(house);
 			$.ajax({
-				url: url,
+				url: dateURL,
 				async: true,
 				datatype: 'json'
 			})
 			.done(function(data){
-				setResult(street + ', ' + house + '<br>' + 'Отключение: ') + JSON.parse(data).date;
+				setResult(street + ', ' + house + '<br>' + 'Отключение: ' + JSON.parse(data).date);
 			});
 		}
 		else{
@@ -41,11 +44,9 @@ function findFromForm(){
 		setResult('Неправильный ввод');
 	}
 	else{
-		// var url = 'http://hotwater.muzenza.by/date?street=' + encode(street) + '&house=' + encode(house);
-		var url = 'http://localhost:9292/date?street=' + encode(streetForm) + '&house=' + encode(houseForm);
+		var dateURL = serverURL + 'date?street=' + encode(streetForm) + '&house=' + encode(houseForm);
 		$.ajax({
-			url: url,
-			async: true,
+			url: dateURL,
 			datatype: 'json'
 		})
 		.done(function(data){

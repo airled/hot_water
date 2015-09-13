@@ -52,7 +52,7 @@ task :reparse do
   system ('rake db:reset && rake html:parse')
 end
 
-task :redeploy do
+task :deploy do
   system ('mina unicorn:stop && mina deploy && mina unicorn:start')
 end
 
