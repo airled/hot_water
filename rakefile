@@ -55,7 +55,3 @@ end
 task :deploy do
   system ('mina unicorn:stop && mina deploy && mina unicorn:start')
 end
-
-task :run do
-  system ('rackup config.ru')
-end
