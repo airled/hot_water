@@ -1,11 +1,11 @@
-html, body, head, div, header, aside{
+html, body, div, header, aside{
 	margin: 0px;
 	padding: 0px;
 }
 html, body{
 	height: 100%;
 }
-#container, #table, tr, td{
+#container, #table, tr, td, #map-canvas{
 	width: 100%;
 	height: 100%;
 }
@@ -19,9 +19,10 @@ header{
 	color: white;
 }
 #map-canvas{
-	width: 100%;
-	height: 100%;
 	text-align: center;
+}
+#table td{
+	vertical-align: middle;	
 }
 aside{
 	overflow: hidden;
@@ -52,19 +53,17 @@ footer{
 footer a{
 	text-decoration: none;	
 }
-#footer_left{
+#footer_left, #footer_right{
 	position: absolute;
+}
+#footer_left{
 	left: 0px;
 	padding-left: 5px;
 }
 #footer_right{
-	position: absolute;
 	right: 0px;
 	padding-right: 5px;
 }
 .visible{
 	opacity: 1;
-}
-td{
-	vertical-align: middle;	
 }

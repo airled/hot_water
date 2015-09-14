@@ -1,7 +1,6 @@
 require 'sinatra'
 require './lib/finder'
 require 'json'
-require 'haml'
 
 get '/' do
   erb :index

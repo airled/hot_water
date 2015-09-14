@@ -32,20 +32,8 @@ namespace :db do
   end
 end
 
-namespace :html do  
-
-  desc "Get html in 'html.txt'"
-  task :get do
-    require 'nokogiri'
-    require 'open-uri'
-    url = 'http://www.belta.by/regions/view/grafik-otkljuchenija-gorjachej-vody-v-minske-v-2015-godu-153269-2015/'
-    File.open('html.txt','w') { |file| file << Nokogiri::HTML(open(url)) }
-  end
-
-  desc "Parse source html and add records into the database"
-  task :parse do
-    require './lib/parser'
-  end
+task :parse do
+  require './lib/parser'
 end
 
 task :reparse do
