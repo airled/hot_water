@@ -16,24 +16,24 @@ task :environment do
 end
 
 task :setup => :environment do
-  queue! %[mkdir -p "#{deploy_to}/#{shared_path}/log"]
-  queue! %[mkdir -p "#{deploy_to}/#{shared_path}/tmp/pids"]
-  queue! %[mkdir -p "#{deploy_to}/#{shared_path}/tmp/sockets"]
-  queue! %[chmod g+rx,u+rwx "#{deploy_to}/#{shared_path}/log"]
-
   queue! %[mkdir -p "#{deploy_to}/#{shared_path}/config"]
+  queue! %[mkdir -p "#{deploy_to}/#{shared_path}/log"]
+  queue! %[mkdir -p "#{deploy_to}/#{shared_path}/tmp/sockets"]
+  queue! %[mkdir -p "#{deploy_to}/#{shared_path}/tmp/pids"]
   queue! %[chmod g+rx,u+rwx "#{deploy_to}/#{shared_path}/config"]
-
+  queue! %[chmod g+rx,u+rwx "#{deploy_to}/#{shared_path}/log"]
+  queue! %[chmod g+rx,u+rwx "#{deploy_to}/#{shared_path}/tmp/sockets"]
+  queue! %[chmod g+rx,u+rwx "#{deploy_to}/#{shared_path}/tmp/pids"]
   queue! %[touch "#{deploy_to}/#{shared_path}/config/database.yml"]
   queue! %[touch "#{deploy_to}/#{shared_path}/config/secrets.yml"]
-  queue  %[echo "-----> Be sure to edit '#{deploy_to}/#{shared_path}/config/database.yml' and 'secrets.yml'."]
 
-  queue %[
-    repo_host=`echo $repo | sed -e 's/.*@//g' -e 's/:.*//g'` &&
-    repo_port=`echo $repo | grep -o ':[0-9]*' | sed -e 's/://g'` &&
-    if [ -z "${repo_port}" ]; then repo_port=22; fi &&
-    ssh-keyscan -p $repo_port -H $repo_host >> ~/.ssh/known_hosts
-  ]
+  # queue  %[echo "-----> Be sure to edit '#{deploy_to}/#{shared_path}/config/database.yml' and 'secrets.yml'."]
+  # queue %[
+  #   repo_host=`echo $repo | sed -e 's/.*@//g' -e 's/:.*//g'` &&
+  #   repo_port=`echo $repo | grep -o ':[0-9]*' | sed -e 's/://g'` &&
+  #   if [ -z "${repo_port}" ]; then repo_port=22; fi &&
+  #   ssh-keyscan -p $repo_port -H $repo_host >> ~/.ssh/known_hosts
+  # ]
 end
 
 desc "Deploys the current version to the server."
@@ -45,7 +45,6 @@ task :deploy => :environment do
     invoke :'deploy:link_shared_paths'
     invoke :'bundle:install'
     invoke :'deploy:cleanup'
-
     to :launch do
       queue "mkdir -p #{deploy_to}/#{current_path}/tmp/"
       queue "touch #{deploy_to}/#{current_path}/tmp/restart.txt"
