@@ -72,7 +72,14 @@ function visualizePanel(){
 }
 
 $(document).ready(function(){
+	$("#form_street").val('');
+	$("#form_house").val('');
 	$("#form_street").click(visualizePanel);
 	$("#form_house").click(visualizePanel);
+	$("#form_button").click(visualizePanel);
 	$("#form_button").click(findFromForm);
+	$("#form_street").autocomplete({
+		source: serverURL + 'auto_street'
+	});
 });
+
