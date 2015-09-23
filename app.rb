@@ -16,3 +16,9 @@ get '/date' do
     'Params error' 
   end
 end
+
+get '/auto_street' do
+  term = params[:term]
+  streets = Record.select(:street).distinct.where('street LIKE ?', "#{term}%").take(10)
+  (streets.map { |street| {id: nil, label: street, value: street} }).to_json
+end
