@@ -22,8 +22,12 @@ class Parser
     Nokogiri::HTML(open(source))
   end
 
-  def create_address(date, street, house)
-    date.add_address(street: street, house: house)
+  # def create_address(date, street, house)
+  #   date.add_address(street: street, house: house)
+  # end
+
+  def create_offdate(date)
+    Offdate.create(date: date)
   end
 
   def checked(street)
@@ -61,12 +65,12 @@ class Parser
     end
     3.times { hashes.delete_at(0) }
     hashes.map do |hash|
-      date = Offdate.create(date: hash[:date])
+      offdate = create_offdate(hash[:date])
       splitted_line = hash[:date_match].split(',')
       street = splitted_line[0]
       splitted_line.drop(1).map do |houses|
         extended(houses).map do |house|
-          create_address(date, checked(street), house.strip)
+          offdate.add_address(street: checked(street), house: house.strip)
         end
       end
     end
@@ -128,7 +132,7 @@ class Parser
     houses_blocks = date_blocks.map { |date_block| date_block.gsub(';', ',').split('!!!').drop(1) }
 
     dates.zip(streets_blocks, houses_blocks).map do |date, streets_block, houses_block|
-      date = Offdate.create(date: date)
+      offdate = create_offdate(date: date)
       streets_block.zip(houses_block).map do |street, houses|
         case
         when houses.scan(/[0-9А-Яа-я]/).empty?
@@ -140,10 +144,10 @@ class Parser
         houses.split(',').map do |houses_part|
           if houses_part =~ /[0-9]+-[0-9]+/
             extended(houses_part).map do |house|
-              create_address(date, checked(street), house.strip)
+              offdate.add_address(street: checked(street), house: house.strip)
             end
           else 
-            create_address(date, checked(street), houses_part.strip)
+            offdate.add_address(street: checked(street), house: houses_part.strip)
           end
         end
       end
