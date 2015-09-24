@@ -5,5 +5,5 @@ class Offdate < Sequel::Model
 end
 
 class Address < Sequel::Model
-  many_to_one :dates
+  many_to_one :offdate
 end
