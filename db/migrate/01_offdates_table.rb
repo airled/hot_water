@@ -2,8 +2,8 @@ Sequel.migration do
   up do
     create_table :offdates do
       primary_key :id
-      String :offdate
-      index :offdate
+      String :date
+      index :date
     end
   end
   down do

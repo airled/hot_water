@@ -6,11 +6,11 @@ class Finder
     street = normalized_street(street_raw)
     house = normalized_house(house_raw)
     result = if (!(Address[street: street].nil?) && Address[street: street].house == '*')
-               Address[street: street].offdate.offdate
+               Address[street: street].offdate.date
              elsif Address[street: street, house: house].nil?
                'Нет информации'
              else 
-               Address[street: street, house: house].offdate.offdate
+               Address[street: street, house: house].offdate.date
              end
     result
   end
