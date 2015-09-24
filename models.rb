@@ -1,6 +1,6 @@
 require_relative './init_db'
 
-class Date < Sequel::Model
+class Offdate < Sequel::Model
   one_to_many :addresses
 end
 

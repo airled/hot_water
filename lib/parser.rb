@@ -61,7 +61,7 @@ class Parser
     end
     3.times { hashes.delete_at(0) }
     hashes.map do |hash|
-      date = Date.create(date: hash[:date])
+      date = Offdate.create(offdate: hash[:date])
       splitted_line = hash[:date_match].split(',')
       street = splitted_line[0]
       splitted_line.drop(1).map do |houses|
@@ -128,7 +128,7 @@ class Parser
     houses_blocks = date_blocks.map { |date_block| date_block.gsub(';', ',').split('!!!').drop(1) }
 
     dates.zip(streets_blocks, houses_blocks).map do |date_num, streets_block, houses_block|
-      date = Date.create(date: date_num)
+      date = Offdate.create(date: date_num)
       streets_block.zip(houses_block).map do |street, houses|
         case
         when houses.scan(/[0-9А-Яа-я]/).empty?

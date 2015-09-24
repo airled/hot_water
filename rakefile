@@ -38,7 +38,7 @@ task :parse do
 end
 
 task :reparse do
-  system ('rake db:reset && rake html:parse')
+  system ('rake db:reset && rake parse')
 end
 
 task :deploy do
