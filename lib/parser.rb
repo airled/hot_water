@@ -132,7 +132,7 @@ class Parser
     houses_blocks = date_blocks.map { |date_block| date_block.gsub(';', ',').split('!!!').drop(1) }
 
     dates.zip(streets_blocks, houses_blocks).map do |date, streets_block, houses_block|
-      offdate = create_offdate(date: date)
+      offdate = create_offdate(date)
       streets_block.zip(houses_block).map do |street, houses|
         case
         when houses.scan(/[0-9А-Яа-я]/).empty?
