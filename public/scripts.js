@@ -1,5 +1,5 @@
-var serverURL = 'http://localhost:9292/'
-// var serverURL = 'http://hotwater.muzenza.by/'
+// var serverURL = 'http://localhost:9292/'
+var serverURL = 'http://hotwater.muzenza.by/'
 
 function encode(string){
 	return encodeURIComponent(string);
