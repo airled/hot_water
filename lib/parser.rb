@@ -6,14 +6,14 @@ class Parser
 
   def run
     puts 'Begin parsing...'
-    quantity_start = Record.count
+    quantity_start = Address.count
     source = 'http://www.belta.by/regions/view/grafik-otkljuchenija-gorjachej-vody-v-minske-v-2015-godu-153269-2015/'
     html = fetch_html(source)
     second_part(p_tags(html))
     streets_strong = streets_from_strongs(html)
     first_part(html, streets_strong)
-    quantity_stop = Record.count
-    puts "Parsed. Records created: #{quantity_stop - quantity_start}. Records total: #{quantity_stop}"
+    quantity_stop = Address.count
+    puts "Parsed. Records created: #{quantity_stop - quantity_start}. Addresses total: #{quantity_stop}"
   end
 
   private
@@ -22,8 +22,8 @@ class Parser
     Nokogiri::HTML(open(source))
   end
 
-  def create_record(date, street, house)
-    Record.create(date: date, street: street, house: house)
+  def create_address(date, street, house)
+    date.add_address(street: street, house: house)
   end
 
   def checked(street)
@@ -61,11 +61,12 @@ class Parser
     end
     3.times { hashes.delete_at(0) }
     hashes.map do |hash|
+      date = Date.create(date: hash[:date])
       splitted_line = hash[:date_match].split(',')
       street = splitted_line[0]
       splitted_line.drop(1).map do |houses|
         extended(houses).map do |house|
-          create_record(hash[:date], checked(street), house.strip)
+          create_address(date, checked(street), house.strip)
         end
       end
     end
@@ -126,7 +127,8 @@ class Parser
     #houses_blocks is [ (for date1)->[houses_for street1,houses_for street2,houses_for street3], (for date2)->[houses_for_street4, houses_for_street5,houses_for street6]... ]
     houses_blocks = date_blocks.map { |date_block| date_block.gsub(';', ',').split('!!!').drop(1) }
 
-    dates.zip(streets_blocks,houses_blocks).map do |date,streets_block,houses_block|
+    dates.zip(streets_blocks, houses_blocks).map do |date_num, streets_block, houses_block|
+      date = Date.create(date: date_num)
       streets_block.zip(houses_block).map do |street, houses|
         case
         when houses.scan(/[0-9А-Яа-я]/).empty?
@@ -138,10 +140,10 @@ class Parser
         houses.split(',').map do |houses_part|
           if houses_part =~ /[0-9]+-[0-9]+/
             extended(houses_part).map do |house|
-              create_record(date, checked(street), house.strip)
+              create_address(date, checked(street), house.strip)
             end
           else 
-            create_record(date, checked(street), houses_part.strip)
+            create_address(date, checked(street), houses_part.strip)
           end
         end
       end
@@ -149,5 +151,3 @@ class Parser
   end
 
 end #class
-
-Parser.new.run

@@ -1,13 +1,12 @@
 Sequel.migration do
   up do
-    create_table :records do
+    create_table :dates do
       primary_key :id
       String :date
-      String :street
-      String :house
+      index :date
     end
   end
   down do
-    drop_table(:records)
+    drop_table(:dates)
   end
 end  
