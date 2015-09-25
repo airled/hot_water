@@ -10,8 +10,8 @@ class Parser
     source = 'http://www.belta.by/regions/view/grafik-otkljuchenija-gorjachej-vody-v-minske-v-2015-godu-153269-2015/'
     html = fetch_html(source)
     second_part(p_tags(html))
-    streets_strong = streets_from_strongs(html)
-    first_part(html, streets_strong)
+    # streets_strong = streets_from_strongs(html)
+    # first_part(html, streets_strong)
     quantity_stop = Address.count
     puts "Parsed. Records created: #{quantity_stop - quantity_start}. Addresses total: #{quantity_stop}"
   end
@@ -53,28 +53,32 @@ class Parser
   end
 
   def second_part(array)
-    hashes = []
+    main_hash = {}
     date = ''
     array.each do |value|
       if value.include?('В период')
         date = value.gsub(/[^А-Яа-я0-9\ ]|В период /, '')
-        next
+        main_hash.merge!(date => [])
       else
-        hashes << {date: date, date_match: value.strip}
+        main_hash[date] << value.strip
       end
     end
-    3.times { hashes.delete_at(0) }
-    hashes.map do |hash|
-      offdate = create_offdate(hash[:date])
-      splitted_line = hash[:date_match].split(',')
-      street = splitted_line[0]
-      splitted_line.drop(1).map do |houses|
-        extended(houses).map do |house|
-          offdate.add_address(street: checked(street), house: house.strip)
+
+    3.times { main_hash.shift }
+
+    main_hash.each do |key, value|
+      offdate = create_offdate(key)
+      value.map do |part|
+        splitted_line = part.split(',')
+        street = splitted_line[0]
+        splitted_line.drop(1).map do |houses|
+          extended(houses).map do |house|
+            offdate.add_address(street: checked(street), house: house.strip)
+          end
         end
       end
     end
-  end
+  end #def
   
   def streets_from_strongs(html)
     streets = []
