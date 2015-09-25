@@ -10,8 +10,8 @@ class Parser
     source = 'http://www.belta.by/regions/view/grafik-otkljuchenija-gorjachej-vody-v-minske-v-2015-godu-153269-2015/'
     html = fetch_html(source)
     second_part(p_tags(html))
-    # streets_strong = streets_from_strongs(html)
-    # first_part(html, streets_strong)
+    streets_strong = streets_from_strongs(html)
+    first_part(html, streets_strong)
     quantity_stop = Address.count
     puts "Parsed. Records created: #{quantity_stop - quantity_start}. Addresses total: #{quantity_stop}"
   end
@@ -21,10 +21,6 @@ class Parser
   def fetch_html(source)
     Nokogiri::HTML(open(source))
   end
-
-  # def create_address(date, street, house)
-  #   date.add_address(street: street, house: house)
-  # end
 
   def create_offdate(date)
     Offdate.create(date: date)
