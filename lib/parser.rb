@@ -1,5 +1,5 @@
 require 'nokogiri'
-require 'open-uri'
+require 'curb'
 require_relative '../models'
 
 class Parser
@@ -19,7 +19,7 @@ class Parser
   private
 
   def fetch_html(source)
-    Nokogiri::HTML(open(source))
+    Nokogiri::HTML(Curl.get(source).body)
   end
 
   def create_offdate(date)

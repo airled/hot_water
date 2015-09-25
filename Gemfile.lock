@@ -1,6 +1,7 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    curb (0.8.8)
     haml (4.0.7)
       tilt
     kgio (2.9.3)
@@ -34,6 +35,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  curb
   haml
   mina
   mina-unicorn
@@ -43,3 +45,6 @@ DEPENDENCIES
   sequel
   sinatra
   unicorn
+
+BUNDLED WITH
+   1.10.6
