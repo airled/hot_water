@@ -8,5 +8,5 @@ gem 'mysql2'
 gem 'minitest'
 gem 'mina'
 gem 'unicorn'
-gem 'haml'
+gem 'haml', :require => false
 gem 'mina-unicorn', :require => false
