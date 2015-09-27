@@ -59,19 +59,24 @@ footer{
 	width: 100%;
 	z-index: 1;
 	color: white;
+	display: table;
+	font-size: 100%;
 }
 footer a{
 	text-decoration: none;	
 }
 #footer_left, #footer_right{
-	position: absolute;
+	display: table-cell;
+	vertical-align: middle;
 }
 #footer_left{
 	left: 0px;
+	text-align: left;
 	padding-left: 5px;
 }
 #footer_right{
 	right: 0px;
+	text-align: right;
 	padding-right: 5px;
 }
 .visible{
