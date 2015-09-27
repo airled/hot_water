@@ -1,13 +1,16 @@
-html, body, div, header, aside{
+html, body, div, header, aside, table, tbody, tr, td{
 	margin: 0px;
 	padding: 0px;
 }
 html, body{
 	height: 100%;
 }
-#container, #table, tr, td, #map-canvas{
+#container, #map-canvas, table, tbody, tr, td{
 	width: 100%;
 	height: 100%;
+}
+table{
+	border-spacing: 0px;
 }
 header{
 	height: 20px;
@@ -23,7 +26,7 @@ header{
 #map-canvas{
 	text-align: center;
 }
-#table td{
+table td{
 	vertical-align: middle;	
 }
 aside{
