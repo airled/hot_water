@@ -11,7 +11,7 @@ html, body{
 }
 header{
 	/*height: 20px;*/
-	height: 5%;
+	height: 4%;
 	background-color: gray;
 	text-align: center;
 	position: absolute;
@@ -33,7 +33,7 @@ aside{
 	display: inline-block;
 	z-index: 1;
 	background-color: white;
-	top: 5%;
+	top: 4%;
 	opacity: 0.4;
 	transition: opacity 0.5s;
 }
@@ -44,10 +44,10 @@ aside:hover{
 	padding: 5px;
 }
 #map-canvas{
-	height: 90%;
-	width: 100%;
 	position: absolute;
-	top: 5%;
+	top: 4%;
+	height: 92%;
+	width: 100%;
 	text-align: center;
 	display: table;
 }
@@ -56,7 +56,7 @@ aside:hover{
 	display: table-cell;
 }
 footer{
-	height: 5%;
+	height: 4%;
 	/*height: 20px;*/
 	background-color: gray;
 	position: absolute;
