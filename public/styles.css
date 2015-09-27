@@ -17,6 +17,8 @@ header{
 	width: 100%;
 	z-index: 1;
 	color: white;
+	font-size: 110%;
+	text-shadow: 0px 0px 5px black;
 }
 #map-canvas{
 	text-align: center;
