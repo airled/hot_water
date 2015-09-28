@@ -9,8 +9,8 @@ class Parser
     source = 'http://www.belta.by/regions/view/grafik-otkljuchenija-gorjachej-vody-v-minske-v-2015-godu-153269-2015/'
     html = fetch_html(source)
     second_part(p_tags(html))
-    # streets_strong = streets_from_strongs(html)
-    # first_part(html, streets_strong)
+    streets_strong = streets_from_strongs(html)
+    first_part(html, streets_strong)
     puts "Parsed."
   end
 
@@ -35,7 +35,7 @@ class Parser
     when !(street.scan(/пр-т|пр-т./).empty?)
       street = 'проспект ' + street.sub(/пр-т|пр-т./, '')
     end
-    street
+    street.strip
   end
 
   def p_tags(html)
@@ -59,14 +59,14 @@ class Parser
     end
 
     3.times { main_hash.shift }
-
+    
     main_hash.each do |key, value|
       offdate = create_offdate(key)
       value.map do |part|
         splitted_line = part.split(',')
         street = offdate.add_street(streetname: checked(splitted_line[0]))
         splitted_line.drop(1).map do |houses|
-          extended(houses).map do |house|
+          extended(houses.strip).map do |house|
             street.add_house(housenumber: house.strip)
           end
         end
@@ -84,7 +84,7 @@ class Parser
 
   def extended(range)
     sequence = []
-    unless range.include?('к')
+    if range.include?('-') && !(range.include?('к'))
       start = range.split('-')[0].to_i
       stop = range.split('-')[1].to_i
       case
@@ -96,7 +96,7 @@ class Parser
         start.upto(stop) { |value| sequence << value.to_s }
       end
     else sequence << range
-    end
+    end 
     sequence
   end
 
