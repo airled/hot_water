@@ -86,7 +86,7 @@ class Parser
 
   def extended(range)
     sequence = []
-    unless range.include?('к')
+    if range.include?('-') && !(range.include?('к'))
       start = range.split('-')[0].to_i
       stop = range.split('-')[1].to_i
       case
