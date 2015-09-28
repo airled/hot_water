@@ -132,6 +132,7 @@ class Parser
     dates.zip(streets_blocks, houses_blocks).map do |date, streets_block, houses_block|
       offdate = create_offdate(date)
       streets_block.zip(houses_block).map do |street, houses|
+        street_db = offdate.add_street(streetname: checked(street))
         case
         when houses.scan(/[0-9А-Яа-я]/).empty?
           houses = '*'
@@ -142,10 +143,10 @@ class Parser
         houses.split(',').map do |houses_part|
           if houses_part =~ /[0-9]+-[0-9]+/
             extended(houses_part).map do |house|
-              offdate.add_address(street: checked(street), house: house.strip)
+              street_db.add_house(housenumber: house.strip)
             end
           else 
-            offdate.add_address(street: checked(street), house: houses_part.strip)
+            street_db.add_house(housenumber: houses_part.strip)
           end
         end
       end
