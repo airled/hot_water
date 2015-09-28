@@ -6,14 +6,12 @@ class Parser
 
   def run
     puts 'Begin parsing...'
-    quantity_start = Address.count
     source = 'http://www.belta.by/regions/view/grafik-otkljuchenija-gorjachej-vody-v-minske-v-2015-godu-153269-2015/'
     html = fetch_html(source)
     second_part(p_tags(html))
-    streets_strong = streets_from_strongs(html)
-    first_part(html, streets_strong)
-    quantity_stop = Address.count
-    puts "Parsed. Records created: #{quantity_stop - quantity_start}. Addresses total: #{quantity_stop}"
+    # streets_strong = streets_from_strongs(html)
+    # first_part(html, streets_strong)
+    puts "Parsed."
   end
 
   private
@@ -66,10 +64,10 @@ class Parser
       offdate = create_offdate(key)
       value.map do |part|
         splitted_line = part.split(',')
-        street = splitted_line[0]
+        street = offdate.add_street(streetname: checked(splitted_line[0]))
         splitted_line.drop(1).map do |houses|
           extended(houses).map do |house|
-            offdate.add_address(street: checked(street), house: house.strip)
+            street.add_house(housenumber: house.strip)
           end
         end
       end
