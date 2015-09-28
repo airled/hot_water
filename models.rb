@@ -1,14 +1,9 @@
 require_relative './init_db'
 
 class Offdate < Sequel::Model
-  one_to_many :streets
+  one_to_many :addresses
 end
 
-class Street < Sequel::Model
+class Address < Sequel::Model
   many_to_one :offdate
-  one_to_many :houses
-end
-
-class House < Sequel::Model
-  many_to_one :street
 end
