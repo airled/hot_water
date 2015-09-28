@@ -19,6 +19,6 @@ end
 
 get '/auto_street' do
   term = params[:term]
-  streets = Street.distinct.select(:streetname).where('streetname LIKE ?', "#{term}%").limit(10)
-  (streets.map { |street| {id: nil, label: street.streetname, value: street.streetname} }).to_json
+  adresses = Address.distinct.select(:street).where('street LIKE ?', "#{term}%").limit(10)
+  (adresses.map { |address| {id: nil, label: address.street, value: address.street} }).to_json
 end

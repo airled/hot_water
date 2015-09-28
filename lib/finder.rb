@@ -1,17 +1,16 @@
 require_relative '../models'
-require 'pry'
 
 class Finder
 
   def date_find(street_raw, house_raw)
     street = normalized_street(street_raw)
     house = normalized_house(house_raw)
-    result = if (!(Street[streetname: street].nil?) && Street[streetname: street].houses[housenumber: '*'])
-               Street[street: street].offdate.date
-             elsif Street[streetname: street].houses[housenumber: house].nil?
+    result = if (!(Address[street: street].nil?) && Address[street: street].house == '*')
+               Address[street: street].offdate.date
+             elsif Address[street: street, house: house].nil?
                'Нет информации'
              else 
-               Street[streetname: street].houses[housenumber: house].offdate.date
+               Address[street: street, house: house].offdate.date
              end
     result
   end
@@ -36,5 +35,3 @@ class Finder
   end
 
 end #class
-
-binding.pry
