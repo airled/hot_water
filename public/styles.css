@@ -22,6 +22,7 @@ header, footer{
 header{
 	text-align: center;
 	font-size: 105%;
+	overflow: hidden;
 }
 #header{
 	display: table-cell;
@@ -29,7 +30,8 @@ header{
 }
 aside{
 	display: inline-block;
-	position: relative; 
+	position: relative;
+	/*top: -2px;*/
 	width: 300px;
 	overflow: hidden;
 	z-index: 1;
@@ -38,16 +40,19 @@ aside{
 	transition: opacity 0.4s;
 	color: white;
 	text-shadow: 0px 0px 5px black;
-	border-radius: 0px 0px 10px;
+	border-radius: 0px 0px 10px 10px;
 }
 aside:hover{
 	opacity: 1;
+}
+fieldset{
+	border-radius: 0px 0px 10px 10px;
 }
 #results{
 	padding: 5px;
 	color: black;
 	text-shadow: none;
-
+	border-bottom: solid 1px #999999;
 }
 #map-canvas{
 	display: table;
@@ -69,7 +74,7 @@ footer{
 footer a{
 	text-decoration: none;
 	color: white;
-	text-shadow: 0px 0px 2px blue;
+	text-shadow: 0px 0px 5px black, 0px 0px 2px blue;
 
 }
 #footer_left, #footer_right{
