@@ -44,3 +44,7 @@ end
 task :deploy do
   system ('mina unicorn:stop && mina deploy && mina unicorn:start')
 end
+
+task :all do
+  system ('git add -A && git commit && git push && rake deploy')
+end
