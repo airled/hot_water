@@ -81,7 +81,7 @@ function findFromForm(){
 	if(streetForm == '' || houseForm == ''){
 		setResult('Не введено');
 	}
-	else if(notValidObject(streetForm) || notValidObject(houseForm)){
+	else if(notValidObject(streetForm) || notValidObject(houseForm) || streetForm.length < 3){
 		setResult('Неправильный ввод');
 	}
 	else{
