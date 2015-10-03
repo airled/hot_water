@@ -7,7 +7,9 @@ get '/' do
 end
 
 get '/date' do
-  if (params.has_key?('street')) && (params.has_key?('house')) && (params[:street].match(/[^А-Яа-я0-9ё\.\ \-]/).nil?) && (params[:house].match(/[^А-Яа-яё0-9\.\ ]/).nil?)
+  if (params.size == 2) &&
+     (params.has_key?('street')) && (params.has_key?('house')) &&
+     (params[:street].match(/[^А-Яа-я0-9ё\.\ \-]/).nil?) && (params[:house].match(/[^А-Яа-яё0-9\.\ ]/).nil?)
     street = params[:street]
     house = params[:house]
     date = Finder.new.date_find(street, house)
