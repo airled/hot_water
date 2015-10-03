@@ -81,8 +81,11 @@ function findFromForm(){
 	if(streetForm == '' || houseForm == ''){
 		setResult('Не введено');
 	}
-	else if(notValidObject(streetForm) || notValidObject(houseForm) || streetForm.length < 3){
+	else if(notValidObject(streetForm) || notValidObject(houseForm)){
 		setResult('Неправильный ввод');
+	}
+	else if(streetForm.length < 3){
+		setResult('Слишком короткое название улицы')
 	}
 	else{
 		var dateURL = serverURL + '/date?street=' + encode(streetForm) + '&house=' + encode(houseForm);
