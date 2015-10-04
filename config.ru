@@ -1,11 +1,12 @@
 require_relative './app'
 require 'sprockets'
 
-map '/public' do
-  environment = Sprockets::Environment.new
-  environment.append_path 'public/javascript'
-  environment.append_path 'public/css'
-  run environment
+map '/assets' do
+  assets = Sprockets::Environment.new
+  assets.append_path 'public/javascript'
+  assets.append_path 'public/css'
+  assets.append_path 'public'
+  run assets
 end
 
 run Sinatra::Application
