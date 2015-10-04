@@ -10,3 +10,4 @@ gem 'mina'
 gem 'unicorn'
 gem 'haml', :require => false
 gem 'mina-unicorn', :require => false
+gem 'sprockets'
