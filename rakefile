@@ -1,7 +1,7 @@
-namespace :db do
 require './init_db'
 Sequel.extension :migration
 
+namespace :db do
   desc "Prints current schema version"
   task :version do
     version = if DB.tables.include?(:schema_info)
@@ -29,22 +29,25 @@ Sequel.extension :migration
     Sequel::Migrator.run(DB, "db/migrate")
     Rake::Task['db:version'].execute
   end
-  
 end
 
+desc "Parse source HTML page"
 task :parse do
   require './lib/parser'
   Parser.new.run
 end
 
+desc "Reset database table and parse source HTML"
 task :reparse do
   system ('rake db:reset && rake parse')
 end
 
+desc "Deploy and restart the application"
 task :deploy do
   system ('mina unicorn:stop && mina deploy && mina unicorn:start')
 end
 
+desc "Push changes to Github, deploy and restart the application"
 task :all do
   system ('git add -A && git commit && git push && rake deploy')
 end
