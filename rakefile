@@ -31,6 +31,14 @@ namespace :db do
   end
 end
 
+desc "Enter the application console"
+task :c do
+  require_relative './app'
+  require 'irb'
+  ARGV.clear
+  IRB.start
+end
+
 desc "Parse source HTML page"
 task :parse do
   require './lib/parser'
