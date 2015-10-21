@@ -85,18 +85,18 @@ class Parser
   end
 
   def extended(range)
-    sequence = []
-    if range.include?('-') && !(range.include?('к'))
-      start = range.split('-')[0].to_i
-      stop = range.split('-')[1].to_i
-      if (start.odd? && stop.even?) || (start.even? && stop.odd?)
-        start.upto(stop) { |value| sequence << value.to_s }
+    sequence =
+      if range.include?('-') && !(range.include?('к'))
+        start = range.split('-')[0].to_i
+        stop = range.split('-')[1].to_i
+        if (stop - start).odd?
+          (start..stop).to_a
+        else
+          (start..stop).step(2).to_a
+        end
       else
-        (start..stop).step(2) { |value| sequence << value.to_s }
+        range
       end
-    else sequence << range
-    end
-    sequence
   end
 
   def first_part(html, streets)
