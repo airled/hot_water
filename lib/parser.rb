@@ -89,13 +89,10 @@ class Parser
     if range.include?('-') && !(range.include?('к'))
       start = range.split('-')[0].to_i
       stop = range.split('-')[1].to_i
-      case
-      when start.even? && stop.even?
-        start.upto(stop) { |value| sequence << value.to_s if value.even? }
-      when start.odd? && stop.odd?
-        start.upto(stop) { |value| sequence << value.to_s if value.odd? }
-      when (start.odd? && stop.even?) || (start.even? && stop.odd?)
+      if (start.odd? && stop.even?) || (start.even? && stop.odd?)
         start.upto(stop) { |value| sequence << value.to_s }
+      else
+        (start..stop).step(2) { |value| sequence << value.to_s }
       end
     else sequence << range
     end
