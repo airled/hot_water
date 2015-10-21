@@ -68,8 +68,8 @@ class Parser
         splitted_line = part.split(',')
         street = splitted_line[0]
         splitted_line.drop(1).map do |houses|
-          extended(houses).map do |house|
-            offdate.add_address(street: checked(street), house: house.strip)
+          extend_range(houses).map do |house|
+            offdate.add_address(street: checked(street), house: house.to_s.strip)
           end
         end
       end
@@ -84,19 +84,18 @@ class Parser
     streets
   end
 
-  def extended(range)
-    sequence =
-      if range.include?('-') && !(range.include?('к'))
-        start = range.split('-')[0].to_i
-        stop = range.split('-')[1].to_i
-        if (stop - start).odd?
-          (start..stop).to_a
-        else
-          (start..stop).step(2).to_a
-        end
+  def extend_range(range)
+    if range.include?('-') && !(range.include?('к'))
+      start = range.split('-')[0].to_i
+      stop = range.split('-')[1].to_i
+      if (stop - start).odd?
+        (start..stop).to_a
       else
-        range
+        (start..stop).step(2).to_a
       end
+    else
+      [range]
+    end
   end
 
   def first_part(html, streets)
@@ -140,8 +139,8 @@ class Parser
         houses = houses.gsub(' – ', '-').strip.gsub(/[^0-9А-Яа-я*()\ ][^0-9А-Яа-я*()\ ]/, '')
         houses.split(',').map do |houses_part|
           if houses_part =~ /[0-9]+-[0-9]+/
-            extended(houses_part).map do |house|
-              offdate.add_address(street: checked(street), house: house.strip)
+            extend_range(houses_part).map do |house|
+              offdate.add_address(street: checked(street), house: house.to_s.strip)
             end
           else 
             offdate.add_address(street: checked(street), house: houses_part.strip)
