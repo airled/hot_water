@@ -43,8 +43,7 @@ function placeMarker(position, map){
 google.maps.event.addDomListener(window, 'load', initialize);
 ///////END OF MAP SCRIPTS SECTION///////
 
-// var serverURL = 'http://localhost:9292'
-var serverURL = 'http://hotwater.muzenza.by'
+var serverURL = host;
 function encode(string){
 	return encodeURIComponent(string);
 }

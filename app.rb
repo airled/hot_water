@@ -2,7 +2,13 @@ require 'sinatra'
 require './lib/finder'
 require 'json'
 
+HOST = 
+  if settings.production?
+    'http://hotwater.muzenza.by'
+  end || 'http://localhost:9292'
+
 get '/' do
+  @host = HOST
   erb :index
 end
 
