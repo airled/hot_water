@@ -2,13 +2,14 @@ require 'sinatra'
 require './lib/finder'
 require 'json'
 
-HOST = 
-  if settings.production?
-    'http://hotwater.muzenza.by'
-  end || 'http://localhost:9292'
-
 get '/' do
-  @host = HOST
+  @host = 
+    case settings.environment
+    when :production, :deployment
+      'http://hotwater.muzenza.by'
+    when :development, :test
+      'http://localhost:9292'
+    end
   erb :index
 end
 
