@@ -43,7 +43,6 @@ function placeMarker(position, map){
 google.maps.event.addDomListener(window, 'load', initialize);
 ///////END OF MAP SCRIPTS SECTION///////
 
-var serverURL = host;
 function encode(string){
 	return encodeURIComponent(string);
 }

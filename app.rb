@@ -1,14 +1,7 @@
 require 'sinatra'
 require './lib/finder'
+require './server'
 require 'json'
-
-SERVER = 
-  case settings.environment
-  when :production, :deployment
-    'http://hotwater.muzenza.by'
-  when :development, :test
-    'http://localhost:9292'
-  end
 
 get '/' do
   erb :index
