@@ -1,4 +1,4 @@
-require './init_db'
+require_relative './init_db'
 Sequel.extension :migration
 
 namespace :db do
@@ -41,7 +41,7 @@ end
 
 desc "Parse source HTML page"
 task :parse do
-  require './lib/parser'
+  require_relative './lib/parser'
   Parser.new.run
 end
 
@@ -58,4 +58,10 @@ end
 desc "Push changes to Github, deploy and restart the application"
 task :all do
   system ('git add -A && git commit && git push && rake deploy')
+end
+
+namespace :app do
+  task :start do
+    system('bundle exec rackup')
+  end
 end

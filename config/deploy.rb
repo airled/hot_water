@@ -26,7 +26,6 @@ task :setup => :environment do
   queue! %[chmod g+rx,u+rwx "#{deploy_to}/#{shared_path}/tmp/pids"]
   queue! %[touch "#{deploy_to}/#{shared_path}/config/database.yml"]
   queue! %[touch "#{deploy_to}/#{shared_path}/config/secrets.yml"]
-
   # queue  %[echo "-----> Be sure to edit '#{deploy_to}/#{shared_path}/config/database.yml' and 'secrets.yml'."]
   # queue %[
   #   repo_host=`echo $repo | sed -e 's/.*@//g' -e 's/:.*//g'` &&

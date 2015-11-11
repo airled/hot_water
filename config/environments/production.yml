@@ -1,2 +1,3 @@
 ---
 source_server: 'http://hotwater.muzenza.by'
+database: 'hotwater_production'

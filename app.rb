@@ -1,6 +1,5 @@
 require 'sinatra'
 require './lib/finder'
-require './config/environment'
 require 'json'
 
 get '/' do
