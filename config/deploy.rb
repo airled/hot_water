@@ -51,6 +51,6 @@ task :deploy => :environment do
   end
 end
 
-task :reparse do
-  queue 'cd current && bundle exec rake reparse'
+task :reparse => :environment do
+  queue 'cd current && RACK_ENV=production bundle exec rake reparse'
 end
