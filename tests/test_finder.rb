@@ -1,5 +1,5 @@
 require 'minitest/autorun'
-require_relative '../libs/finder.rb'
+require_relative '../lib/finder.rb'
 
 class TestFinder < Minitest::Test
 	
@@ -8,9 +8,10 @@ class TestFinder < Minitest::Test
   end
 
   def test_that_date_find
-  	existing = {street: 'Гинтовта', house: '36'}
+  	existing = {street: 'Тарханова', house: '15'}
   	nonexisting = {street: 'Блабла', house: 'Мимими'}
-  	assert_equal 'с 6 июля', @finder.date_find(existing[:street],existing[:house])
-  	assert_equal 'Нет информации', @finder.date_find(nonexisting[:street],nonexisting[:house])
+  	assert_equal 'с 27 июля', @finder.date_find(existing[:street], existing[:house])
+  	assert_equal 'Нет информации', @finder.date_find(nonexisting[:street], nonexisting[:house])
   end
+  
 end

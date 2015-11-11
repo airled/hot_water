@@ -47,7 +47,8 @@ end
 
 desc "Reset database table and parse source HTML"
 task :reparse do
-  system ('rake db:reset && rake parse')
+  Rake::Task['db:reset'].execute
+  Rake::Task['parse'].execute
 end
 
 desc "Deploy and restart the application"
