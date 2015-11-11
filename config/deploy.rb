@@ -50,3 +50,7 @@ task :deploy => :environment do
     end
   end
 end
+
+task :reparse do
+  queue 'cd current && bundle exec rake reparse'
+end

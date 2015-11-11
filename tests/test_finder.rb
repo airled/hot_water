@@ -1,4 +1,4 @@
-require 'minitest/autorun'
+require_relative './helper.rb'
 require_relative '../lib/finder.rb'
 
 class TestFinder < Minitest::Test
