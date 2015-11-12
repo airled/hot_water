@@ -9,8 +9,10 @@ class Parser
     quantity_start = Address.count
     source = 'http://www.belta.by/regions/view/grafik-otkljuchenija-gorjachej-vody-v-minske-v-2015-godu-153269-2015/'
     html = fetch_html(source)
+    #parse second part of the page
     second_part(p_tags(html))
     streets_strong = streets_from_strongs(html)
+    #parse first part of the page
     first_part(html, streets_strong)
     quantity_stop = Address.count
     puts "Parsed. Records created: #{quantity_stop - quantity_start}. Addresses total: #{quantity_stop}"
@@ -26,6 +28,7 @@ class Parser
     Offdate.create(date: date)
   end
 
+  #normilize street name
   def checked(street)
     case
     when street.split(' ').last == 'пер'
@@ -40,6 +43,7 @@ class Parser
     street
   end
 
+  #collect all the <p> from the page in an array
   def p_tags(html)
     p_array = []
     html.xpath('//div[@class="center_col"]/p').map do |p_tag|
@@ -48,6 +52,8 @@ class Parser
     p_array
   end
 
+  #take <p>-array and build hash from it
+  #hash looks like {date1 => block_for_date1, date2 => block_for_date2}
   def second_part(array)
     main_hash = {}
     date = ''
@@ -60,10 +66,11 @@ class Parser
       end
     end
 
+    #take date from main hash, save it in the database
     3.times { main_hash.shift }
-
     main_hash.each do |key, value|
       offdate = create_offdate(key)
+      #split value in street and houses for the street
       value.map do |part|
         splitted_line = part.split(',')
         street = splitted_line[0]
@@ -84,6 +91,9 @@ class Parser
     streets
   end
 
+  #extend range like 1-5 to 1,3,5
+  #                  2-6 to 2,4,6
+  #                  1-6 to 1,2,3,4,5,6
   def extend_range(range)
     if range.include?('-') && !(range.include?('к'))
       start = range.split('-')[0].to_i
@@ -111,7 +121,8 @@ class Parser
       dates << date_part.split(' у потребителей по улицам')[0].strip
       date_blocks << date_part.split(' у потребителей по улицам')[1].strip
     end
-    #streets_blocks is [ (block for date1)->[street1,street2,street3], (block for date2)->[street4,street5,street6]... ]
+    #streets_blocks is [ [street1,street2,street3], [street4,street5,street6]... ]
+    #                    {         date1         }  {         date2         }
     streets_blocks = []
     date_blocks.map do |date_block|
       matched_streets = []
@@ -124,7 +135,11 @@ class Parser
       end
       streets_blocks << matched_streets
     end
-    #houses_blocks is [ (for date1)->[houses_for street1,houses_for street2,houses_for street3], (for date2)->[houses_for_street4, houses_for_street5,houses_for street6]... ]
+    #houses_blocks is [ [houses1, houses2, houses3], [houses4, houses5, houses6]... ]
+    #                   {street1}{street2}{street3}  {street4}{street5}{street6}
+    #                   {          date1          }  {          date2          }
+
+    #houses_blocks is 5,houses_for street6]... ]
     houses_blocks = date_blocks.map { |date_block| date_block.gsub(';', ',').split('!!!').drop(1) }
 
     dates.zip(streets_blocks, houses_blocks).map do |date, streets_block, houses_block|

@@ -1,5 +1,6 @@
 require 'yaml'
 
+#script for adding all parameters from the evironment yaml's to ENV-variable
 class ENV_adder
 
   def self.add_from_yaml

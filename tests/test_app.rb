@@ -17,6 +17,15 @@ class TestApp < MiniTest::Unit::TestCase
   def test_date_path
     get '/date'
     assert last_response.ok?
+    assert_equal 'Params error', last_response.body    
+    get '/date?street=test'
+    assert last_response.ok?
+    assert_equal 'Params error', last_response.body    
+    get '/date?house=test'
+    assert last_response.ok?
+    assert_equal 'Params error', last_response.body    
+    get '/date?street=test&house=test'
+    assert last_response.ok?
     assert_equal 'Params error', last_response.body
   end
 
