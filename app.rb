@@ -1,10 +1,10 @@
 require 'sinatra'
 require './lib/finder'
 require 'json'
-require 'haml'
+require 'slim'
 
 get '/' do
-  haml :index
+  slim :index
 end
 
 get '/date' do

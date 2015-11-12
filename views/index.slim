@@ -1,0 +1,36 @@
+doctype html
+html
+  head
+    meta charset='utf-8' 
+    title Даты отключения горячей воды в Минске
+    link href='assets/application.css' rel='stylesheet' 
+    link href='favicon.ico' rel='icon' 
+    script type='text/javascript' var serverURL = "#{ENV['source_server']}";
+    script src='https://maps.googleapis.com/maps/api/js?language=ru' type='text/javascript' 
+    script src='http://code.jquery.com/jquery-2.1.4.js' type='text/javascript' 
+    script src='assets/application.js' type='text/javascript' 
+  body
+    #container
+      header
+        #header Поиск даты отключения горячей воды по адресам
+      aside#panel
+        form
+          fieldset
+            legend Найти дату
+            | Название улицы:
+            br
+            input#form_street type='text' name='street' 
+            br
+            | Номер дома:
+            br
+            input#form_house type='text' name='house' 
+            br
+            input#form_button type='button' value='Найти' 
+        #results
+      #map-canvas title='Щелкните по дому для отображения адреса с датой' 
+        #temp Пожалуйста, включите JavaScript
+      footer
+        #footer_left
+          | Даты отключения горячей воды взяты с сайта
+          a href='http://www.belta.by/regions/view/grafik-otkljuchenija-gorjachej-vody-v-minske-v-2015-godu-153269-2015' target='_blank'  belta.by
+        #footer_right 2015
