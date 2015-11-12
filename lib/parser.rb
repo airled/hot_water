@@ -138,8 +138,6 @@ class Parser
     #houses_blocks is [ [houses1, houses2, houses3], [houses4, houses5, houses6]... ]
     #                   {street1}{street2}{street3}  {street4}{street5}{street6}
     #                   {          date1          }  {          date2          }
-
-    #houses_blocks is 5,houses_for street6]... ]
     houses_blocks = date_blocks.map { |date_block| date_block.gsub(';', ',').split('!!!').drop(1) }
 
     dates.zip(streets_blocks, houses_blocks).map do |date, streets_block, houses_block|
