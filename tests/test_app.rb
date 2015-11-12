@@ -12,13 +12,11 @@ class TestApp < MiniTest::Unit::TestCase
   def test_root_path
     get '/'
     assert last_response.ok?
-    assert_equal 200, last_response.status
   end
 
   def test_date_path
     get '/date'
     assert last_response.ok?
-    assert_equal 200, last_response.status
     assert_equal 'Params error', last_response.body
   end
 
