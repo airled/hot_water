@@ -4,6 +4,7 @@ html, body, div, header, aside, footer{
 }
 html, body{
 	height: 100%;
+	font-family: sans-serif;
 }
 #container{
 	height: 100%;
