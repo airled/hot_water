@@ -5,8 +5,9 @@ html
     title Даты отключения горячей воды в Минске
     link href='assets/application.css' rel='stylesheet' 
     link href='favicon.ico' rel='icon' 
-    script type='text/javascript' var serverURL = "#{ENV['source_server']}";
-    script src='https://maps.googleapis.com/maps/api/js?language=ru' type='text/javascript' 
+    script type='text/javascript'
+      | var serverURL = "#{ENV['source_server']}";
+    script src='https://maps.googleapis.com/maps/api/js?language=ru' type='text/javascript'
     script src='http://code.jquery.com/jquery-2.1.4.js' type='text/javascript' 
     script src='assets/application.js' type='text/javascript' 
   body
