@@ -4,9 +4,9 @@ require 'yaml'
 class ENV_adder
 
   def self.add_from_yaml
-    rack_env = ENV['RACK_ENV'] ||= 'development'
-    env_hash = YAML.load_file(File.expand_path("../environments/#{rack_env}.yml", __FILE__))
-    env_hash.each_pair { |pair| ENV["#{pair[0]}"] = pair[1] }
+    ENV['RACK_ENV'] ||= 'development'
+    env_hash = YAML.load_file(File.expand_path("../environments/#{ENV['RACK_ENV']}.yml", __FILE__))
+    env_hash.each_pair { |key, value| ENV[key] = value.to_s }
   end
 
 end
