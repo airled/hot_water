@@ -4,7 +4,7 @@ require 'mina/git'
 require 'mina/rbenv'
 require 'mina/unicorn'
 
-set :domain, '198.20.105.55'
+set :domain, '51.254.10.211'
 set :deploy_to, '/home/hotwater'
 set :repository, 'https://github.com/airled/hot_water.git'
 set :branch, 'master'
