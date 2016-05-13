@@ -4,7 +4,7 @@ require_relative '../models'
 
 class Parser
 
-  URL = ''
+  URL = 'http://minsk.gov.by/ru/actual/view/585/'
 
   def run
   end
