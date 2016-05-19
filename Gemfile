@@ -11,3 +11,4 @@ gem 'unicorn'
 gem 'mina-unicorn', :require => false
 gem 'sprockets'
 gem 'slim'
+gem 'byebug'
