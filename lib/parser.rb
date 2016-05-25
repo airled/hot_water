@@ -14,12 +14,19 @@ class DateParser
       p '---------------------------------------------------------------------'
       p date.text
       temp_array = addresses_for_date.text.split(/[;\n]/) - ['']
-      temp_array.each.with_index do |street_with_houses, index|
-        if street_with_houses.scan(/[А-Яа-я]/).empty?
-          temp_array[index - 1] = temp_array[index - 1] + ', ' + street_with_houses
+
+      temp_array.each.with_index do |x, index|
+        break if temp_array[index].nil?
+        if temp_array[index].to_s.scan(/[А-Яа-я]/).size < 3
+          temp_array[index - 1] = temp_array[index - 1] + ', ' + temp_array[index].to_s
+          temp_array.delete_at(index)
+          redo
         end
       end
-      temp_array.each { |x| p x.strip }
+
+      temp_array.each do |x|
+        p x.strip
+      end
     end
 
   end
