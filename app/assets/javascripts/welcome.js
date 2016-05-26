@@ -11,7 +11,7 @@ function init(){
   myMap.events.add('click', function(e) {
     coordinates = e.get('coords');
     // console.log(coordinates);
-    getAddressByCoordinates(coordinates[0], coordinates[1])
+    getDate(coordinates[0], coordinates[1])
     if (myPlacemark) {
       myPlacemark.geometry.setCoordinates(coordinates);
     }
@@ -22,7 +22,7 @@ function init(){
   });
 }
 
-function getAddressByCoordinates(lat, long){
+function getDate(lat, long){
   var geoURL = 'https://geocode-maps.yandex.ru/1.x/?sco=latlong&format=json&geocode=' + lat + ',' + long;
   
   $.ajax({
@@ -32,14 +32,18 @@ function getAddressByCoordinates(lat, long){
   .done(function(data){
     var addressLine = data.response.GeoObjectCollection.featureMember[0].GeoObject.metaDataProperty.GeocoderMetaData.AddressDetails.Country.AddressLine;
     if (addressLine.split(',').length == 3) {
-      // var city = addressLine.split(',')[0].trim();
       var street = addressLine.split(',')[1].trim();
       var house = addressLine.split(',')[2].trim();
-      // console.log(street + ', ' + house);
-      $('#result').text('Адрес: ' + street + ', ' + house);
+
+      var url_for_date = 'http://localhost:3000/date?street=' + street + '&house=' + house;
+      $.ajax({
+        url: url_for_date
+      })
+      .done(function(data) {
+        $('#result').text('Адрес: ' + street + ', ' + house + " | Отключение:" + data.date);
+      });
     }
     else {
-      // console.log('Неточный адрес');
       $('#result').text('Неточный адрес');
     }
   });

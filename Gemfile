@@ -12,6 +12,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem "slim-rails"
 gem 'dotenv-rails'
 gem 'curb'
+gem 'database_cleaner'
+gem 'thin'
 
 group :development, :test do
   gem 'byebug'
@@ -22,5 +24,7 @@ end
 group :development do
   gem 'web-console', '~> 2.0'
   gem 'spring'
+  gem 'quiet_assets'
+  gem 'mina'
 end
 
