@@ -13,6 +13,7 @@ set :user, 'hotwater'
 set :shared_paths, ['config/database.yml', 'config/secrets.yml', 'log']
 
 task :environment do
+  invoke :'rbenv:load'
 end
 
 task :setup => :environment do

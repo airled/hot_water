@@ -1,0 +1,12 @@
+--- 
+pid: tmp/pids/thin.pid
+log: log/thin.log
+max_conns: 1024
+environment: production
+max_persistent_conns: 512
+# servers: 1
+# threaded: true
+address: 127.0.0.1
+port: 3001
+daemonize: true
+# socket: tmp/sockets/thin.sock
