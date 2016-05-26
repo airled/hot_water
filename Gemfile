@@ -15,6 +15,7 @@ gem 'dotenv-rails'
 gem 'curb'
 gem 'database_cleaner'
 gem 'thin'
+gem "js-routes"
 
 group :development, :test do
   gem 'byebug'

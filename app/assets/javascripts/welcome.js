@@ -35,7 +35,7 @@ function getDate(lat, long){
       var street = addressLine.split(',')[1].trim();
       var house = addressLine.split(',')[2].trim();
 
-      var url_for_date = 'http://localhost:3000/date?street=' + street + '&house=' + house;
+      var url_for_date = Routes.root_path() + 'date?street=' + street + '&house=' + house;
       $.ajax({
         url: url_for_date
       })
