@@ -3,7 +3,7 @@ var myMap, myPlacemark, coordinates;
 
 function init(){
   myMap = new ymaps.Map("map", {
-    controls: ["zoomControl", "fullscreenControl", "typeSelector"],
+    controls: ["zoomControl"],
     center: [53.9, 27.55],
     zoom: 12
   });
@@ -40,7 +40,7 @@ function getDate(lat, long){
         url: url_for_date
       })
       .done(function(data) {
-        $('#result').text('Адрес: ' + street + ', ' + house + " | Отключение:" + data.date);
+        $('#result').text('Адрес: ' + street + ', ' + house + " | Отключение: " + data.date);
       });
     }
     else {
