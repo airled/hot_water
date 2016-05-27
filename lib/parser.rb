@@ -20,6 +20,7 @@ class DateParser
       addresses_for_date = addresses_for_date.map { |x| x.gsub(/дом №[0-9]+/, '') }
       addresses_for_date = addresses_for_date.map { |x| x.gsub(/дома №[0-9]+/, '') }
       addresses_for_date = addresses_for_date.map { |x| x.gsub(/блок /, '') }
+      addresses_for_date = addresses_for_date.map { |x| x.gsub(/пр-т/, 'проспект') }
       addresses_for_date = move_houses_to_previous_element(addresses_for_date)
 
       addresses_for_date.each do |street_with_its_houses|
