@@ -10,3 +10,10 @@ task :parse do
   require_relative './lib/parser'
   DateParser.new.run
 end
+
+desc 'Full deploy'
+task :deploy do
+  system 'bundle exec mina stop'
+  system 'bundle exec mina deploy'
+  system 'bundle exec mina start'
+end
