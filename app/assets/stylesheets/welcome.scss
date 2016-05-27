@@ -32,9 +32,11 @@ body {
 	display: inline;
 	position: absolute;
 	right: 0px;
+	bottom: 0px;
 	@media(max-width: 640px) {
 		display: block;
 		width: 100%;
+		bottom: auto;
 	}
 }
 
