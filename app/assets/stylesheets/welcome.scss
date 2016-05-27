@@ -24,6 +24,13 @@ body {
 	background-color: #000;
 	color: white;
 }
+
+.search-form {
+	display: inline;
+	position: absolute;
+	right: 0px
+}
+
 .result {
 	line-height: 30px;
 	padding: 0px 10px;
