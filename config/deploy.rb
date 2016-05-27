@@ -58,3 +58,13 @@ task :deploy => :environment do
     end
   end
 end
+
+desc "Run remote application."
+task :start => :environment do
+  queue "cd current && bundle exec thin -C config/thin.yml -R config.ru start"
+end
+
+desc "Stop remote application."
+task :stop => :environment do
+  queue "cd current && bundle exec thin stop"
+end
