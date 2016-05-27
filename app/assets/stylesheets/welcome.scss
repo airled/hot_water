@@ -28,10 +28,20 @@ body {
 .search-form {
 	display: inline;
 	position: absolute;
-	right: 0px
+	right: 0px;
+	@media(max-width: 640px) {
+		display: block;
+		width: 100%;
+	}
 }
 
 .result {
 	line-height: 30px;
 	padding: 0px 10px;
+}
+
+.street, .house {
+	@media(max-width: 1080px) {
+		width: 100px;
+	}
 }

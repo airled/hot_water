@@ -1,7 +1,7 @@
 ymaps.ready(init);
 var myMap, myPlacemark, coordinates;
 
-function init(){
+function init() {
   myMap = new ymaps.Map("map", {
     controls: ["zoomControl"],
     center: [53.9, 27.55],
@@ -22,7 +22,7 @@ function init(){
   });
 }
 
-function getDate(lat, long){
+function getDate(lat, long) {
   var geoURL = 'https://geocode-maps.yandex.ru/1.x/?sco=latlong&format=json&geocode=' + lat + ',' + long;
 
   $.ajax({

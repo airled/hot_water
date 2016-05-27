@@ -14,12 +14,7 @@ class DateParser
     dates.zip(addresses_for_each_date).each do |date, addresses_for_date|
       offdate = Offdate.create(date: date.text.gsub(/[Сс:]/, '').strip)
       addresses_for_date = addresses_for_date.text.split(/[;\n]/) - ['']
-      addresses_for_date = addresses_for_date.map { |x| x.gsub(/по генплану/, '') }
-      addresses_for_date = addresses_for_date.map { |x| x.gsub(/д\/сад по г. п./, '') }
-      addresses_for_date = addresses_for_date.map { |x| x.gsub(/поликлиника/, '') }
-      addresses_for_date = addresses_for_date.map { |x| x.gsub(/дом №[0-9]+/, '') }
-      addresses_for_date = addresses_for_date.map { |x| x.gsub(/дома №[0-9]+/, '') }
-      addresses_for_date = addresses_for_date.map { |x| x.gsub(/блок /, '') }
+      addresses_for_date = addresses_for_date.map { |x| x.gsub(/по генплану|д\/сад по г. п.|поликлиника|дом №[0-9]+|дома №[0-9]+|блок /, '') }
       addresses_for_date = addresses_for_date.map { |x| x.gsub(/пр-т/, 'проспект') }
       addresses_for_date = move_houses_to_previous_element(addresses_for_date)
 
@@ -29,7 +24,6 @@ class DateParser
         its_houses = ['*'] if its_houses.empty?
         its_houses.each do |house_or_houses|
           extend_range(house_or_houses).each do |house|
-            # puts "#{date.text.strip} - #{street.strip} - #{house}"
             offdate.addresses.create(street: street.strip, house: house)
           end
         end
