@@ -3,7 +3,7 @@ class WelcomeController < ApplicationController
   end
 
   def get_data
-    street = params[:street].gsub(/Улица|улица/, '').strip
+    street = params[:street].gsub(/Улица|улица/, '').strip.mb_chars.downcase.to_s
     house = params[:house]
 
     if street.nil? || house.nil?

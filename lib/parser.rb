@@ -24,7 +24,7 @@ class DateParser
         its_houses = ['*'] if its_houses.empty?
         its_houses.each do |house_or_houses|
           extend_range(house_or_houses).each do |house|
-            offdate.addresses.create(street: street.strip, house: house.to_s.gsub(/ *к. */, 'к'))
+            offdate.addresses.create(street: street.strip.mb_chars.downcase.to_s, house: house.to_s.gsub(/ *к. */, 'к'))
           end
         end
       end
