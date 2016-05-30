@@ -21,6 +21,7 @@ group :development, :test do
   gem 'byebug'
   gem 'rspec-rails', '~> 3.0'
   gem 'factory_girl_rails'
+  gem 'shoulda-matchers'
 end
 
 group :development do
@@ -29,4 +30,3 @@ group :development do
   gem 'quiet_assets'
   gem 'mina'
 end
-
