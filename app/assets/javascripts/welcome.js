@@ -10,7 +10,6 @@ function init() {
 
   myMap.events.add('click', function(e) {
     coordinates = e.get('coords');
-    // console.log(coordinates);
     getDate(coordinates[0], coordinates[1])
     if (myPlacemark) {
       myPlacemark.geometry.setCoordinates(coordinates);
