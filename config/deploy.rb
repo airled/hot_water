@@ -3,7 +3,7 @@ require 'mina/rails'
 require 'mina/git'
 require 'mina/rbenv'
 
-set :domain, '51.254.10.211'
+set :domain, '176.112.212.232'
 set :deploy_to, '/home/hotwater'
 set :repository, 'https://github.com/airled/hot_water.git'
 set :branch, 'master'
