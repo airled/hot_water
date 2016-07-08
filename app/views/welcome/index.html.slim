@@ -1,9 +1,8 @@
 .header
   span.result#result
-  / .search-form#search-form
-  /   input#street.street type="text" placeholder="Улица"
-  /   input#house.house type="text" placeholder="Дом"
-  /   input#search-submit type="button" value="Найти"
+  .search-form#search-form
+    input#address.address type="text" placeholder="Адрес"
+    input#search-submit type="button" value="Найти"
 
 .container
   .map#map title='Щелкните по дому для отображения адреса с датой' 

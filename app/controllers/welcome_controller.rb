@@ -3,11 +3,12 @@ class WelcomeController < ApplicationController
   end
 
   def get_data
-    street = params[:street].gsub(/Улица|улица/, '').strip.mb_chars.downcase.to_s
-    house = params[:house]
+    address = params[:address].gsub(/Улица|улица/, '').gsub(/пр-т/, 'проспект').strip.split(/ (?=[0-9])/)
+    street = address[0].mb_chars.downcase.to_s
+    house = address[1]
 
-    if street.nil? || house.nil?
-      render json: {date: 'no params'}
+    if street.blank? || house.blank?
+      render json: {date: 'Ошибка'}
     else
       address_full = Address.find_by_street_and_house(street, house)
       address_short = Address.find_by_street_and_house(street, house.gsub(/к[0-9]+/, ''))
@@ -28,8 +29,16 @@ class WelcomeController < ApplicationController
 
   def autocomplete_street
     return unless params[:term]
-    matches = Address.distinct.where("street like '#{params[:term].mb_chars.downcase.to_s}%'").limit(10).pluck(:street)
-    render json: matches.to_json
+    street = params[:term].split(/ (?=[0-9])/)[0]
+    house =  params[:term].split(/ (?=[0-9])/)[1]
+
+    if house
+      matches = Address.distinct.where("street like '#{street.strip.mb_chars.downcase.to_s}%'").where("house like '#{house.strip}%'").limit(10).map { |x| "#{x.street} #{x.house}" }
+    else
+      matches = Address.distinct.where("street like '#{street.strip.mb_chars.downcase.to_s}%'").limit(10).map { |x| "#{x.street} #{x.house}" }
+    end
+
+    render json: matches.uniq.to_json
   end
 
 end

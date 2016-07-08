@@ -1,25 +1,21 @@
 $(document).ready(function() {
 
-  $("#street").autocomplete({
+  $("#address").autocomplete({
     source: Routes.autocomplete_street_path()
   });
 
   $('#search-submit').click(function() {
-    var street = $('#street').val().trim();
-    var house = $('#house').val().trim();
-    if (street === ''){
-      $('#result').text('Нет улицы');
-    }
-    else if (house === '') {
-      $('#result').text('Нет номера дома');
+    var address = $('#address').val().trim();
+    if (address === ''){
+      $('#result').text('Адрес не введен');
     }
     else {
-      var url_for_date = Routes.root_path() + 'date?street=' + street + '&house=' + house;
+      var url_for_date = Routes.root_path() + 'date?address=' + address;
       $.ajax({
         url: url_for_date
       })
       .done(function(data) {
-        $('#result').text('Адрес: ' + street + ', ' + house + " | Отключение: " + data.date);
+        $('#result').text("Отключение: " + data.date);
       });
     }
   });
