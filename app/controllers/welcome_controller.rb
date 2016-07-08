@@ -4,7 +4,7 @@ class WelcomeController < ApplicationController
 
   def get_data
     address = params[:address].gsub(/Улица|улица/, '').gsub(/пр-т/, 'проспект').strip.split(/ (?=[0-9])/)
-    street = address[0].mb_chars.downcase.to_s
+    street = address[0]
     house = address[1]
 
     if street.blank? || house.blank?
@@ -12,8 +12,8 @@ class WelcomeController < ApplicationController
     else
       # address_full = Address.find_by_street_and_house(street, house)
       # address_short = Address.find_by_street_and_house(street, house.gsub(/к[0-9]+/, ''))
-      address_full = Address.where(street: street, house: house).last
-      address_short = Address.where(street: street, house: house.gsub(/к[0-9]+/, '')).last
+      address_full = Address.where(street: street.mb_chars.downcase.to_s.strip, house: house.mb_chars.downcase.to_s.strip).last
+      address_short = Address.where(street: street.mb_chars.downcase.to_s.strip, house: house.mb_chars.downcase.to_s.gsub(/к[0-9]+/, '').strip).last
       if address_full
         render json: {date: address_full.offdate.date}
       elsif address_short
