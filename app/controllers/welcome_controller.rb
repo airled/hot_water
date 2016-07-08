@@ -8,10 +8,12 @@ class WelcomeController < ApplicationController
     house = address[1]
 
     if street.blank? || house.blank?
-      render json: {date: 'Ошибка'}
+      render json: {date: 'Неполный адрес'}
     else
-      address_full = Address.find_by_street_and_house(street, house)
-      address_short = Address.find_by_street_and_house(street, house.gsub(/к[0-9]+/, ''))
+      # address_full = Address.find_by_street_and_house(street, house)
+      # address_short = Address.find_by_street_and_house(street, house.gsub(/к[0-9]+/, ''))
+      address_full = Address.where(street: street, house: house).last
+      address_short = Address.where(street: street, house: house.gsub(/к[0-9]+/, '')).last
       if address_full
         render json: {date: address_full.offdate.date}
       elsif address_short
