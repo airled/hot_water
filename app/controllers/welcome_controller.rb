@@ -26,4 +26,10 @@ class WelcomeController < ApplicationController
     end
   end
 
+  def autocomplete_street
+    return unless params[:term]
+    matches = Address.distinct.where("street like '#{params[:term].mb_chars.downcase.to_s}%'").limit(10).pluck(:street)
+    render json: matches.to_json
+  end
+
 end

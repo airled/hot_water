@@ -1,4 +1,9 @@
 $(document).ready(function() {
+
+  $("#street").autocomplete({
+    source: Routes.autocomplete_street_path()
+  });
+
   $('#search-submit').click(function() {
     var street = $('#street').val().trim();
     var house = $('#house').val().trim();
