@@ -30,3 +30,7 @@ group :development do
   gem 'quiet_assets'
   gem 'mina'
 end
+
+group :production do
+  gem 'rollbar'
+end

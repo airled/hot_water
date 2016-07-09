@@ -131,6 +131,8 @@ GEM
     rdoc (4.2.2)
       json (~> 1.4)
     ref (2.0.0)
+    rollbar (2.8.3)
+      multi_json
     rspec-core (3.4.4)
       rspec-support (~> 3.4.0)
     rspec-expectations (3.4.0)
@@ -217,6 +219,7 @@ DEPENDENCIES
   pg
   quiet_assets
   rails (= 4.2.6)
+  rollbar
   rspec-rails (~> 3.0)
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
