@@ -61,7 +61,7 @@ end
 
 desc "Run remote application."
 task :start => :environment do
-  queue "cd ~/current && bundle exec thin -C config/thin.yml -R config.ru start"
+  queue "source ~/.zshrc && cd ~/current && bundle exec thin -C config/thin.yml -R config.ru start"
 end
 
 desc "Stop remote application."
