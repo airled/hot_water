@@ -16,6 +16,7 @@ gem 'curb'
 gem 'database_cleaner'
 gem 'thin'
 gem "js-routes"
+gem 'rollbar'
 
 group :development, :test do
   gem 'byebug'
@@ -29,8 +30,4 @@ group :development do
   gem 'spring'
   gem 'quiet_assets'
   gem 'mina'
-end
-
-group :production do
-  gem 'rollbar'
 end
